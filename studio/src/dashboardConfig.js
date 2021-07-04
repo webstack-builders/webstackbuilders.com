@@ -12,8 +12,7 @@ export default {
                 "NOTE: Because these sites are static builds, they need to be re-deployed to see the changes when documents are published.",
               sites: [
                 {
-                  buildHookId:
-                    "60df9ccc0d8a13913c69ae10",
+                  buildHookId: "60df9ccc0d8a13913c69ae10",
                   title: "Sanity Studio",
                   name: "webstackbuilders-com-studio",
                   apiId: "10e24f13-ff8f-4ac8-b8c2-48093abe41d2",
@@ -31,8 +30,7 @@ export default {
         data: [
           {
             title: "GitHub repo",
-            value:
-              "https://github.com/webstackdev/webstackbuilders.com",
+            value: "https://github.com/webstackdev/webstackbuilders.com",
             category: "Code",
           },
           {

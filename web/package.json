@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "blog-with-gatsby-web",
-  "version": "1.0.7",
-  "author": "Sanity <hello@sanity.io>",
+  "name": "webstack-builders-company-website",
+  "version": "0.0.1",
+  "author": "Webstack Builders <info@webstackbuilders.com>",
   "scripts": {
     "build": "gatsby build",
     "clean-cache": "gatsby clean",

@@ -1,4 +1,15 @@
 module.exports = {
+  env: {
+    node: true,
+    browser: true,
+  },
+  extends: [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:jest-dom/recommended",
+    // "plugin:prettier/recommended",
+    "plugin:react/recommended",
+  ],
   parser: "babel-eslint",
   parserOptions: {
     sourceType: "module",
@@ -7,19 +18,9 @@ module.exports = {
       jsx: true,
     },
   },
-  env: {
-    node: true,
-    browser: true,
-  },
   rules: {
     "react/prop-types": "off",
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:import/errors",
-    "plugin:react/recommended",
-    "plugin:prettier/recommended",
-  ],
   settings: {
     react: {
       pragma: "React",

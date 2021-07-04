@@ -4,9 +4,9 @@ _Fully customizable blog template with a React.js front-end._
 
 Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-blog).
 
-## What you have
+## What this is
 
-- A blazing fast blog with [Gatsby.js](https://gatsbyjs.org)
+- A blazing fast company website with [Gatsby.js](https://gatsbyjs.org)
 - Structured content using [Sanity.io](https://www.sanity.io)
 - Global deployment on [Netlify](https://netlify.com)
 
@@ -31,8 +31,13 @@ If you want to turn off preview you can set `watchMode: false` in gatsby-config
 
 Netlify automatically deploys new changes commited to master on GitHub. If you want to change deployment branch, do so in [build & deploy settings on Netlify](https://www.netlify.com/docs/continuous-deployment/#branches-deploys).
 
-## Stuck? Get help
 
-[![Slack Community Button](https://slack.sanity.io/badge.svg)](https://slack.sanity.io/)
+Our ESLint configuration is a mixture between ESLint's recommended rules [^1], React's recommended rules [^2], and a bit of our own stylistic flair:
+- no semicolons
+- comma dangle when multiline
+- single quotes
+- always use parenthesis around arrow functions
+- enforced import sorting
 
-Join [Sanity’s developer community](https://slack.sanity.io) or ping us [on twitter](https://twitter.com/sanity_io).
+[^1] https://eslint.org/docs/rules/
+[^2] https://www.npmjs.com/package/eslint-plugin-react#list-of-supported-rules
