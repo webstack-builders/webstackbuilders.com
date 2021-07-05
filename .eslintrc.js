@@ -40,24 +40,11 @@ module.exports = {
     'import/order': [
       'error',
       {
-        'newlines-between': 'always',
-        pathGroupsExcludedImportTypes: ['react'],
-        pathGroups: [
-          {
-            pattern: 'react',
-            group: 'builtin',
-            position: 'after',
-          },
-          {
-            pattern: 'web/src/**',
-            group: 'parent',
-            position: 'before',
-          },
-        ],
         alphabetize: {
           order: 'asc',
           caseInsensitive: true,
         },
+        'newlines-between': 'always',
       },
     ],
     'new-cap': ['error', { newIsCap: true, capIsNew: false }],
@@ -103,6 +90,7 @@ module.exports = {
         window: 'off', // Developers should use `global` instead of window. Since window is undefined in NodeJS.
       },
     },
+    // TypeScript settings
     {
       files: ['*.ts', '*.tsx'],
       parser: '@typescript-eslint/parser',
