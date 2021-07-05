@@ -106,7 +106,7 @@ const IndexPage = (props) => {
         )}
       </Container>
     </Layout>
-  );
+  )
 };
 
 export default IndexPage;
