@@ -8,6 +8,6 @@ module.exports = {
   options: {
     isTSX: true, // defaults to false
     jsxPragma: `jsx`, // defaults to "React"
-    allExtensions: true, // defaults to false
+    allExtensions: true, // defaults to false, required if isTSX set to true
   },
 }
