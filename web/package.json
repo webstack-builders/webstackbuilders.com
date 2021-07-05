@@ -6,13 +6,13 @@
   "scripts": {
     "build": "gatsby build",
     "clean-cache": "gatsby clean",
-    "dev": "gatsby develop",
+    "dev": "gatsby develop -p 8001",
     "lint": "eslint .",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "devDependencies": {
-    "@types/node": "^14.14.37",
+    "@types/node": "^14.17.4",
     "@types/react": "^17.0.13",
     "@types/react-dom": "^17.0.8",
     "dotenv": "^8.0.0",
