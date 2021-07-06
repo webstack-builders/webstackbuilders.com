@@ -1,7 +1,7 @@
 {
-  "name": "@webstackbuilders-company-website/prettier-config",
+  "name": "@webstackbuilders/eslint-config-company-website",
   "version": "0.1.0",
-  "description": "Common Prettier config for the Webstack Builders company website",
+  "description": "Common ESLint config for the Webstack Builders company website",
   "author": "Webstack Builders <info@webstackbuilders.com>",
   "homepage": "https://webstackbuilders.com",
   "license": "BSD-2-Clause",
@@ -20,6 +20,7 @@
     "url": "https://github.com/webstackdev/webstackbuilders.com/issues"
   },
   "devDependencies": {
-    "prettier": "^2.3.2"
-  }
+    "eslint": "^7.30.0"
+  },
+  "gitHead": "6996a85792c33348a4267c1c2b55862579b952d8"
 }
