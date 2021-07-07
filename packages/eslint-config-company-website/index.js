@@ -15,7 +15,7 @@ module.exports = {
     "plugin:prettier/recommended",
     'plugin:react/recommended',
   ],
-  ignorePatterns: ['node_modules'],
+  ignorePatterns: ['.cache', 'public', 'node_modules'],
   parser: '@babel/eslint-parser',
   parserOptions: {
     sourceType: 'module',

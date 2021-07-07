@@ -14,7 +14,8 @@
     "dev": "gatsby develop -p 8001",
     "lint": "eslint .",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
-    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
+    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
+    "tsc": "tsc"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",

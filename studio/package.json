@@ -15,7 +15,8 @@
     "build": "sanity build",
     "graphql-deploy": "sanity graphql deploy --playground",
     "lint": "eslint .",
-    "test": "sanity check"
+    "test": "sanity check",
+    "tsc": "tsc"
   },
   "dependencies": {
     "@sanity/base": "^2.7.4",
