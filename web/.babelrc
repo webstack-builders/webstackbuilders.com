@@ -21,3 +21,5 @@
     ]
   ]
 }
+
+// shouldn't this be in /web? How about in eslint-config?

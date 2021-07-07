@@ -36,5 +36,10 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0"
-  }
+  },
+  "eslintConfig": {
+    "extends": "@webstackbuilders/eslint-config-company-website",
+    "root": true
+  },
+  "prettier": "@webstackbuilders/prettier-config-company-website"
 }

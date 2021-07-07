@@ -1,79 +1,8 @@
-const path = require('path')
-
 module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-    node: true,
-  },
-  extends: [
-    'eslint:recommended',
-    'plugin:import/errors',
-    'plugin:jest-dom/recommended',
-    'plugin:jsx-a11y/recommended',
-    // "plugin:prettier/recommended",
-    'plugin:react/recommended',
-  ],
+  extends: ['@webstackbuilders/eslint-config-company-website'],
   ignorePatterns: ['/web/public', '/studio/build'],
-  parser: '@babel/eslint-parser',
-  parserOptions: {
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2020,
-    babelOptions: {
-      configFile: path.resolve(__dirname, '.babelrc'),
-    },
-  },
-  plugins: [
-    'import',
-    'jest-dom',
-    'jsx-a11y',
-    // "prettier",
-    'react-hooks',
-    'react',
-  ],
-  rules: {
-    camelcase: ['warn', { properties: 'never' }],
-    curly: 'error',
-    'import/order': [
-      'error',
-      {
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true,
-        },
-        'newlines-between': 'always',
-      },
-    ],
-    'new-cap': ['error', { newIsCap: true, capIsNew: false }],
-    'no-console': 'off',
-    'no-new': 'warn',
-    'no-unused-expressions': [
-      'error',
-      { allowShortCircuit: true, allowTernary: true },
-    ],
-    'no-unused-vars': [
-      'error',
-      { varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
-    ],
-    'no-useless-escape': 'off',
-    'prefer-object-spread': 'warn',
-    'prefer-spread': 'warn',
-    // "prettier/prettier": "warn",
-    // React rules
-    'react-hooks/exhaustive-deps': 'warn',
-    'react-hooks/rules-of-hooks': 'error',
-    'react/display-name': 'off',
-    'react/prop-types': [
-      'warn',
-      {
-        skipUndeclared: true,
-        ignore: ['style', 'children', 'className', 'theme'],
-      },
-    ],
-  },
+  "root": true,
+
   overrides: [
     // Browser Context
     //

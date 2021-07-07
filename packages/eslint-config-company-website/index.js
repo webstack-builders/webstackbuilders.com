@@ -12,7 +12,7 @@ module.exports = {
     'plugin:import/errors',
     'plugin:jest-dom/recommended',
     'plugin:jsx-a11y/recommended',
-    // "plugin:prettier/recommended",
+    "plugin:prettier/recommended",
     'plugin:react/recommended',
   ],
   ignorePatterns: ['/web/public', '/studio/build'],
