@@ -14,8 +14,9 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     "plugin:prettier/recommended",
     'plugin:react/recommended',
+    "prettier",
   ],
-  ignorePatterns: ['.cache', 'public', 'node_modules'],
+  ignorePatterns: ['.cache/', 'public/', 'node_modules/'],
   parser: '@babel/eslint-parser',
   parserOptions: {
     sourceType: 'module',
@@ -31,13 +32,13 @@ module.exports = {
     'import',
     'jest-dom',
     'jsx-a11y',
-    // "prettier",
     'react-hooks',
     'react',
+    'prettier',
   ],
   rules: {
     camelcase: ['warn', { properties: 'never' }],
-    curly: 'error',
+    curly: ['error', 'all'],
     'import/order': [
       'error',
       {
