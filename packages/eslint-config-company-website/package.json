@@ -13,6 +13,11 @@
     "type": "git",
     "url": "git+https://github.com/webstackdev/webstackbuilders.com.git"
   },
+  "engines": {
+    "node": ">=15.0.0",
+    "npm": ">=7.0.0",
+    "yarn": "please-use-npm"
+  },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
@@ -31,7 +36,8 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.3.2"
   },
   "eslintConfig": {
     "extends": "./index.js",

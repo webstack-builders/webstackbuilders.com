@@ -13,12 +13,17 @@
     "type": "git",
     "url": "git+https://github.com/webstackdev/webstackbuilders.com.git"
   },
+  "engines": {
+    "node": ">=15.0.0",
+    "npm": ">=7.0.0",
+    "yarn": "please-use-npm"
+  },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "peerDependencies": {
     "prettier": "^2.3.2"
-  }
+  },
   "eslintConfig": {
     "extends": "@webstackbuilders/eslint-config-company-website",
     "root": true

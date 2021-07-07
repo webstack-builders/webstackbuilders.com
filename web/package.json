@@ -3,6 +3,11 @@
   "name": "webstack-builders-company-website",
   "version": "0.1.0",
   "author": "Webstack Builders <info@webstackbuilders.com>",
+  "engines": {
+    "node": ">=15.0.0",
+    "npm": ">=7.0.0",
+    "yarn": "please-use-npm"
+  },
   "scripts": {
     "build": "gatsby build",
     "clean-cache": "gatsby clean",
