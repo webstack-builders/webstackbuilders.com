@@ -1,6 +1,8 @@
 const path = require('path')
 
 module.exports = {
+  // @ts-ignore
+  emitWarning: process.env.NODE_ENV.trim() === 'development',
   env: {
     browser: true,
     commonjs: true,
@@ -16,7 +18,6 @@ module.exports = {
     'plugin:react/recommended',
     "prettier",
   ],
-  ignorePatterns: ['.cache/', 'public/', 'node_modules/'],
   parser: '@babel/eslint-parser',
   parserOptions: {
     sourceType: 'module',
@@ -24,9 +25,6 @@ module.exports = {
       jsx: true,
     },
     ecmaVersion: 2020,
-    babelOptions: {
-      configFile: path.resolve(__dirname, '.babelrc'),
-    },
   },
   plugins: [
     'import',
@@ -36,9 +34,11 @@ module.exports = {
     'react',
     'prettier',
   ],
+  resolvePluginsRelativeTo: __dirname,
   rules: {
     camelcase: ['warn', { properties: 'never' }],
     curly: ['error', 'all'],
+    'import/no-webpack-loader-syntax': [0],
     'import/order': [
       'error',
       {
@@ -68,6 +68,12 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'react-hooks/rules-of-hooks': 'error',
     'react/display-name': 'off',
+    'react/jsx-pascal-case': [
+      'warn',
+      {
+        allowNamespace: true,
+      },
+    ],
     'react/prop-types': [
       'warn',
       {
@@ -75,24 +81,14 @@ module.exports = {
         ignore: ['style', 'children', 'className', 'theme'],
       },
     ],
+    'react/react-in-jsx-scope': 'off',
   },
   overrides: [
-    // Browser Context
-    //
-    // We prevent "window" from being used, and instead require "global".
-    // This is because prerender runs in the NodeJS context it's undefined.
     {
-      files: ['studio/src/**', 'web/src/**'],
-      env: {
-        es6: true,
-        browser: true,
-      },
-      globals: {
-        React: 'readonly', // We auto-import React via Babel.
-        window: 'off', // Developers should use `global` instead of window. Since window is undefined in NodeJS.
-      },
+      files: ['*.yaml', '*.yml'],
+      plugins: ['yaml'],
+      extends: ['plugin:yaml/recommended']
     },
-    // TypeScript settings
     {
       files: ['*.ts', '*.tsx'],
       parser: '@typescript-eslint/parser',

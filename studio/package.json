@@ -38,6 +38,23 @@
   },
   "eslintConfig": {
     "extends": "@webstackbuilders/eslint-config-company-website",
+    "overrides": [
+      // Browser Context
+      //
+      // We prevent "window" from being used, and instead require "global".
+      // This is because prerender runs in the NodeJS context it's undefined.
+      {
+        files: ['studio/src/**', 'web/src/**'],
+        env: {
+          es6: true,
+          browser: true,
+        },
+        globals: {
+          React: 'readonly', // We auto-import React via Babel.
+          window: 'off', // Developers should use `global` instead of window. Since window is undefined in NodeJS.
+        },
+      }
+    ],
     "root": true
   },
   "prettier": "@webstackbuilders/prettier-config-company-website"

@@ -18,7 +18,8 @@
     "lint": "eslint . && lerna run lint",
     "postinstall": "lerna bootstrap",
     "publish": "lerna run tsc && lerna publish from-git",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "lerna run test",
+    "test:covewrage": "lerna run test --coverage",
     "tsc": "tsc",
     "version:patch": "lerna version patch",
     "version:minor": "lerna version minor",
@@ -34,8 +35,9 @@
   "eslintConfig": {
     "extends": "@webstackbuilders/eslint-config-company-website",
     "ignorePatterns": [
-      "/web/public",
-      "/studio/build"
+      "**/web/public/*",
+      "**/studio/build/*",
+      "**/packages/*"
     ],
     "root": true
   },
