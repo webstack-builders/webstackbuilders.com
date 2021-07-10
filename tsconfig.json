@@ -23,7 +23,8 @@
     ]
   },
   "exclude": [
-    "/web/public",
-    "/studio/build"
+    "/packages/*"
+    "/web/public/*",
+    "/studio/build/*"
   ]
 }
