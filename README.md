@@ -36,6 +36,7 @@ If you want to turn off preview you can set `watchMode: false` in gatsby-config
 
 Netlify automatically deploys new changes commited to master on GitHub. If you want to change deployment branch, do so in [build & deploy settings on Netlify](https://www.netlify.com/docs/continuous-deployment/#branches-deploys).
 
+## Code Quality
 
 Our ESLint configuration is a mixture between ESLint's recommended rules [^1], React's recommended rules [^2], and a bit of our own stylistic flair:
 - no semicolons
@@ -49,16 +50,11 @@ Our ESLint configuration is a mixture between ESLint's recommended rules [^1], R
 
 ## Developing with `eslint-config-company-website` and `prettier-config-company-website` Packages
 
-You can either use a private and local package registry (Verdaccio) or `npm link`:
+Please see the README files in the packages for instructions on local development.
 
-```bash
-cd ~/packages/eslint-config-company-website   # go into the package directory
-npm link                                      # creates global link
-cd ~/web                                      # go into a different package directory.
-npm link eslint-config-company-website        # link-install the package
-```
+## Publishing Packages
 
-`version` and `publish` scripts in root `package.json` are only useful when developing on config packages, as `web` and `studio` are private repos
+`version` and `publish` scripts in root `package.json` are only useful when developing on config packages, as `web` and `studio` are private repos.
 
 ## @TODO:
 
