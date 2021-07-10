@@ -17,7 +17,7 @@
     "graphql-deploy": "lerna run graphql-deploy",
     "lint": "eslint . && lerna run lint",
     "postinstall": "lerna bootstrap",
-    "publish": "lerna run tsc && lerna publish from-git",
+    "publish": "lerna publish from-git",
     "test": "lerna run test",
     "test:covewrage": "lerna run test --coverage",
     "tsc": "tsc",
