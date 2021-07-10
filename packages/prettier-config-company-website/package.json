@@ -1,6 +1,6 @@
 {
   "name": "@webstackbuilders/prettier-config-company-website",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Common Prettier config for the Webstack Builders company website",
   "author": "Webstack Builders <info@webstackbuilders.com>",
   "homepage": "https://webstackbuilders.com",
@@ -23,7 +23,7 @@
     "tsc": "tsc"
   },
   "devDependencies": {
-    "@webstackbuilders/eslint-config-company-website": "^0.1.1"
+    "@webstackbuilders/eslint-config-company-website": "^0.1.2"
   },
   "peerDependencies": {
     "prettier": "^2.3.2"

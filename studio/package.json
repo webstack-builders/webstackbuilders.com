@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "webstack-builders-company-website-cms-studio",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "main": "package.json",
   "author": "Webstack Builders <info@webstackbuilders.com>",
   "engines": {
@@ -51,8 +51,8 @@
   },
   "prettier": "@webstackbuilders/prettier-config-company-website",
   "devDependencies": {
-    "@webstackbuilders/eslint-config-company-website": "^0.1.1",
-    "@webstackbuilders/prettier-config-company-website": "^0.1.1",
+    "@webstackbuilders/eslint-config-company-website": "^0.1.2",
+    "@webstackbuilders/prettier-config-company-website": "^0.1.2",
     "eslint-config-sanity": "^5.1.0"
   }
 }
