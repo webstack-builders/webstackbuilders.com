@@ -22,14 +22,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1",
     "tsc": "tsc"
   },
-  "devDependencies": {
-    "@webstackbuilders/eslint-config-company-website": "^0.1.2"
-  },
   "peerDependencies": {
     "prettier": "^2.3.2"
-  },
-  "eslintConfig": {
-    "extends": "@webstackbuilders/eslint-config-company-website",
-    "root": true
   }
 }
