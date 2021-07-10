@@ -1,5 +1,5 @@
 # `@webstackbuilders/eslint-config-company-website`
-This is Webstack Builders' ESLint configuration for our company website and other projects. Bundling it in an NPM package allows it to be reused across the website monorepo seamlessly, following ESLint's `eslint-config-<your-app-name>` convention. 
+This is Webstack Builders' ESLint configuration for our company website and other projects. Bundling it in an NPM package allows it to be reused across the website monorepo seamlessly, following ESLint's `eslint-config-<your-app-name>` convention.
 
 ## Installation
 Run the following command to install this package:
@@ -7,6 +7,7 @@ Run the following command to install this package:
 ```bash
 npm install --save-dev @webstackbuilders/eslint-config-company-website
 ```
+
 If you are using NPM v7 or higher, this package's peer dependencies will be automatically installed. If you're using a lower version of NPM, you'll need to install them yourself. You can get a list of the peer dependencies to install individually with this command:
 
 ```bash
@@ -64,6 +65,7 @@ npm link                                        # creates global link
 cd ~/web                                        # go into a different package directory.
 npm link eslint-config-company-website        # link-install the package
 ```
+
 ### Running a Local NPM Registry
 
 Sometimes you'll want to test the full package-development workflow: building, publishing, and installing all the packages in your local copy of a project. We accommodate this using a local NPM registry called  [Verdaccio](https://verdaccio.org/).

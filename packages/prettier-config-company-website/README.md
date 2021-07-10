@@ -1,6 +1,6 @@
 # `@webstackbuilders/prettier-config-company-website`
 
-This is Webstack Builders' Prettier configuration for our company website and other projects. Bundling it in an NPM package allows it to be reused across the website monorepo seamlessly, following Prettier's `prettier-config-<your-app-name>` convention. 
+This is Webstack Builders' Prettier configuration for our company website and other projects. Bundling it in an NPM package allows it to be reused across the website monorepo seamlessly, following Prettier's `prettier-config-<your-app-name>` convention.
 
 ## Installation
 
@@ -88,3 +88,21 @@ npm link prettier-config-company-website        # link-install the package
 ```
 
 The Webstack Builders company website monorepo has versioning commands available to add semver tags to this package, and a publish command to push your changes to the NPM repository.
+
+### Running a Local NPM Registry
+
+Sometimes you'll want to test the full package-development workflow: building, publishing, and installing all the packages in your local copy of a project. We accommodate this using a local NPM registry called  [Verdaccio](https://verdaccio.org/).
+
+First, install Verdaccio:
+
+```bash
+npm install verdaccio --global
+```
+
+Then run the following in a terminal from the package root:
+
+```bash
+set -e; verdaccio --config verdaccio.yml
+```
+
+This starts Verdaccio (on http://localhost:4873).

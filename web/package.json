@@ -23,6 +23,8 @@
     "@types/node": "^14.17.4",
     "@types/react": "^17.0.13",
     "@types/react-dom": "^17.0.8",
+    "@webstackbuilders/eslint-config-company-website": "^0.1.1",
+    "@webstackbuilders/prettier-config-company-website": "^0.1.1",
     "babel-eslint": "^10.1.0",
     "babel-preset-gatsby": "^1.8.0",
     "dotenv": "^8.0.0",

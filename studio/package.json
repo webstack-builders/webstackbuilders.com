@@ -51,6 +51,8 @@
   },
   "prettier": "@webstackbuilders/prettier-config-company-website",
   "devDependencies": {
+    "@webstackbuilders/eslint-config-company-website": "^0.1.1",
+    "@webstackbuilders/prettier-config-company-website": "^0.1.1",
     "eslint-config-sanity": "^5.1.0"
   }
 }
