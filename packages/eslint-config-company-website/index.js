@@ -1,8 +1,4 @@
-const path = require('path')
-
 module.exports = {
-  // @ts-ignore
-  emitWarning: process.env.NODE_ENV.trim() === 'development',
   env: {
     browser: true,
     commonjs: true,
@@ -20,11 +16,13 @@ module.exports = {
   ],
   parser: '@babel/eslint-parser',
   parserOptions: {
-    sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 2020,
+    requireConfigFile: false,
+    resolvePluginsRelativeTo: __dirname,
+    sourceType: 'module',
   },
   plugins: [
     'import',
@@ -34,7 +32,6 @@ module.exports = {
     'react',
     'prettier',
   ],
-  resolvePluginsRelativeTo: __dirname,
   rules: {
     camelcase: ['warn', { properties: 'never' }],
     curly: ['error', 'all'],

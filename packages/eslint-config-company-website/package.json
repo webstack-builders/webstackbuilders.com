@@ -19,18 +19,12 @@
     "yarn": "please-use-npm"
   },
   "scripts": {
+    "lint": "Lint not available for the linting configuration file.",
     "test": "echo \"Error: run tests from root\" && exit 1",
     "tsc": "tsc"
   },
   "devDependencies": {
-    "eslint-plugin-babel": "^5.3.1",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-jest-dom": "^3.9.0",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-yaml": "^0.5.0"
+    "@webstackbuilders/prettier-config-company-website": "^0.1.1"
   },
   "peerDependencies": {
     "@babel/core": "^7.14.6",
@@ -41,11 +35,15 @@
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-babel-module": "^5.3.1",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jest-dom": "^3.9.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-yaml": "^0.5.0",
     "prettier": "^2.3.2"
-  },
-  "eslintConfig": {
-    "extends": "./index.js",
-    "root": true
   },
   "prettier": "@webstackbuilders/prettier-config-company-website",
   "gitHead": "6996a85792c33348a4267c1c2b55862579b952d8"
