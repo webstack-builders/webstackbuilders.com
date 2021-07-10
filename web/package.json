@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "webstack-builders-company-website",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Webstack Builders <info@webstackbuilders.com>",
   "engines": {
     "node": ">=15.0.0",
@@ -38,8 +38,8 @@
     "@types/node": "^14.17.4",
     "@types/react": "^17.0.13",
     "@types/react-dom": "^17.0.8",
-    "@webstackbuilders/eslint-config-company-website": "^0.1.2",
-    "@webstackbuilders/prettier-config-company-website": "^0.1.2",
+    "@webstackbuilders/eslint-config-company-website": "^0.1.3",
+    "@webstackbuilders/prettier-config-company-website": "^0.1.3",
     "babel-eslint": "^10.1.0",
     "babel-preset-gatsby": "^1.8.0",
     "dotenv": "^8.0.0",
