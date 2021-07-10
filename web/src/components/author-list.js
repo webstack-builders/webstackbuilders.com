@@ -1,7 +1,9 @@
-import * as styles from "./author-list.module.css";
-import React from "react";
-import { buildImageObj } from "../lib/helpers";
-import { imageUrlFor } from "../lib/image-url";
+import React from 'react'
+
+import { buildImageObj } from '../lib/helpers'
+import { imageUrlFor } from '../lib/image-url'
+
+import * as styles from './author-list.module.css'
 
 function AuthorList({ items, title }) {
   return (
@@ -9,7 +11,7 @@ function AuthorList({ items, title }) {
       <h2 className={styles.headline}>{title}</h2>
       <ul className={styles.list}>
         {items.map(({ author, _key }) => {
-          const authorName = author && author.name;
+          const authorName = author && author.name
           return (
             <li key={_key} className={styles.listItem}>
               <div>
@@ -19,7 +21,7 @@ function AuthorList({ items, title }) {
                       src={imageUrlFor(buildImageObj(author.image))
                         .width(100)
                         .height(100)
-                        .fit("crop")
+                        .fit('crop')
                         .url()}
                       alt=""
                     />
@@ -30,11 +32,11 @@ function AuthorList({ items, title }) {
                 <div>{authorName || <em>Missing name</em>}</div>
               </div>
             </li>
-          );
+          )
         })}
       </ul>
     </div>
-  );
+  )
 }
 
-export default AuthorList;
+export default AuthorList

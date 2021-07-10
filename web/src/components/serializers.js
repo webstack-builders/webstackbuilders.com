@@ -1,5 +1,6 @@
-import React from "react";
-import { Figure } from "./Figure";
+import React from 'react'
+
+import { Figure } from './Figure'
 
 const serializers = {
   types: {
@@ -7,6 +8,6 @@ const serializers = {
     authorReference: ({ node }) => <span>{node.author.name}</span>,
     mainImage: Figure,
   },
-};
+}
 
-export default serializers;
+export default serializers

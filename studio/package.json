@@ -36,23 +36,18 @@
     "sanity-plugin-dashboard-widget-document-list": "^0.0.13",
     "sanity-plugin-dashboard-widget-netlify": "^1.0.1"
   },
+  "devDependencies": {
+    "@webstackbuilders/eslint-config-company-website": "^0.1.2",
+    "@webstackbuilders/prettier-config-company-website": "^0.1.2",
+    "eslint-config-sanity": "^5.1.0"
+  },
   "eslintConfig": {
     "extends": [
       "@webstackbuilders/eslint-config-company-website",
       "sanity/react",
       "sanity/typescript"
     ],
-    "overrides": {
-      "files": [
-        "src/**"
-      ]
-    },
     "root": true
   },
-  "prettier": "@webstackbuilders/prettier-config-company-website",
-  "devDependencies": {
-    "@webstackbuilders/eslint-config-company-website": "^0.1.2",
-    "@webstackbuilders/prettier-config-company-website": "^0.1.2",
-    "eslint-config-sanity": "^5.1.0"
-  }
+  "prettier": "@webstackbuilders/prettier-config-company-website"
 }
