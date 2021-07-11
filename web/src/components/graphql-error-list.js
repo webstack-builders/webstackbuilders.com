@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const GraphQLErrorList = ({ errors }) => (
   <div>
@@ -7,6 +7,6 @@ const GraphQLErrorList = ({ errors }) => (
       <pre key={error.message}>{error.message}</pre>
     ))}
   </div>
-);
+)
 
-export default GraphQLErrorList;
+export default GraphQLErrorList

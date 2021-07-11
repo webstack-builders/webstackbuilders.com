@@ -1,21 +1,16 @@
-import * as styles from "./blog-post.module.css";
-import { differenceInDays, formatDistance, format } from "date-fns";
-import AuthorList from "./author-list";
-import Container from "./container";
-import PortableText from "./portableText";
-import React from "react";
-import { buildImageObj } from "../lib/helpers";
-import { imageUrlFor } from "../lib/image-url";
+import { differenceInDays, formatDistance, format } from 'date-fns'
+import React from 'react'
+
+import { buildImageObj } from '../lib/helpers'
+import { imageUrlFor } from '../lib/image-url'
+
+import AuthorList from './author-list'
+import * as styles from './blog-post.module.css'
+import Container from './container'
+import PortableText from './portableText'
 
 function BlogPost(props) {
-  const {
-    _rawBody,
-    authors,
-    categories,
-    title,
-    mainImage,
-    publishedAt,
-  } = props;
+  const { _rawBody, authors, categories, title, mainImage, publishedAt } = props
   return (
     <article className={styles.root}>
       {mainImage && mainImage.asset && (
@@ -24,8 +19,8 @@ function BlogPost(props) {
             src={imageUrlFor(buildImageObj(mainImage))
               .width(1200)
               .height(Math.floor((9 / 16) * 1200))
-              .fit("crop")
-              .auto("format")
+              .fit('crop')
+              .auto('format')
               .url()}
             alt={mainImage.alt}
           />
@@ -42,7 +37,7 @@ function BlogPost(props) {
               <div className={styles.publishedAt}>
                 {differenceInDays(new Date(publishedAt), new Date()) > 3
                   ? formatDistance(new Date(publishedAt), new Date())
-                  : format(new Date(publishedAt), "MMMM Mo, yyyy")}
+                  : format(new Date(publishedAt), 'MMMM Mo, yyyy')}
               </div>
             )}
             {authors && <AuthorList items={authors} title="Authors" />}
@@ -60,7 +55,7 @@ function BlogPost(props) {
         </div>
       </Container>
     </article>
-  );
+  )
 }
 
-export default BlogPost;
+export default BlogPost

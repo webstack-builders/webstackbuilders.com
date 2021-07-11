@@ -14,5 +14,6 @@
   "cSpell.words": [
     "es",
     "true"
-  ]
+  ],
+  "git.ignoreLimitWarning": true
 }

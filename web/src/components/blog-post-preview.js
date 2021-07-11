@@ -1,12 +1,13 @@
-import * as styles from "./blog-post-preview.module.css";
-import { buildImageObj, cn, getBlogUrl } from "../lib/helpers";
-import { Link } from "gatsby";
-import PortableText from "./portableText";
-import React from "react";
-import { format } from "date-fns";
-import { imageUrlFor } from "../lib/image-url";
+import { format } from 'date-fns'
+import { Link } from 'gatsby'
+import React from 'react'
 
-import { responsiveTitle3 } from "./typography.module.css";
+import { buildImageObj, cn, getBlogUrl } from '../lib/helpers'
+import { imageUrlFor } from '../lib/image-url'
+
+import * as styles from './blog-post-preview.module.css'
+import PortableText from './portableText'
+import { responsiveTitle3 } from './typography.module.css'
 
 function BlogPostPreview(props) {
   return (
@@ -20,7 +21,7 @@ function BlogPostPreview(props) {
             src={imageUrlFor(buildImageObj(props.mainImage))
               .width(600)
               .height(Math.floor((9 / 16) * 600))
-              .auto("format")
+              .auto('format')
               .url()}
             alt={props.mainImage.alt}
           />
@@ -34,11 +35,11 @@ function BlogPostPreview(props) {
           </div>
         )}
         <div className={styles.date}>
-          {format(new Date(props.publishedAt), "MMMM Mo, yyyy")}
+          {format(new Date(props.publishedAt), 'MMMM Mo, yyyy')}
         </div>
       </div>
     </Link>
-  );
+  )
 }
 
-export default BlogPostPreview;
+export default BlogPostPreview

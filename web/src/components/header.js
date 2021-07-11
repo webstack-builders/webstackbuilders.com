@@ -1,9 +1,10 @@
-import { Link } from "gatsby";
-import React from "react";
-import Icon from "./icon";
-import { cn } from "../lib/helpers";
+import { Link } from 'gatsby'
+import React from 'react'
 
-import * as styles from "./header.module.css";
+import { cn } from '../lib/helpers'
+
+import * as styles from './header.module.css'
+import Icon from './icon'
 
 const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => (
   <div className={styles.root}>
@@ -28,6 +29,6 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => (
       </nav>
     </div>
   </div>
-);
+)
 
-export default Header;
+export default Header
