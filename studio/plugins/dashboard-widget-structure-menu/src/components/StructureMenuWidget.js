@@ -1,14 +1,14 @@
-import { Link } from "part:@sanity/base/router";
-import FolderIcon from "part:@sanity/base/folder-icon";
-import FileIcon from "part:@sanity/base/file-icon";
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "./StructureMenuWidget.css";
+import { Link } from 'part:@sanity/base/router'
+import FolderIcon from 'part:@sanity/base/folder-icon'
+import FileIcon from 'part:@sanity/base/file-icon'
+import React from 'react'
+import PropTypes from 'prop-types'
+import styles from './StructureMenuWidget.css'
 
 function getIconComponent(item) {
-  if (item.icon) return item.icon;
-  if (!item.schemaType) return FileIcon;
-  return item.schemaType.icon || FolderIcon;
+  if (item.icon) return item.icon
+  if (!item.schemaType) return FileIcon
+  return item.schemaType.icon || FolderIcon
 }
 
 function StructureMenuWidget(props) {
@@ -20,9 +20,9 @@ function StructureMenuWidget(props) {
 
       <div className={styles.content}>
         {props.structure.items
-          .filter((item) => item.type !== "divider")
+          .filter((item) => item.type !== 'divider')
           .map((item) => {
-            const Icon = getIconComponent(item);
+            const Icon = getIconComponent(item)
             return (
               <div key={item.id}>
                 <Link className={styles.link} href={`/desk/${item.id}`}>
@@ -32,14 +32,14 @@ function StructureMenuWidget(props) {
                   <div>{item.title}</div>
                 </Link>
               </div>
-            );
+            )
           })}
       </div>
     </div>
-  );
+  )
 }
 StructureMenuWidget.propTypes = {
   structure: PropTypes.object,
-};
+}
 
-export default StructureMenuWidget;
+export default StructureMenuWidget

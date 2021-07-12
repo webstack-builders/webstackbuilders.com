@@ -31,6 +31,7 @@
     "@webstackbuilders/eslint-config-company-website": "^0.1.2",
     "@webstackbuilders/prettier-config-company-website": "^0.1.2",
     "gatsby-cli": "^3.8.0",
+    "husky": "^7.0.1",
     "lerna": "^4.0.0",
     "typescript": "^4.3.5"
   },

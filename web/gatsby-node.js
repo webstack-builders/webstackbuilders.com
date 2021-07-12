@@ -3,6 +3,7 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
+const path = require('path')
 
 const { isFuture } = require('date-fns')
 const { format } = require('date-fns')
@@ -27,7 +28,9 @@ async function createBlogPostPages(graphql, actions) {
     }
   `)
 
-  if (result.errors) throw result.errors
+  if (result.errors) {
+    throw result.errors
+  }
 
   const postEdges = (result.data.allSanityPost || {}).edges || []
 

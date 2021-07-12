@@ -4,6 +4,9 @@ _Fully customizable blog template with a React.js front-end._
 
 Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-blog).
 
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
+
+
 ## What this is
 
 - A blazing fast company website with [Gatsby.js](https://gatsbyjs.org)
@@ -48,9 +51,9 @@ Our ESLint configuration is a mixture between ESLint's recommended rules [^1], R
 [^1] https://eslint.org/docs/rules/
 [^2] https://www.npmjs.com/package/eslint-plugin-react#list-of-supported-rules
 
-## Dependencies
+## Package Dependencies
 
-If you're adding a new dependency to a package, use `lerna add`. This manages both the installation and the symlinking of packages, local or remote. To add a remote dependency like `lodash.throttle`, use `lerna add` and specify either a path to your package or a `--scope` flag.
+If you're adding a new dependency to a package (and not the web or studio sides), use `lerna add`. This manages both the installation and the symlinking of packages, local or remote. To add a remote dependency like `lodash.throttle`, use `lerna add` and specify either a path to your package or a `--scope` flag.
 
 ```bash
 npx lerna add lodash.throttle ./packages/my-package

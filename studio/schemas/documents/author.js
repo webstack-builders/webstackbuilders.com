@@ -1,40 +1,40 @@
 export default {
-  name: "author",
-  type: "document",
-  title: "Author",
+  name: 'author',
+  type: 'document',
+  title: 'Author',
   fields: [
     {
-      name: "name",
-      type: "string",
-      title: "Name",
+      name: 'name',
+      title: 'Name',
+      type: 'string',
     },
     {
-      name: "slug",
-      type: "slug",
-      title: "Slug",
+      name: 'slug',
+      title: 'Slug',
       description:
-        "Some frontends will require a slug to be set to be able to show the person",
+        'Some frontends will require a slug to be set to be able to show the person',
+      type: 'slug',
       options: {
-        source: "name",
+        source: 'name',
         maxLength: 96,
       },
     },
     {
-      name: "image",
-      type: "mainImage",
-      title: "Image",
+      name: 'image',
+      title: 'Image',
+      type: 'mainImage',
     },
     {
-      name: "bio",
-      type: "bioPortableText",
-      title: "Biography",
+      name: 'bio',
+      title: 'Biography',
+      type: 'bioPortableText',
     },
   ],
   preview: {
     select: {
-      title: "name",
-      subtitle: "slug.current",
-      media: "image",
+      title: 'name',
+      subtitle: 'slug.current',
+      media: 'image',
     },
   },
-};
+}
