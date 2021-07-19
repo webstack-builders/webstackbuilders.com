@@ -7,5 +7,9 @@ module.exports = {
   sanity: {
     dataset: process.env.SANITY_DATASET,
     projectId: process.env.SANITY_PROJECT_ID,
+    // staging dataset for use in development is private
+    ...(process.env.NODE_ENV === 'development' && {
+      token: process.env.SANITY_TOKEN,
+    }),
   },
 }

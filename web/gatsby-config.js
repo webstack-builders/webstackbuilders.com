@@ -1,5 +1,3 @@
-const { exit } = require('process')
-
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`,
 })

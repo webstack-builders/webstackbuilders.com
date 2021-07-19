@@ -1,4 +1,5 @@
 # Sync Production and Staging Sanity CMS Datasets
 
-curl https://<projectId>.api.sanity.io/v2021-06-07/data/export/<dataset>/ > backup.ndjson
+sanity dataset export production webstackbuilders.com.tar.gz
 
+sanity dataset import webstackbuilders.com.tar.gz staging --replace
