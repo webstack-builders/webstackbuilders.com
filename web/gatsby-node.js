@@ -7,6 +7,7 @@ const path = require('path')
 
 const { isFuture } = require('date-fns')
 const { format } = require('date-fns')
+const Dotenv = require('dotenv-webpack')
 
 async function createBlogPostPages(graphql, actions) {
   const { createPage } = actions
@@ -51,4 +52,18 @@ async function createBlogPostPages(graphql, actions) {
 
 exports.createPages = async ({ graphql, actions }) => {
   await createBlogPostPages(graphql, actions)
+}
+
+/**
+ * Modify default Gatsby Webpack config:
+ * 1. Use dotenv-webpack to allow env vars to be passed into the build bundle
+ * 2. Allow absolute imports, e.g. `import Header from 'components/header'` instead of `import Header from '../../components/header'`
+ */
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    plugins: [new Dotenv()],
+    resolve: {
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    },
+  })
 }
