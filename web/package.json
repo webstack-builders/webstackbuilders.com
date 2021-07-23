@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "gatsby build",
-    "clean-cache": "gatsby clean",
+    "clean": "gatsby clean",
     "dev": "cross-env GATSBY_GRAPHQL_IDE=playground gatsby develop -p 8001",
     "lint": "eslint .",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",

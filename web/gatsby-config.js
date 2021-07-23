@@ -27,6 +27,7 @@ module.exports = {
       },
     },
     {
+      // automatically included in Gatsby, only reason to explicitly use is to configure its options.
       resolve: 'gatsby-plugin-typescript',
       options: {
         isTSX: true, // defaults to false
