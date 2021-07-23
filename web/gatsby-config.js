@@ -10,6 +10,7 @@ module.exports = {
     'gatsby-plugin-image',
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-theme-ui',
     {
       resolve: 'gatsby-source-sanity',
       options: {
