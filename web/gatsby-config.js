@@ -10,7 +10,12 @@ module.exports = {
     'gatsby-plugin-image',
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-theme-ui',
+    {
+      resolve: `gatsby-plugin-theme-ui`,
+      options: {
+        preset: '@webstackbuilders/preset-website',
+      },
+    },
     {
       resolve: 'gatsby-source-sanity',
       options: {

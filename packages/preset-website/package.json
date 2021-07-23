@@ -5,9 +5,7 @@
   "author": "Webstack Builders <info@webstackbuilders.com>",
   "homepage": "https://webstackbuilders.com",
   "license": "BSD-2-Clause",
-  "main": "dist/theme-ui-preset-base.cjs.js",
-  "module": "dist/theme-ui-preset-base.esm.js",
-  "source": "src/index.ts",
+  "main": "src/index.js",
   "publishConfig": {
     "access": "public"
   },
