@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   bracketSpacing: true,
   tabWidth: 2,
   semi: false,

@@ -56,6 +56,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
 /**
  * Modify default Gatsby Webpack config:
+ *
  * 1. Use dotenv-webpack to allow env vars to be passed into the build bundle
  * 2. Allow absolute imports, e.g. `import Header from 'components/header'` instead of `import Header from '../../components/header'`
  */

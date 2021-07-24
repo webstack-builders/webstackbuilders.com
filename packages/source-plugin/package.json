@@ -2,15 +2,30 @@
   "name": "gatsby-starter-plugin",
   "version": "1.0.0",
   "description": "A minimal boilerplate for the essential files Gatsby looks for in a plugin",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"No build script setup\""
-  },
+  "author": "Webstack Builders <info@webstackbuilders.com>",
+  "homepage": "https://webstackbuilders.com",
+  "license": "BSD-2-Clause",
   "keywords": [
     "gatsby",
     "gatsby-plugin"
   ],
-  "author": "Kyle Gill <kyle.robert.gill@gmail.com>",
-  "license": "0BSD"
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webstackdev/webstackbuilders.com.git"
+  },
+  "engines": {
+    "node": ">=15.0.0",
+    "npm": ">=7.0.0",
+    "yarn": "please-use-npm"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "tsc && npm pack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }

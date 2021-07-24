@@ -1,0 +1,7 @@
+{
+  "extends": "../tsconfig.json",
+  "module": "esnext",
+  "target": "esnext",
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "emitDeclarationOnly": true
+}
