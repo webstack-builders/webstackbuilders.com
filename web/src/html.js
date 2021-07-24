@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import 'modern-normalize'
-import '../styles/normalize'
+// import '../styles/normalize'
 
 export default function HTML(props) {
   return (
