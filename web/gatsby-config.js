@@ -5,7 +5,27 @@ require('dotenv').config({
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
+  siteMetadata: {
+    title: 'webstack-builders-company-website',
+    description: 'The webstackbuilders.com company website.',
+    keywords:
+      'gatsbyjs, gatsby, javascript, sanity, themeui, typescript, graphql, apollo',
+    siteUrl: 'https://www.webstackbuilders.com',
+    author: {
+      name: 'Webstack Builders <info@webstackbuilders.com>',
+      url: 'https://www.webstackbuilders.com/contact',
+      email: 'info@webstackbuilders.com',
+    },
+  },
   plugins: [
+    {
+      // add a rel=canonical link element to the head of every HTML page
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://www.example.com`,
+        stripQueryString: true,
+      },
+    },
     'gatsby-plugin-eslint',
     'gatsby-plugin-image',
     'gatsby-plugin-postcss',

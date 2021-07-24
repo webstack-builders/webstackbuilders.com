@@ -34,3 +34,12 @@
     "/studio/build/*"
   ]
 }
+
+{
+  "compilerOptions": {
+    "lib": ["dom", "es2015", "es2017"],
+    "module": "commonjs",
+    "preserveConstEnums": true
+  },
+  "include": ["./src/**/*"]
+}
