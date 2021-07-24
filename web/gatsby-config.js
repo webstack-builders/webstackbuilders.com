@@ -19,24 +19,6 @@ module.exports = {
   },
   plugins: [
     {
-      // add a rel=canonical link element to the head of every HTML page
-      resolve: `gatsby-plugin-canonical-urls`,
-      options: {
-        siteUrl: `https://www.example.com`,
-        stripQueryString: true,
-      },
-    },
-    'gatsby-plugin-eslint',
-    'gatsby-plugin-image',
-    'gatsby-plugin-postcss',
-    'gatsby-plugin-react-helmet',
-    {
-      resolve: `gatsby-plugin-theme-ui`,
-      options: {
-        preset: '@webstackbuilders/preset-website',
-      },
-    },
-    {
       resolve: 'gatsby-source-sanity',
       options: {
         dataset: process.env.SANITY_DATASET,
@@ -51,9 +33,46 @@ module.exports = {
       resolve: 'gatsby-plugin-typescript',
       options: {
         isTSX: true, // defaults to false
-        jsxPragma: `jsx`, // defaults to "React"
+        jsxPragma: 'jsx', // defaults to "React"
         allExtensions: true, // defaults to false, required if isTSX set to true
       },
     },
+    {
+      resolve: 'gatsby-plugin-theme-ui',
+      options: {
+        preset: '@webstackbuilders/preset-website',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-sharp',
+      options: {
+        defaults: {
+          formats: ['auto', 'webp'],
+          placeholder: 'dominantColor',
+          quality: 50,
+          breakpoints: [750, 1080, 1366, 1920],
+          backgroundColor: 'transparent',
+          tracedSVGOptions: {},
+          blurredOptions: {},
+          jpgOptions: {},
+          pngOptions: {},
+          webpOptions: {},
+          avifOptions: {},
+        },
+      },
+    },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-image',
+    {
+      // add a rel=canonical link element to the head of every HTML page
+      resolve: 'gatsby-plugin-canonical-urls',
+      options: {
+        siteUrl: 'https://www.example.com',
+        stripQueryString: true,
+      },
+    },
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-eslint',
+    'gatsby-plugin-postcss',
   ],
 }
