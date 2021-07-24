@@ -72,6 +72,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-netlify',
     'gatsby-plugin-eslint',
     'gatsby-plugin-postcss',
   ],

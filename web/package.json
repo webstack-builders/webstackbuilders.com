@@ -28,6 +28,7 @@
     "gatsby-image": "^2.0.41",
     "gatsby-plugin-canonical-urls": "^3.10.0",
     "gatsby-plugin-image": "^1.8.0",
+    "gatsby-plugin-netlify": "^3.10.0",
     "gatsby-plugin-postcss": "^4.0.0",
     "gatsby-plugin-react-helmet": "^4.0.0",
     "gatsby-plugin-sharp": "^3.10.2",
