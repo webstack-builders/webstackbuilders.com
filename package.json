@@ -10,20 +10,21 @@
   },
   "scripts": {
     "build": "lerna run build --parallel",
+    "build:studio": "lerna bootstrap && cd studio && npm run build",
+    "build:web": "lerna bootstrap && (cd studio && SANITY_AUTH_TOKEN=$SANITY_DEPLOY_STUDIO_TOKEN npm run graphql-deploy) && (cd web && npm run build)",
+    "deploy:graphql": "lerna run graphql-deploy",
     "dev": "lerna run dev --parallel",
     "format": "lerna run format",
-    "build-studio": "lerna bootstrap && cd studio && npm run build",
-    "build-web": "lerna bootstrap && (cd studio && SANITY_AUTH_TOKEN=$SANITY_DEPLOY_STUDIO_TOKEN npm run graphql-deploy) && (cd web && npm run build)",
-    "graphql-deploy": "lerna run graphql-deploy",
+    "link": "lerna link --force-local",
     "lint": "eslint . && lerna run lint",
     "postinstall": "lerna bootstrap",
     "publish": "lerna publish from-git",
     "test": "lerna run test",
     "test:coverage": "lerna run test --coverage",
     "tsc": "tsc",
-    "version:patch": "lerna version patch",
+    "version:major": "lerna version major",
     "version:minor": "lerna version minor",
-    "version:major": "lerna version major"
+    "version:patch": "lerna version patch"
   },
   "devDependencies": {
     "@sanity/cli": "^2.7.4",

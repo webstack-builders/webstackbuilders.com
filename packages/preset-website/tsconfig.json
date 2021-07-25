@@ -1,8 +1,8 @@
 {
   "declaration": true,
   "extends": "../../tsconfig.json",
-  "module": "commonjs",
-  "target": "esnext",
+  "module": "es2015",
+  "target": "es2015",
   "compilerOptions": {
     "outDir": "dist/",
     "rootDir": "src",
