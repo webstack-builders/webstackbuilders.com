@@ -12,8 +12,14 @@
     "/studio/build": true
   },
   "cSpell.words": [
+    "avif",
+    "blog",
     "es",
+    "post",
     "true"
   ],
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "cSpell.ignoreWords": [
+    "avi"
+  ]
 }

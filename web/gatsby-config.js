@@ -12,6 +12,9 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`,
 })
 require('source-map-support').install()
-require('ts-node').register()
+
+// tsconfig just for the gatsby-* and src/gatsby/ files
+const tsconfig = require('./tsconfig-gatsby.json')
+require('ts-node').register(tsconfig)
 
 module.exports = require('./gatsby-config.ts')
