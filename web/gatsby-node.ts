@@ -1,6 +1,8 @@
 /**
  * Implement Gatsby's Node APIs in this file.
  *
+ * This file is web/src/gatsby-node.ts and is compiled to web/gatsby-node.js, make changes in this file
+ *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 const path = require('path')

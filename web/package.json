@@ -9,10 +9,10 @@
     "yarn": "please-use-npm"
   },
   "scripts": {
-    "build": "gatsby build",
+    "build": "tsc -p ./tsconfig-gatsby.json && gatsby build",
     "clean": "gatsby clean",
     "deploy": "gatsby build --prefix-paths",
-    "dev": "cross-env GATSBY_GRAPHQL_IDE=playground gatsby develop -p 8001",
+    "dev": "tsc -p ./tsconfig-gatsby.json && cross-env GATSBY_GRAPHQL_IDE=playground gatsby develop -p 8001",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
     "lint": "eslint .",
     "test": "npm run type-check && npm run lint",
@@ -62,7 +62,9 @@
     "eslint-webpack-plugin": "^2.5.4",
     "gatsby-plugin-eslint": "^3.0.0",
     "postcss": "^8.2.7",
-    "postcss-preset-env": "^6.6.0"
+    "postcss-preset-env": "^6.6.0",
+    "source-map-support": "^0.5.19",
+    "ts-node": "^9.1.1"
   },
   "prettier": "@webstackbuilders/prettier-config-company-website"
 }
