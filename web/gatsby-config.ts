@@ -81,6 +81,9 @@ export default {
           '__generated__/gatsby-schema.graphql': true,
           '__generated__/gatsby-introspection.json': true,
         },
+        emitPluginDocuments: {
+          '__generated__/gatsby-plugin-documents.graphql': true,
+        },
       },
     },
   ],
