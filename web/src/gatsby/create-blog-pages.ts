@@ -73,9 +73,11 @@ export default async function createBlogPages({
     .forEach((edge: IPostEdge) => {
       const { id, slug = { current: '' }, publishedAt } = edge.node
       const dateSegment = format(new Date(publishedAt), 'yyyy/MM')
+      const blogPostTemplate = path.resolve('src/templates/blog-post.tsx')
+
       createPage({
         path: `/blog/${dateSegment}/${slug.current}/`,
-        component: path.resolve(`../templates/blog-post.tsx`),
+        component: blogPostTemplate,
         context: { id },
       })
     })

@@ -1,10 +1,21 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 import 'modern-normalize'
-import '../styles/normalize'
+import 'styles/normalize'
 
-export default function HTML(props) {
+interface CompProps {
+  x?: number
+  y?: number
+  htmlAttributes: PropTypes.object
+  headComponents: PropTypes.array
+  bodyAttributes: PropTypes.object
+  preBodyComponents: PropTypes.array
+  body: PropTypes.string
+  postBodyComponents: PropTypes.array
+}
+
+const HTML: React.FC = (props) => {
   return (
     <html {...props.htmlAttributes}>
       <head>
@@ -29,11 +40,4 @@ export default function HTML(props) {
   )
 }
 
-HTML.propTypes = {
-  htmlAttributes: PropTypes.object,
-  headComponents: PropTypes.array,
-  bodyAttributes: PropTypes.object,
-  preBodyComponents: PropTypes.array,
-  body: PropTypes.string,
-  postBodyComponents: PropTypes.array,
-}
+export default HTML

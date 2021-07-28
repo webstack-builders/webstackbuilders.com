@@ -1,16 +1,15 @@
+import BlogPostPreviewList from 'components/blog-post-preview-list'
+import Container from 'components/container'
+import GraphQLErrorList from 'components/graphql-error-list'
+import SEO from 'components/seo'
+import Layout from 'containers/layout'
 import { graphql } from 'gatsby'
-import React from 'react'
-
-import BlogPostPreviewList from '../components/blog-post-preview-list'
-import Container from '../components/container'
-import GraphQLErrorList from '../components/graphql-error-list'
-import SEO from '../components/seo'
-import Layout from '../containers/layout'
 import {
   filterOutDocsPublishedInTheFuture,
   filterOutDocsWithoutSlugs,
   mapEdgesToNodes,
-} from '../lib/helpers'
+} from 'lib/helpers'
+import React from 'react'
 
 export const query = graphql`
   fragment SanityImage on SanityMainImage {

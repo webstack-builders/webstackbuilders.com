@@ -1,10 +1,15 @@
 import React from 'react'
+import Header from 'components/header'
+import 'styles/layout.css'
+import * as styles from 'components/layout.module.css'
 
-import Header from './header'
-import '../styles/layout.css'
-import * as styles from './layout.module.css'
-
-const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle }) => (
+const Layout: React.FC = ({
+  children,
+  onHideNav,
+  onShowNav,
+  showNav,
+  siteTitle,
+}) => (
   <>
     <Header
       siteTitle={siteTitle}

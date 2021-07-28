@@ -7,7 +7,7 @@ import { buildImageObj } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 
 function SEO({ description, lang, meta, keywords, title, image }) {
-  const { site } = useStaticQuery(detailsQuery) || {}
+  const { site } = useStaticQuery<GatsbyTypes.DefaultSEOQueryQuery>(detailsQuery) || {}
 
   const metaDescription = description || site.description || ''
   const siteTitle = site.title || ''

@@ -1,13 +1,11 @@
+import AuthorList from 'components/author-list'
+import * as styles from 'components/blog-post.module.css'
+import Container from 'components/container'
+import PortableText from 'components/portableText'
 import { differenceInDays, formatDistance, format } from 'date-fns'
+import { buildImageObj } from 'lib/helpers'
+import { imageUrlFor } from 'lib/image-url'
 import React from 'react'
-
-import { buildImageObj } from '../lib/helpers'
-import { imageUrlFor } from '../lib/image-url'
-
-import AuthorList from './author-list'
-import * as styles from './blog-post.module.css'
-import Container from './container'
-import PortableText from './portableText'
 
 function BlogPost(props) {
   const { _rawBody, authors, categories, title, mainImage, publishedAt } = props

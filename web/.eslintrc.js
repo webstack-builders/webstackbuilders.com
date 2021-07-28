@@ -19,7 +19,7 @@ module.exports = {
         tagName: 'graphql',
         schemaJsonFilepath: path.resolve(
           __dirname,
-          '__generated__gatsby-introspection.json'
+          '__generated__/gatsby-introspection.json'
         ),
       },
     ],
