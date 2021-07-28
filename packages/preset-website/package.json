@@ -14,6 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/webstackdev/webstackbuilders.com.git"
   },
+  "bugs": "https://github.com/webstackdev/webstackbuilders.com/issues",
   "engines": {
     "node": ">=15.0.0",
     "npm": ">=7.0.0",

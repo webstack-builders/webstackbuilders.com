@@ -1,9 +1,10 @@
+import { PageProps } from 'gatsby'
 import React from 'react'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-const NotFoundPage = () => (
+const NotFoundPage: React.FC<PageProps> = () => (
   <Layout>
     {/* eslint-disable react/jsx-pascal-case */}
     <SEO title="404: Not found" />

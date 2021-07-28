@@ -67,9 +67,21 @@ export default {
         stripQueryString: true,
       },
     },
+    // Use src/layouts/index.js as a wrapper component that doesn't unmount on client route transitions
+    'gatsby-plugin-layout',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-netlify',
     'gatsby-plugin-eslint',
     'gatsby-plugin-postcss',
+    {
+      resolve: 'gatsby-plugin-typegen',
+      options: {
+        outputPath: '__generated__/gatsby-types.d.ts',
+        emitSchema: {
+          '__generated__/gatsby-schema.graphql': true,
+          '__generated__/gatsby-introspection.json': true,
+        },
+      },
+    },
   ],
 }

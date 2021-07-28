@@ -1,6 +1,7 @@
-import { isFuture, format } from 'date-fns'
+import path from 'path'
 
-import BlogPost from '../templates/blog-post'
+import { isFuture, format } from 'date-fns'
+import { CreatePagesArgs } from 'gatsby'
 
 interface IPostEdge {
   node: {
@@ -21,7 +22,11 @@ interface IPostQueryResult {
 /**
  * Create Pages for Blog Posts
  */
-export default async function createBlogPostPages(graphql, actions) {
+export default async function createBlogPages({
+  graphql,
+  actions,
+  reporter,
+}: CreatePagesArgs) {
   const { createPage } = actions
 
   /**
@@ -46,26 +51,31 @@ export default async function createBlogPostPages(graphql, actions) {
   `)
 
   if (result.errors) {
-    throw result.errors
+    reporter.panicOnBuild(
+      `Error while running GraphQL query in createBlogPages.`
+    )
+    return
   }
 
   if (!result.data) {
-    throw new Error('ERROR: Could not fetch posts on build')
+    reporter.panicOnBuild(
+      'Error, could not fetch posts on build in createBlogPages'
+    )
+    return
   }
 
   // Create blog posts pages.
   const posts = (result.data.allSanityPost || {}).edges || []
+  // const blogPosts = result?.data?.posts.nodes
 
   posts
     .filter((edge: IPostEdge) => !isFuture(new Date(edge.node.publishedAt)))
     .forEach((edge: IPostEdge) => {
-      const { id, slug = {}, publishedAt } = edge.node
+      const { id, slug = { current: '' }, publishedAt } = edge.node
       const dateSegment = format(new Date(publishedAt), 'yyyy/MM')
-      const path = `/blog/${dateSegment}/${slug.current}/`
-
       createPage({
-        path,
-        component: BlogPost,
+        path: `/blog/${dateSegment}/${slug.current}/`,
+        component: path.resolve(`../templates/blog-post.tsx`),
         context: { id },
       })
     })

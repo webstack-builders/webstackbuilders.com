@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
 import React from 'react'
 
 import BlogPost from '../components/blog-post'
@@ -58,7 +58,7 @@ export const query = graphql`
   }
 `
 
-const BlogPostTemplate = (props) => {
+const BlogPostTemplate: React.FC = (props: PageProps) => {
   const { data, errors } = props
   const post = data && data.post
   return (

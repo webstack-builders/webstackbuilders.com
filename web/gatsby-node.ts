@@ -8,16 +8,13 @@
 import Dotenv from 'dotenv-webpack'
 import { GatsbyNode } from 'gatsby'
 
-import createBlogPostPages from './src/gatsby/create-blog-pages'
+import createBlogPages from './src/gatsby/create-blog-pages'
 
 /**
  * Central call site for site createPages lifecycle hook
  */
-export const createPages: GatsbyNode['createPages'] = async ({
-  graphql,
-  actions,
-}) => {
-  await createBlogPostPages(graphql, actions)
+export const createPages: GatsbyNode['createPages'] = async (gatsbyNode) => {
+  await createBlogPages(gatsbyNode)
 }
 
 /**

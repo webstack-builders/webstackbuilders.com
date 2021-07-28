@@ -2,8 +2,14 @@
   "private": true,
   "name": "webstack-builders-company-website-cms-studio",
   "version": "0.1.3",
-  "main": "package.json",
+  "description": "Sanity Studio admin UI for the Webstack Builders company website",
   "author": "Webstack Builders <info@webstackbuilders.com>",
+  "main": "package.json",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webstackdev/webstackbuilders.com.git"
+  },
+  "bugs": "https://github.com/webstackdev/webstackbuilders.com/issues",
   "engines": {
     "node": ">=15.0.0",
     "npm": ">=7.0.0",
