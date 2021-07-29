@@ -294,9 +294,14 @@ type SitePage = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
   readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
+  readonly context: Maybe<SitePageContext>;
   readonly pluginCreator: Maybe<SitePlugin>;
   readonly pluginCreatorId: Maybe<Scalars['String']>;
   readonly componentPath: Maybe<Scalars['String']>;
+};
+
+type SitePageContext = {
+  readonly id: Maybe<Scalars['String']>;
 };
 
 type SanityAuthor = SanityDocument & Node & {
@@ -1204,6 +1209,16 @@ type SitePluginPluginOptions = {
   readonly isTSX: Maybe<Scalars['Boolean']>;
   readonly jsxPragma: Maybe<Scalars['String']>;
   readonly allExtensions: Maybe<Scalars['Boolean']>;
+  readonly src: Maybe<Scalars['String']>;
+  readonly api: Maybe<Scalars['String']>;
+  readonly components: Maybe<Scalars['String']>;
+  readonly containers: Maybe<Scalars['String']>;
+  readonly gatsby: Maybe<Scalars['String']>;
+  readonly layouts: Maybe<Scalars['String']>;
+  readonly lib: Maybe<Scalars['String']>;
+  readonly pages: Maybe<Scalars['String']>;
+  readonly styles: Maybe<Scalars['String']>;
+  readonly templates: Maybe<Scalars['String']>;
   readonly preset: Maybe<Scalars['String']>;
   readonly defaults: Maybe<SitePluginPluginOptionsDefaults>;
   readonly base64Width: Maybe<Scalars['Int']>;
@@ -1424,6 +1439,7 @@ type Query_sitePageArgs = {
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  context: Maybe<SitePageContextFilterInput>;
   pluginCreator: Maybe<SitePluginFilterInput>;
   pluginCreatorId: Maybe<StringQueryOperatorInput>;
   componentPath: Maybe<StringQueryOperatorInput>;
@@ -2569,6 +2585,10 @@ type SiteSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type SitePageContextFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+};
+
 type SitePluginFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
@@ -2594,6 +2614,16 @@ type SitePluginPluginOptionsFilterInput = {
   readonly isTSX: Maybe<BooleanQueryOperatorInput>;
   readonly jsxPragma: Maybe<StringQueryOperatorInput>;
   readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
+  readonly src: Maybe<StringQueryOperatorInput>;
+  readonly api: Maybe<StringQueryOperatorInput>;
+  readonly components: Maybe<StringQueryOperatorInput>;
+  readonly containers: Maybe<StringQueryOperatorInput>;
+  readonly gatsby: Maybe<StringQueryOperatorInput>;
+  readonly layouts: Maybe<StringQueryOperatorInput>;
+  readonly lib: Maybe<StringQueryOperatorInput>;
+  readonly pages: Maybe<StringQueryOperatorInput>;
+  readonly styles: Maybe<StringQueryOperatorInput>;
+  readonly templates: Maybe<StringQueryOperatorInput>;
   readonly preset: Maybe<StringQueryOperatorInput>;
   readonly defaults: Maybe<SitePluginPluginOptionsDefaultsFilterInput>;
   readonly base64Width: Maybe<IntQueryOperatorInput>;
@@ -2785,6 +2815,7 @@ type SitePageFieldsEnum =
   | 'internal.owner'
   | 'internal.type'
   | 'isCreatedByStatefulCreatePages'
+  | 'context.id'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -2834,6 +2865,16 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.isTSX'
   | 'pluginCreator.pluginOptions.jsxPragma'
   | 'pluginCreator.pluginOptions.allExtensions'
+  | 'pluginCreator.pluginOptions.src'
+  | 'pluginCreator.pluginOptions.api'
+  | 'pluginCreator.pluginOptions.components'
+  | 'pluginCreator.pluginOptions.containers'
+  | 'pluginCreator.pluginOptions.gatsby'
+  | 'pluginCreator.pluginOptions.layouts'
+  | 'pluginCreator.pluginOptions.lib'
+  | 'pluginCreator.pluginOptions.pages'
+  | 'pluginCreator.pluginOptions.styles'
+  | 'pluginCreator.pluginOptions.templates'
   | 'pluginCreator.pluginOptions.preset'
   | 'pluginCreator.pluginOptions.defaults.formats'
   | 'pluginCreator.pluginOptions.defaults.placeholder'
@@ -2894,6 +2935,7 @@ type SitePageFilterInput = {
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
   readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  readonly context: Maybe<SitePageContextFilterInput>;
   readonly pluginCreator: Maybe<SitePluginFilterInput>;
   readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
   readonly componentPath: Maybe<StringQueryOperatorInput>;
@@ -5051,6 +5093,16 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.isTSX'
   | 'pluginOptions.jsxPragma'
   | 'pluginOptions.allExtensions'
+  | 'pluginOptions.src'
+  | 'pluginOptions.api'
+  | 'pluginOptions.components'
+  | 'pluginOptions.containers'
+  | 'pluginOptions.gatsby'
+  | 'pluginOptions.layouts'
+  | 'pluginOptions.lib'
+  | 'pluginOptions.pages'
+  | 'pluginOptions.styles'
+  | 'pluginOptions.templates'
   | 'pluginOptions.preset'
   | 'pluginOptions.defaults.formats'
   | 'pluginOptions.defaults.placeholder'
@@ -5132,24 +5184,6 @@ type IndexPageQueryQuery = { readonly site: Maybe<Pick<SanitySiteSettings, 'titl
         )>, readonly slug: Maybe<Pick<SanitySlug, 'current'>> }
       ) }> } };
 
-type DefaultSEOQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type DefaultSEOQueryQuery = { readonly site: Maybe<(
-    Pick<SanitySiteSettings, 'title' | 'description' | 'keywords'>
-    & { readonly author: Maybe<Pick<SanityAuthor, 'name'>> }
-  )> };
-
-type SiteTitleQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type SiteTitleQueryQuery = { readonly site: Maybe<Pick<SanitySiteSettings, 'title'>> };
-
-type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type Unnamed_1_Query = { readonly themeUiConfig: Maybe<Pick<ThemeUiConfig, 'preset' | 'prismPreset'>> };
-
 type BlogPostTemplateQueryQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -5168,6 +5202,24 @@ type BlogPostTemplateQueryQuery = { readonly post: Maybe<(
       )> }
     )>>> }
   )> };
+
+type DefaultSEOQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type DefaultSEOQueryQuery = { readonly site: Maybe<(
+    Pick<SanitySiteSettings, 'title' | 'description' | 'keywords'>
+    & { readonly author: Maybe<Pick<SanityAuthor, 'name'>> }
+  )> };
+
+type SiteTitleQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SiteTitleQueryQuery = { readonly site: Maybe<Pick<SanitySiteSettings, 'title'>> };
+
+type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type Unnamed_1_Query = { readonly themeUiConfig: Maybe<Pick<ThemeUiConfig, 'preset' | 'prismPreset'>> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

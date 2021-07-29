@@ -1,7 +1,8 @@
-import clientConfig from 'client-config'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import { getGatsbyImageData } from 'gatsby-source-sanity'
 import React from 'react'
+
+import clientConfig from '../gatsby/client-config'
 
 export const Figure = ({ node }) => {
   if (!node || !node.asset || !node.asset._id) {

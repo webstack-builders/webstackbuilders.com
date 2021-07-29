@@ -7,6 +7,7 @@
  * Source-map-support mimics node's stack trace making debugging easier
  * ts-node register helps importing and compiling TypeScript modules into JS
  */
+const path = require('path')
 
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`,
@@ -47,6 +48,21 @@ module.exports = {
         isTSX: true, // defaults to false
         jsxPragma: 'jsx', // defaults to "React"
         allExtensions: true, // defaults to false, required if isTSX set to true
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-root-import',
+      options: {
+        src: path.join(__dirname, 'src'),
+        api: path.join(__dirname, 'src/api'),
+        components: path.join(__dirname, 'src/components'),
+        containers: path.join(__dirname, 'src/containers'),
+        gatsby: path.join(__dirname, 'src/gatsby'),
+        layouts: path.join(__dirname, 'src/layouts'),
+        lib: path.join(__dirname, 'src/lib'),
+        pages: path.join(__dirname, 'src/pages'),
+        styles: path.join(__dirname, 'src/styles'),
+        templates: path.join(__dirname, 'src/templates'),
       },
     },
     {

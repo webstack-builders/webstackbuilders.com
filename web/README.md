@@ -4,6 +4,10 @@
 
 The default Gatsby Babel configuration is over-ridden to allow for the decorators proposal and browser targeting
 
+## TypeScript and Gatsby Config Files
+
+See the [readme file](gatsby/README.md) in the gatsby directory for info on using TypeScript with Gatsby config files.
+
 ## @TODO:
 
 ### gatsby-plugin-google-gtag
