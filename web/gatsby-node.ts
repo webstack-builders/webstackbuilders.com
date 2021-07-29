@@ -34,8 +34,8 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
   actions.setWebpackConfig({
     plugins: [new Dotenv()],
     resolve: {
-      extensions: ['.js', '.json', '.ts', '.tsx'],
-      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+      extensions: ['.ts', '.tsx', '.js', '.json'],
+      modules: [path.resolve('./src'), path.resolve('./node_modules')],
     },
   })
 }

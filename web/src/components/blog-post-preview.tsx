@@ -1,13 +1,11 @@
+import * as styles from 'components/blog-post-preview.module.css'
+import PortableText from 'components/portableText'
+import { responsiveTitle3 } from 'components/typography.module.css'
 import { format } from 'date-fns'
 import { Link } from 'gatsby'
+import { buildImageObj, cn, getBlogUrl } from 'lib/helpers'
+import { imageUrlFor } from 'lib/image-url'
 import React from 'react'
-
-import { buildImageObj, cn, getBlogUrl } from '../lib/helpers'
-import { imageUrlFor } from '../lib/image-url'
-
-import * as styles from './blog-post-preview.module.css'
-import PortableText from './portableText'
-import { responsiveTitle3 } from './typography.module.css'
 
 function BlogPostPreview(props) {
   return (

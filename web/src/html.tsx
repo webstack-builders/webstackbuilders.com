@@ -1,21 +1,18 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 
 import 'modern-normalize'
 import 'styles/normalize'
 
-interface CompProps {
-  x?: number
-  y?: number
-  htmlAttributes: PropTypes.object
-  headComponents: PropTypes.array
-  bodyAttributes: PropTypes.object
-  preBodyComponents: PropTypes.array
-  body: PropTypes.string
-  postBodyComponents: PropTypes.array
+interface HtmlProps {
+  htmlAttributes?: React.HTMLAttributes
+  headComponents?: React.ReactElement[]
+  bodyAttributes?: React.AllHTMLAttributes
+  preBodyComponents?: React.ReactElement[]
+  body: string
+  postBodyComponents?: React.ReactElement[]
 }
 
-const HTML: React.FC = (props) => {
+const HTML: React.FC = (props: HtmlProps) => {
   return (
     <html {...props.htmlAttributes}>
       <head>

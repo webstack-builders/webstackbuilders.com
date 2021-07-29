@@ -1,13 +1,13 @@
 import { graphql, useStaticQuery } from 'gatsby'
+import { buildImageObj } from 'lib/helpers'
+import { imageUrlFor } from 'lib/image-url'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import { buildImageObj } from '../lib/helpers'
-import { imageUrlFor } from '../lib/image-url'
-
 function SEO({ description, lang, meta, keywords, title, image }) {
-  const { site } = useStaticQuery<GatsbyTypes.DefaultSEOQueryQuery>(detailsQuery) || {}
+  const { site } =
+    useStaticQuery<GatsbyTypes.DefaultSEOQueryQuery>(detailsQuery) || {}
 
   const metaDescription = description || site.description || ''
   const siteTitle = site.title || ''

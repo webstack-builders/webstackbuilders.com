@@ -10,7 +10,11 @@ const query = graphql`
   }
 `
 
-function LayoutContainer: React.FC (props: PageProps) {
+interface LayoutContainerProps {
+  body: string
+}
+
+function LayoutContainer(props: LayoutContainerProps) {
   const [showNav, setShowNav] = useState(false)
 
   function handleShowNav() {

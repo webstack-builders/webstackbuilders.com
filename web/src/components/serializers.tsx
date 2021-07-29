@@ -1,6 +1,5 @@
+import { Figure } from 'components/Figure'
 import React from 'react'
-
-import { Figure } from './Figure'
 
 const serializers = {
   types: {
