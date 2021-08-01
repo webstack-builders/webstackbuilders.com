@@ -1,7 +1,8 @@
 import BasePortableText from '@sanity/block-content-to-react'
+import React from 'react'
+
 import serializers from 'components/serializers'
 import clientConfig from 'gatsby/client-config'
-import React from 'react'
 
 const PortableText = ({ blocks }) => (
   <BasePortableText

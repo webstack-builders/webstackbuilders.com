@@ -1,8 +1,9 @@
+import { Link } from 'gatsby'
+import React from 'react'
+
 import * as styles from 'components/header.module.css'
 import Icon from 'components/icon'
-import { Link } from 'gatsby'
 import { cn } from 'lib/helpers'
-import React from 'react'
 
 const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => (
   <div className={styles.root}>

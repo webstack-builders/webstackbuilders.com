@@ -2,6 +2,7 @@ import path from 'path'
 
 import { isFuture, format } from 'date-fns'
 import { CreatePagesArgs } from 'gatsby'
+import { GatsbyNode } from 'gatsby'
 
 interface IPostEdge {
   node: {
@@ -22,11 +23,11 @@ interface IPostQueryResult {
 /**
  * Create Pages for Blog Posts
  */
-export default async function createBlogPages({
+export const createBlogPages: GatsbyNode['createPages'] = async ({
   graphql,
   actions,
   reporter,
-}: CreatePagesArgs) {
+}: CreatePagesArgs) => {
   const { createPage } = actions
 
   /**

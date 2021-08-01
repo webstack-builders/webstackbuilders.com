@@ -1,7 +1,8 @@
-import BlogPostPreview from 'components/blog-post-preview'
-import * as styles from 'components/blog-post-preview-list.module.css'
 import { Link } from 'gatsby'
 import React from 'react'
+
+import BlogPostPreview from 'components/blog-post-preview'
+import * as styles from 'components/blog-post-preview-list.module.css'
 
 function BlogPostPreviewGrid(props) {
   return (

@@ -1,5 +1,6 @@
-import HamburgerIcon from 'components/icon/hamburger'
 import React from 'react'
+
+import HamburgerIcon from 'components/icon/hamburger'
 
 function Icon(props) {
   switch (props.symbol) {

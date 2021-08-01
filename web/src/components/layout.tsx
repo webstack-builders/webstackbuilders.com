@@ -3,13 +3,20 @@ import Header from 'components/header'
 import 'styles/layout.css'
 import * as styles from 'components/layout.module.css'
 
-const Layout: React.FC = ({
+interface LayoutProps {
+  onHideNav?(): void
+  onShowNav?(): void
+  showNav?: boolean
+  siteTitle?: string
+}
+
+const Layout: React.PropsWithChildren = ({
   children,
   onHideNav,
   onShowNav,
   showNav,
   siteTitle,
-}) => (
+}: LayoutProps) => (
   <>
     <Header
       siteTitle={siteTitle}

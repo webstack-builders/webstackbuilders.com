@@ -5155,34 +5155,7 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
-
-type ArchivePageQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ArchivePageQueryQuery = { readonly posts: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<SanityPost, 'id' | 'publishedAt' | 'title' | '_rawExcerpt'>
-        & { readonly mainImage: Maybe<(
-          Pick<SanityMainImage, 'alt'>
-          & SanityImageFragment
-        )>, readonly slug: Maybe<Pick<SanitySlug, 'current'>> }
-      ) }> } };
-
 type SanityImageFragment = { readonly crop: Maybe<Pick<SanityImageCrop, '_key' | '_type' | 'top' | 'bottom' | 'left' | 'right'>>, readonly hotspot: Maybe<Pick<SanityImageHotspot, '_key' | '_type' | 'x' | 'y' | 'height' | 'width'>>, readonly asset: Maybe<Pick<SanityImageAsset, '_id'>> };
-
-type IndexPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type IndexPageQueryQuery = { readonly site: Maybe<Pick<SanitySiteSettings, 'title' | 'description' | 'keywords'>>, readonly posts: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<SanityPost, 'id' | 'publishedAt' | 'title' | '_rawExcerpt'>
-        & { readonly mainImage: Maybe<(
-          Pick<SanityMainImage, 'alt'>
-          & SanityImageFragment
-        )>, readonly slug: Maybe<Pick<SanitySlug, 'current'>> }
-      ) }> } };
 
 type BlogPostTemplateQueryQueryVariables = Exact<{
   id: Scalars['String'];
@@ -5203,6 +5176,33 @@ type BlogPostTemplateQueryQuery = { readonly post: Maybe<(
     )>>> }
   )> };
 
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
+type ArchivePageQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ArchivePageQueryQuery = { readonly posts: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<SanityPost, 'id' | 'publishedAt' | 'title' | '_rawExcerpt'>
+        & { readonly mainImage: Maybe<(
+          Pick<SanityMainImage, 'alt'>
+          & SanityImageFragment
+        )>, readonly slug: Maybe<Pick<SanitySlug, 'current'>> }
+      ) }> } };
+
+type IndexPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type IndexPageQueryQuery = { readonly site: Maybe<Pick<SanitySiteSettings, 'title' | 'description' | 'keywords'>>, readonly posts: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<SanityPost, 'id' | 'publishedAt' | 'title' | '_rawExcerpt'>
+        & { readonly mainImage: Maybe<(
+          Pick<SanityMainImage, 'alt'>
+          & SanityImageFragment
+        )>, readonly slug: Maybe<Pick<SanitySlug, 'current'>> }
+      ) }> } };
+
 type DefaultSEOQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5215,6 +5215,11 @@ type SiteTitleQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type SiteTitleQueryQuery = { readonly site: Maybe<Pick<SanitySiteSettings, 'title'>> };
+
+type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type Unnamed_1_Query = { readonly themeUiConfig: Maybe<Pick<ThemeUiConfig, 'preset' | 'prismPreset'>> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -5241,10 +5246,5 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type Unnamed_1_Query = { readonly themeUiConfig: Maybe<Pick<ThemeUiConfig, 'preset' | 'prismPreset'>> };
 
 }

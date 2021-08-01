@@ -1,11 +1,12 @@
+import { format } from 'date-fns'
+import { Link } from 'gatsby'
+import React from 'react'
+
 import * as styles from 'components/blog-post-preview.module.css'
 import PortableText from 'components/portableText'
 import { responsiveTitle3 } from 'components/typography.module.css'
-import { format } from 'date-fns'
-import { Link } from 'gatsby'
 import { buildImageObj, cn, getBlogUrl } from 'lib/helpers'
 import { imageUrlFor } from 'lib/image-url'
-import React from 'react'
 
 function BlogPostPreview(props) {
   return (

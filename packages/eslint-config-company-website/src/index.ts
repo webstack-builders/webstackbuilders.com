@@ -1,3 +1,5 @@
+const level = process.env.NODE_ENV === 'production' ? 'error' : 'warn'
+
 const baseEslintConfig = {
   env: {
     browser: true,
@@ -34,47 +36,47 @@ const baseEslintConfig = {
     'prettier',
   ],
   rules: {
-    camelcase: ['warn', { properties: 'never' }],
-    curly: ['error', 'all'],
-    'import/no-unresolved': 'error',
-    'import/no-webpack-loader-syntax': 'error',
+    camelcase: [level, { properties: 'never' }],
+    curly: [level, 'all'],
+    'import/no-unresolved': level,
+    'import/no-webpack-loader-syntax': level,
     'import/order': [
-      'error',
+      level,
       {
         alphabetize: {
           order: 'asc',
           caseInsensitive: true,
         },
-        'newlines-between': 'always',
+        'newlines-between': 'ignore',
       },
     ],
-    'new-cap': ['error', { newIsCap: true, capIsNew: false }],
+    'new-cap': [level, { newIsCap: true, capIsNew: false }],
     'no-console': 'off',
-    'no-new': 'warn',
+    'no-new': level,
     'no-unused-expressions': [
-      'error',
+      level,
       { allowShortCircuit: true, allowTernary: true },
     ],
     'no-unused-vars': [
-      'error',
+      level,
       { varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
     ],
     'no-useless-escape': 'off',
-    'prefer-object-spread': 'warn',
-    'prefer-spread': 'warn',
+    'prefer-object-spread': level,
+    'prefer-spread': level,
     // "prettier/prettier": "warn",
     // React rules
-    'react-hooks/exhaustive-deps': 'warn',
-    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': level,
+    'react-hooks/rules-of-hooks': level,
     'react/display-name': 'off',
     'react/jsx-pascal-case': [
-      'warn',
+      level,
       {
         allowNamespace: true,
       },
     ],
     'react/prop-types': [
-      'warn',
+      level,
       {
         skipUndeclared: true,
         ignore: ['style', 'children', 'className', 'theme'],
@@ -93,14 +95,14 @@ const baseEslintConfig = {
       parser: '@typescript-eslint/parser',
       extends: ['plugin:@typescript-eslint/recommended', 'prettier'],
       rules: {
-        '@typescript-eslint/ban-types': 'warn',
+        '@typescript-eslint/ban-types': level,
         '@typescript-eslint/camelcase': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-empty-function': 'off',
         '@typescript-eslint/no-empty-interface': 'off',
         '@typescript-eslint/no-unused-vars': [
-          'error',
+          level,
           { varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
         ],
         '@typescript-eslint/no-use-before-define': 'off',
@@ -137,11 +139,6 @@ const baseEslintConfig = {
   settings: {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
-    },
-    "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
-      }
     },
     react: {
       pragma: 'React',

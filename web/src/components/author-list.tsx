@@ -1,7 +1,8 @@
+import React from 'react'
+
 import * as styles from 'components/author-list.module.css'
 import { buildImageObj } from 'lib/helpers'
 import { imageUrlFor } from 'lib/image-url'
-import React from 'react'
 
 function AuthorList({ items, title }) {
   return (

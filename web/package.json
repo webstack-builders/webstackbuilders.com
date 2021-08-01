@@ -69,6 +69,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^8.0.0",
     "dotenv-webpack": "^7.0.3",
+    "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-webpack-plugin": "^2.5.4",
     "gatsby-plugin-eslint": "^3.0.0",
     "gatsby-plugin-root-import": "^2.0.6",
