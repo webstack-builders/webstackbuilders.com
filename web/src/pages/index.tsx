@@ -1,19 +1,19 @@
-import { graphql } from 'gatsby'
-import React from 'react'
-
 import BlogPostPreviewList from 'components/blog-post-preview-list'
 import Container from 'components/container'
 import GraphQLErrorList from 'components/graphql-error-list'
 import SEO from 'components/seo'
 import Layout from 'containers/layout'
+import { graphql, PageProps } from 'gatsby'
+import type { Query, SanitySiteSettings } from 'generated/gatsby-types.d'
 import {
   filterOutDocsPublishedInTheFuture,
   filterOutDocsWithoutSlugs,
   mapEdgesToNodes,
 } from 'lib/helpers'
+import React from 'react'
 
 export const query = graphql`
-  fragment SanityImage on SanityMainImage {
+  fragment SanityImage on SanityMainImage { // SanityMainImage
     crop {
       _key
       _type
@@ -36,12 +36,12 @@ export const query = graphql`
   }
 
   query IndexPageQuery {
-    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
+    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) { // Query_sanitySiteSettingsArgs, sanitySiteSettings
       title
       description
       keywords
     }
-    posts: allSanityPost(
+    posts: allSanityPost( // Query_allSanityPostArgs, Query.allSanityPost
       limit: 6
       sort: { fields: [publishedAt], order: DESC }
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
@@ -65,7 +65,18 @@ export const query = graphql`
   }
 `
 
-const IndexPage = (props) => {
+interface IndexPageProps extends PageProps {
+  errors?: any
+  data: {
+    site: {
+      siteMetadata: {
+        siteName: string
+      }
+    }
+  }
+}
+
+const IndexPage = (props: IndexPageProps) => {
   const { data, errors } = props
 
   if (errors) {

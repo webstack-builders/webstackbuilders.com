@@ -54,6 +54,8 @@ module.exports = {
       resolve: 'gatsby-plugin-root-import',
       options: {
         src: path.join(__dirname, 'src'),
+        generated: path.join(__dirname, '__generated__'),
+        types: path.join(__dirname, 'src/@types'),
         api: path.join(__dirname, 'src/api'),
         components: path.join(__dirname, 'src/components'),
         containers: path.join(__dirname, 'src/containers'),
@@ -105,6 +107,18 @@ module.exports = {
     'gatsby-plugin-netlify',
     'gatsby-plugin-eslint',
     'gatsby-plugin-postcss',
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Webstack Builders`,
+        short_name: `webstackbuilders.com`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
     {
       resolve: 'gatsby-plugin-typegen',
       options: {

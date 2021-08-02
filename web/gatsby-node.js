@@ -10,8 +10,8 @@ const createBlogPages = require('./src/gatsby/gatsby-node/create-blog-pages')
 /**
  * Central call site for site createPages lifecycle hook
  */
-exports.createPages = async (gatsbyNode) => {
-  await createBlogPages(gatsbyNode)
+exports.createPages = async (node) => {
+  await createBlogPages(node)
 }
 
 /**

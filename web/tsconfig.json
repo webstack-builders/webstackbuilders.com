@@ -4,6 +4,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "generated": ["__generated__"],
       "types/*": ["src/@types/*"],
       "api/*": ["src/api/*"],
       "components/*": ["src/components/*"],
