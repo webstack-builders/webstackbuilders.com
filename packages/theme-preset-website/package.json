@@ -14,7 +14,9 @@
     "type": "git",
     "url": "git+https://github.com/webstackdev/webstackbuilders.com.git"
   },
-  "bugs": "https://github.com/webstackdev/webstackbuilders.com/issues",
+  "bugs": {
+    "url": "https://github.com/webstackdev/webstackbuilders.com/issues"
+  },
   "engines": {
     "node": ">=15.0.0",
     "npm": ">=7.0.0",
@@ -25,5 +27,11 @@
     "build:watch": "tsc --watch",
     "prepublish": "tsc && npm pack",
     "test": "echo \"Error: no test specified\" && exit 1"
-  }
+  },
+  "keywords": [
+    "themeui",
+    "emotion",
+    "css",
+    "gatsby"
+  ]
 }
