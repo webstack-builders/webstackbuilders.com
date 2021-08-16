@@ -1,10 +1,10 @@
-import React from 'react'
-
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import * as styles from 'components/author-list.module.css'
 import { buildImageObj } from 'lib/helpers'
 import { imageUrlFor } from 'lib/image-url'
 
-function AuthorList({ items, title }) {
+const AuthorList = ({ items, title }) => {
   return (
     <div className={styles.root}>
       <h2 className={styles.headline}>{title}</h2>

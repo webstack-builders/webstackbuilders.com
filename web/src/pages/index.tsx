@@ -1,19 +1,22 @@
+//import type { Query, SanitySiteSettings } from 'generated/gatsby-types'
+import { graphql, PageProps } from 'gatsby'
+import React from 'react'
 import BlogPostPreviewList from 'components/blog-post-preview-list'
 import Container from 'components/container'
 import GraphQLErrorList from 'components/graphql-error-list'
 import SEO from 'components/seo'
 import Layout from 'containers/layout'
-import { graphql, PageProps } from 'gatsby'
-import type { Query, SanitySiteSettings } from 'generated/gatsby-types.d'
 import {
   filterOutDocsPublishedInTheFuture,
   filterOutDocsWithoutSlugs,
   mapEdgesToNodes,
 } from 'lib/helpers'
-import React from 'react'
 
+// SanityMainImage
+// Query_sanitySiteSettingsArgs, sanitySiteSettings
+// Query_allSanityPostArgs, Query.allSanityPost
 export const query = graphql`
-  fragment SanityImage on SanityMainImage { // SanityMainImage
+  fragment SanityImage on SanityMainImage {
     crop {
       _key
       _type
@@ -36,12 +39,12 @@ export const query = graphql`
   }
 
   query IndexPageQuery {
-    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) { // Query_sanitySiteSettingsArgs, sanitySiteSettings
+    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
       title
       description
       keywords
     }
-    posts: allSanityPost( // Query_allSanityPostArgs, Query.allSanityPost
+    posts: allSanityPost(
       limit: 6
       sort: { fields: [publishedAt], order: DESC }
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }

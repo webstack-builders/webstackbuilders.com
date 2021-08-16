@@ -70,7 +70,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-theme-ui',
       options: {
-        preset: '@webstackbuilders/preset-website',
+        preset: '@webstackbuilders/theme-preset-website',
       },
     },
     {
