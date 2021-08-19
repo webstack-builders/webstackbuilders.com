@@ -24,6 +24,7 @@ const baseThemeTemplate = {
   },
   colors: {
     text: '#000',
+    heading: '#07c',
     background: '#fff',
     primary: '#07c',
     secondary: '#30c',

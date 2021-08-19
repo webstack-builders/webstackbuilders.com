@@ -29,6 +29,16 @@ module.exports = {
       url: 'https://www.webstackbuilders.com/contact',
       email: 'info@webstackbuilders.com',
     },
+    social: [
+      {
+        name: `twitter`,
+        url: `https://twitter.com/webstackbuilders`,
+      },
+      {
+        name: `github`,
+        url: `https://github.com/webstackbuilders`,
+      },
+    ],
   },
   plugins: [
     {

@@ -1,16 +1,18 @@
 //import type { Query, SanitySiteSettings } from 'generated/gatsby-types'
-import { graphql, PageProps } from 'gatsby'
-import React from 'react'
+
 import BlogPostPreviewList from 'components/blog-post-preview-list'
 import Container from 'components/container'
 import GraphQLErrorList from 'components/graphql-error-list'
 import SEO from 'components/seo'
 import Layout from 'containers/layout'
+import { graphql, PageProps } from 'gatsby'
+
 import {
   filterOutDocsPublishedInTheFuture,
   filterOutDocsWithoutSlugs,
   mapEdgesToNodes,
 } from 'lib/helpers'
+import React from 'react'
 
 // SanityMainImage
 // Query_sanitySiteSettingsArgs, sanitySiteSettings

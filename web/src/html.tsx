@@ -1,6 +1,5 @@
 import React from 'react'
-import { ThemeProvider } from 'theme-ui'
-import theme from './theme'
+import * from 'styles/normalize.css'
 
 interface HtmlProps {
   htmlAttributes?: React.HTMLAttributes
@@ -24,15 +23,13 @@ const HTML: React.FC<HtmlProps> = (props) => {
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>
-        <ThemeProvider theme={theme}></ThemeProvider>
-          {props.preBodyComponents}
-          <div
-            key={`body`}
-            id="___gatsby"
-            dangerouslySetInnerHTML={{ __html: props.body }}
-          />
-          {props.postBodyComponents}
-        </ThemeProvider>
+        {props.preBodyComponents}
+        <div
+          key={`body`}
+          id="___gatsby"
+          dangerouslySetInnerHTML={{ __html: props.body }}
+        />
+        {props.postBodyComponents}
       </body>
     </html>
   )
