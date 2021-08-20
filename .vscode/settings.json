@@ -16,8 +16,13 @@
     "avif",
     "blog",
     "es",
+    "gtag",
+    "navigations",
     "post",
-    "true"
+    "toolchain",
+    "true",
+    "unmount",
+    "unmounting"
   ],
   "cSpell.ignoreWords": [
     "avi",

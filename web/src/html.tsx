@@ -1,5 +1,5 @@
 import React from 'react'
-import * from 'styles/normalize.css'
+import 'styles/normalize.css'
 
 interface HtmlProps {
   htmlAttributes?: React.HTMLAttributes

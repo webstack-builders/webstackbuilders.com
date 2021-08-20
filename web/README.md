@@ -2,7 +2,11 @@
 
 ## Babel
 
-The default Gatsby Babel configuration is over-ridden to allow for the decorators proposal and browser targeting
+The default Gatsby Babel configuration is over-ridden to allow for the decorators proposal and browser targeting.
+
+## `web/tsconfig.json`
+
+This file is included for NPM to use when running ESLint from the command line. It is *not* used by Gatsby's toolchain.
 
 ## TypeScript and Gatsby Config Files
 

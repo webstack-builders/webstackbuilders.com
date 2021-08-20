@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "apollographql.vscode-apollo",
+    "davidanson.vscode-markdownlint",
     "dbaeumer.vscode-eslint",
     "dzannotti.vscode-babel-coloring",
     "ecmel.vscode-html-css",
