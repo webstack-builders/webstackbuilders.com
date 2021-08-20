@@ -1,8 +1,12 @@
 {
   "recommendations": [
-    "EditorConfig.EditorConfig",
+    "apollographql.vscode-apollo",
     "dbaeumer.vscode-eslint",
-    "mgmcdermott.vscode-language-babel"
+    "dzannotti.vscode-babel-coloring",
+    "ecmel.vscode-html-css",
+    "EditorConfig.EditorConfig",
+    "mgmcdermott.vscode-language-babel",
+    "sanity-io.vscode-sanity"
   ],
   "unwantedRecommendations": [
     "johnpapa.vscode-peacock"

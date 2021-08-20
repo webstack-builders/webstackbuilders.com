@@ -81,6 +81,20 @@ Please see the README files in the packages for instructions on local developmen
 
 `version` and `publish` scripts in root `package.json` are only useful when developing on config packages, as `web` and `studio` are private repos.
 
+## Editor Settings
+
+The repo includes recommended extensions for VS Code that will be suggested to the user when they load the project in their editor. The directives for this are in `.vscode/extensions.json`.
+
+Settings for the VS Code extension `cspell` are in the `.vscode/settings.json` file. You can disable spell checking in a document using comments:
+
+```javascript
+// cSpell:disable
+const wackyWord = ['zaallano', 'wooorrdd', 'zzooommmmmmmm'];
+/* cSpell:enable */
+```
+
+###
+
 ## @TODO:
 
 1. Set up Sanity hook for Netlify to rebuild when content changes. An example [using Contentful](https://www.netlify.com/blog/2020/04/24/automate-contentful-deploys-with-netlify-webhooks/).

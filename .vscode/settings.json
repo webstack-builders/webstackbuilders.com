@@ -1,16 +1,17 @@
 {
-  "editor.tabSize": 2,
-  "files.trimTrailingWhitespace": true,
-  "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "search.exclude": {
-    "**/node_modules": true,
-    "**/__fixtures__": true,
-    "/web/public": true,
-    "/studio/build": true
-  },
+  "editor.formatOnSave": false,
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "cSpell.ignorePaths": [
+    "**/__generated__/**",
+    "**/.git/**",
+    "**/.vscode",
+    "**/node_modules/**",
+    "**/package-lock.json"
+  ],
   "cSpell.words": [
     "avif",
     "blog",
@@ -18,8 +19,16 @@
     "post",
     "true"
   ],
-  "git.ignoreLimitWarning": true,
   "cSpell.ignoreWords": [
-    "avi"
-  ]
+    "avi",
+    "dont",
+    "nlink"
+  ],
+  "git.ignoreLimitWarning": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/__fixtures__": true,
+    "/web/public": true,
+    "/studio/build": true
+  }
 }
