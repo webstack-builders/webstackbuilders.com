@@ -8,6 +8,22 @@ The default Gatsby Babel configuration is over-ridden to allow for the decorator
 
 This file is included for NPM to use when running ESLint from the command line. It is *not* used by Gatsby's toolchain.
 
+## Relative file imports
+
+This lets you use syntax like this:
+
+```javascript
+import Something from 'components/something.tsx'
+```
+
+Instead of:
+
+```javascript
+import Something from '../something.tsx'
+```
+
+Gatsby uses Webpack config in `gatsby-config` for the `gatsby-plugin-root-import` plugin to specify the relative path mappings. ESLint uses `tsconfig.json` for the mappings, so the relative paths have to be maintained in both places :(
+
 ## TypeScript and Gatsby Config Files
 
 See the [readme file](gatsby/README.md) in the gatsby directory for info on using TypeScript with Gatsby config files.

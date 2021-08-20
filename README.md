@@ -51,6 +51,10 @@ Our ESLint configuration is a mixture between ESLint's recommended rules [^1], R
 [^1] https://eslint.org/docs/rules/
 [^2] https://www.npmjs.com/package/eslint-plugin-react#list-of-supported-rules
 
+## Spell Checking
+
+The repo uses the `cspell` plugin for ESLint to perform spell checking. New vocabulary can be added to the project in the `.vscode/settings.json` file under the key for `cspell`.
+
 ## Package Dependencies
 
 If you're adding a new dependency to a package (and not the web or studio sides), use `lerna add`. This manages both the installation and the symlinking of packages, local or remote. To add a remote dependency like `lodash.throttle`, use `lerna add` and specify either a path to your package or a `--scope` flag.

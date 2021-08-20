@@ -9,6 +9,7 @@ const baseEslintConfig = {
   },
   extends: [
     'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:jest-dom/recommended',
@@ -17,7 +18,7 @@ const baseEslintConfig = {
     'plugin:react/recommended',
     'prettier',
   ],
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -28,6 +29,7 @@ const baseEslintConfig = {
     sourceType: 'module',
   },
   plugins: [
+    '@typescript-eslint',
     'import',
     'jest-dom',
     'jsx-a11y',
