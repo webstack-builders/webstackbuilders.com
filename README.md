@@ -6,7 +6,6 @@ Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-i
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-
 ## What this is
 
 - A blazing fast company website with [Gatsby.js](https://gatsbyjs.org)
@@ -37,19 +36,20 @@ If you want to turn off preview you can set `watchMode: false` in gatsby-config
 
 ## Deploy changes
 
-Netlify automatically deploys new changes commited to master on GitHub. If you want to change deployment branch, do so in [build & deploy settings on Netlify](https://www.netlify.com/docs/continuous-deployment/#branches-deploys).
+Netlify automatically deploys new changes committed to master on GitHub. If you want to change deployment branch, do so in [build & deploy settings on Netlify](https://www.netlify.com/docs/continuous-deployment/#branches-deploys).
 
 ## Code Quality
 
 Our ESLint configuration is a mixture between ESLint's recommended rules [^1], React's recommended rules [^2], and a bit of our own stylistic flair:
+
 - no semicolons
 - comma dangle when multiline
 - single quotes
 - always use parenthesis around arrow functions
 - enforced import sorting
 
-[^1] https://eslint.org/docs/rules/
-[^2] https://www.npmjs.com/package/eslint-plugin-react#list-of-supported-rules
+[^1] [https://eslint.org/docs/rules/](https://eslint.org/docs/rules/)
+[^2] [https://www.npmjs.com/package/eslint-plugin-react#list-of-supported-rules](https://www.npmjs.com/package/eslint-plugin-react#list-of-supported-rules)
 
 ## Spell Checking
 
@@ -97,16 +97,18 @@ const wackyWord = ['zaallano', 'wooorrdd', 'zzooommmmmmmm'];
 /* cSpell:enable */
 ```
 
-###
-
 ## @TODO:
 
 1. Set up Sanity hook for Netlify to rebuild when content changes. An example [using Contentful](https://www.netlify.com/blog/2020/04/24/automate-contentful-deploys-with-netlify-webhooks/).
 
-2. The ESLint and Prettier config is messed up for packages. I think in theme-preset-website it's walking up to the project root and pulling ESLint config from the root package.json file. Linting the package produces the following two errors:
+1. The ESLint and Prettier config is messed up for packages. I think in theme-preset-website it's walking up to the project root and pulling ESLint config from the root package.json file. Linting the package produces the following two errors:
 
 - File ignored because of a matching ignore pattern. Use "--no-ignore" to override
 - React version was set to "detect" in eslint-plugin-react settings, but the "react" package is not installed. Assuming latest React version for linting.
 - Unable to resolve path to module './theme' in index.ts -- error due to eslint config setup in import/resolver
 
-3. The eslint-config-company-website has a catch-22 in that it's providing its own eslint config, so no linting is set up. The prettier config package has a similar issue with using prettier.
+1. The eslint-config-company-website has a catch-22 in that it's providing its own eslint config, so no linting is set up. The prettier config package has a similar issue with using prettier.
+
+1. Config for eslint ran through VS Code (Problems tab) and ran from npx give two different results:
+
+- In `web/src/html.tsx`, VS Code gives the error `Generic type 'HTMLAttributes<T>' requires 1 type argument(s).` but running from npx doesn't

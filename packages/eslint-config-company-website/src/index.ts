@@ -7,6 +7,7 @@ const baseEslintConfig = {
     es6: true,
     node: true,
   },
+  // TypeScript files are processed by an override lower in this file
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -18,7 +19,7 @@ const baseEslintConfig = {
     'plugin:react/recommended',
     'prettier',
   ],
-  parser: '@typescript-eslint/parser',
+  parser: '@babel/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -29,7 +30,6 @@ const baseEslintConfig = {
     sourceType: 'module',
   },
   plugins: [
-    '@typescript-eslint',
     'import',
     'jest-dom',
     'jsx-a11y',
