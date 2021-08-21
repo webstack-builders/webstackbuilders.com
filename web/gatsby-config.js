@@ -70,6 +70,7 @@ module.exports = {
         components: path.join(__dirname, 'src/components'),
         containers: path.join(__dirname, 'src/containers'),
         gatsby: path.join(__dirname, 'src/gatsby'),
+        hooks: path.join(__dirname, 'src/hooks'),
         layouts: path.join(__dirname, 'src/layouts'),
         lib: path.join(__dirname, 'src/lib'),
         pages: path.join(__dirname, 'src/pages'),
