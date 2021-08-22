@@ -8,6 +8,13 @@
       }
     ],
     "@babel/react",
-    "@babel/typescript"
+    [
+      "@babel/typescript",
+      {
+        "allExtensions": true,
+        "isTSX": true,
+        "allowDeclareFields": true
+      }
+    ]
   ]
 }
