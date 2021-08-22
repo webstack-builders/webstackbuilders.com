@@ -11,6 +11,7 @@ import author from './documents/author'
 import category from './documents/category'
 import post from './documents/post'
 import siteSettings from './documents/siteSettings'
+
 // Object types
 import authorReference from './objects/authorReference'
 import bioPortableText from './objects/bioPortableText'

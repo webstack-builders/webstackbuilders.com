@@ -38,6 +38,7 @@ function StructureMenuWidget(props) {
     </div>
   )
 }
+
 StructureMenuWidget.propTypes = {
   structure: PropTypes.object,
 }

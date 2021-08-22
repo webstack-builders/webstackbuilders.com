@@ -1,6 +1,6 @@
-import React from 'react'
+import { PropsWithChildren } from 'react'
+
 import Header from 'components/header'
-import 'styles/layout.css'
 import * as styles from 'components/layout.module.css'
 
 interface LayoutProps {
@@ -10,7 +10,7 @@ interface LayoutProps {
   siteTitle?: string
 }
 
-const Layout: React.PropsWithChildren = ({
+const Layout: PropsWithChildren = ({
   children,
   onHideNav,
   onShowNav,

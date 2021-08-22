@@ -7,6 +7,7 @@
  *   const { title, social } = useSiteMetadata()
  *   ...
  */
+/*
 import { graphql, useStaticQuery } from 'gatsby'
 
 export default function useSiteMetadata() {
@@ -24,8 +25,8 @@ export default function useSiteMetadata() {
             email
           }
           social {
-            twitter
-            github
+            name
+            url
           }
         }
       }
@@ -34,3 +35,4 @@ export default function useSiteMetadata() {
 
   return data.site.siteMetadata
 }
+*/

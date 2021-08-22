@@ -3,6 +3,7 @@
   "include": ["src/**/*"],
   "compilerOptions": {
     "baseUrl": ".",
+    "jsx": "preserve",
     "paths": {
       "generated": ["__generated__"],
       "types/*": ["src/@types/*"],

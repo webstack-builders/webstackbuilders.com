@@ -28,7 +28,7 @@
   "parts": [
     {
       "name": "part:@sanity/base/schema",
-      "path": "./schemas/schema.js"
+      "path": "./schemas/schema.ts"
     },
     {
       "implements": "part:@sanity/base/theme/variables/override-style",
@@ -36,11 +36,11 @@
     },
     {
       "name": "part:@sanity/desk-tool/structure",
-      "path": "./src/structure/deskStructure.js"
+      "path": "./src/structure/deskStructure.ts"
     },
     {
       "implements": "part:@sanity/dashboard/config",
-      "path": "./src/dashboardConfig.js"
+      "path": "./src/dashboardConfig.ts"
     }
   ]
 }

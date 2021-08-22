@@ -62,6 +62,8 @@ Loads the Twitter JavaScript for embedding tweets, timelines, share and follow b
 
 Provide support for using the css-in-js library Emotion including server side rendering.
 
+`npm install gatsby-plugin-emotion @emotion/react @emotion/styled`
+
 ### gatsby-plugin-offline
 
 Adds drop-in support for making a Gatsby site work offline and more resistant to bad network connections. It uses Workbox Build to create a service worker for the site and loads the service worker into the client.
