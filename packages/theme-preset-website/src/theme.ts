@@ -1,6 +1,9 @@
 /*
  * Theme UI template theme
  */
+// @TODO: Can this could be refactored to turn this package into a Gatsby plugin, and
+// the Prisma code highlighting added as the `prismPreset` option to the `gatsby-config.js`
+// file here for the `gatsby-plugin-theme-ui` plugin?
 import vsDark from '@theme-ui/prism/presets/vs-dark.json'
 
 const heading = {

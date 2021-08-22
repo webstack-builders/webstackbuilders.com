@@ -8,8 +8,9 @@
  * ts-node register helps importing and compiling TypeScript modules into JS
  *
  * @TODO: If repo is converted to a theme plugin, the export can be a function that takes an
- * options object from the child starter repo's option object passed in its `gatsby-config.js`.
+ * options object from the child starter repo option object passed in its `gatsby-config.js`.
  * See example options config for `gatsby-plugin-theme-ui`:
+ *
  * https://github.com/gatsbyjs/themes/blob/master/packages/gatsby-theme-blog/gatsby-config.js
  */
 const path = require('path')
@@ -89,7 +90,6 @@ module.exports = {
       resolve: 'gatsby-plugin-theme-ui',
       options: {
         preset: '@webstackbuilders/theme-preset-website',
-        prismPreset: options.prismPreset,
       },
     },
     {
