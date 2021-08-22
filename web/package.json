@@ -20,7 +20,7 @@
     "build": "gatsby build",
     "clean": "gatsby clean",
     "deploy": "gatsby build --prefix-paths",
-    "dev": "cross-env GATSBY_GRAPHQL_IDE=playground gatsby develop -p 8001",
+    "dev": "cross-env GATSBY_GRAPHQL_IDE=playground gatsby develop -p 8002",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
     "lint": "eslint .",
     "test": "npm run type-check && npm run lint",

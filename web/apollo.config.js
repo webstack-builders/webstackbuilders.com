@@ -15,5 +15,3 @@ module.exports = {
     },
   },
 }
-
-// Error in "Loading schema for GatsbyJS": Error: Unable to read file ./__generated__/gatsby-schema.graphql. ENOENT: no such file or directory, open './__generated__/gatsby-schema.graphql'
