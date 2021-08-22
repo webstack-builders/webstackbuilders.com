@@ -22,6 +22,7 @@
     "test": "lerna run test",
     "test:coverage": "lerna run test --coverage",
     "tsc": "tsc",
+    "update-browserlist": "npx browserslist@latest --update-db",
     "version:major": "lerna version major",
     "version:minor": "lerna version minor",
     "version:patch": "lerna version patch"
