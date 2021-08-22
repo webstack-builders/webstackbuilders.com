@@ -325,6 +325,8 @@ type Site implements Node {
   siteMetadata: SiteSiteMetadata
   port: Int
   host: String
+  polyfill: Boolean
+  pathPrefix: String
   id: ID!
   parent: Node
   children: [Node!]!
@@ -337,6 +339,7 @@ type SiteSiteMetadata {
   keywords: String
   siteUrl: String
   author: SiteSiteMetadataAuthor
+  social: [SiteSiteMetadataSocial]
 }
 
 type SiteSiteMetadataAuthor {
@@ -345,21 +348,26 @@ type SiteSiteMetadataAuthor {
   email: String
 }
 
+type SiteSiteMetadataSocial {
+  name: String
+  url: String
+}
+
 type SitePage implements Node {
   path: String!
   component: String!
   internalComponentName: String!
   componentChunkName: String!
   matchPath: String
-  isCreatedByStatefulCreatePages: Boolean
-  pluginCreator: SitePlugin
-  pluginCreatorId: String
-  componentPath: String
   id: ID!
   parent: Node
   children: [Node!]!
   internal: Internal!
+  isCreatedByStatefulCreatePages: Boolean
   context: SitePageContext
+  pluginCreator: SitePlugin
+  pluginCreatorId: String
+  componentPath: String
 }
 
 type SitePageContext {
@@ -1226,12 +1234,13 @@ type SitePluginPluginOptions {
   components: String
   containers: String
   gatsby: String
+  hooks: String
   layouts: String
   lib: String
   pages: String
   styles: String
   templates: String
-  preset: String
+  preset: SitePluginPluginOptionsPreset
   defaults: SitePluginPluginOptionsDefaults
   base64Width: Int
   stripMetadata: Boolean
@@ -1239,11 +1248,176 @@ type SitePluginPluginOptions {
   failOnError: Boolean
   siteUrl: String
   stripQueryString: Boolean
+  name: String
+  short_name: String
+  start_url: String
+  background_color: String
+  theme_color: String
+  display: String
+  icon: String
+  legacy: Boolean
+  theme_color_in_head: Boolean
+  cache_busting_mode: String
+  crossOrigin: String
+  include_favicon: Boolean
   outputPath: String
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
   path: String
   pathCheck: Boolean
+}
+
+type SitePluginPluginOptionsPreset {
+  space: [Int]
+  fonts: SitePluginPluginOptionsPresetFonts
+  fontSizes: [Int]
+  fontWeights: SitePluginPluginOptionsPresetFontWeights
+  lineHeights: SitePluginPluginOptionsPresetLineHeights
+  colors: SitePluginPluginOptionsPresetColors
+  styles: SitePluginPluginOptionsPresetStyles
+}
+
+type SitePluginPluginOptionsPresetFonts {
+  body: String
+  heading: String
+  monospace: String
+}
+
+type SitePluginPluginOptionsPresetFontWeights {
+  body: Int
+  heading: Int
+  bold: Int
+}
+
+type SitePluginPluginOptionsPresetLineHeights {
+  body: Float
+  heading: Float
+}
+
+type SitePluginPluginOptionsPresetColors {
+  text: String
+  background: String
+  primary: String
+  secondary: String
+  muted: String
+}
+
+type SitePluginPluginOptionsPresetStyles {
+  root: SitePluginPluginOptionsPresetStylesRoot
+  h1: SitePluginPluginOptionsPresetStylesH1
+  h2: SitePluginPluginOptionsPresetStylesH2
+  h3: SitePluginPluginOptionsPresetStylesH3
+  h4: SitePluginPluginOptionsPresetStylesH4
+  h5: SitePluginPluginOptionsPresetStylesH5
+  h6: SitePluginPluginOptionsPresetStylesH6
+  p: SitePluginPluginOptionsPresetStylesP
+  a: SitePluginPluginOptionsPresetStylesA
+  pre: SitePluginPluginOptionsPresetStylesPre
+  code: SitePluginPluginOptionsPresetStylesCode
+  table: SitePluginPluginOptionsPresetStylesTable
+  th: SitePluginPluginOptionsPresetStylesTh
+  td: SitePluginPluginOptionsPresetStylesTd
+  img: SitePluginPluginOptionsPresetStylesImg
+}
+
+type SitePluginPluginOptionsPresetStylesRoot {
+  fontFamily: String
+  lineHeight: String
+  fontWeight: String
+}
+
+type SitePluginPluginOptionsPresetStylesH1 {
+  color: String
+  fontFamily: String
+  lineHeight: String
+  fontWeight: String
+  fontSize: Int
+}
+
+type SitePluginPluginOptionsPresetStylesH2 {
+  color: String
+  fontFamily: String
+  lineHeight: String
+  fontWeight: String
+  fontSize: Int
+}
+
+type SitePluginPluginOptionsPresetStylesH3 {
+  color: String
+  fontFamily: String
+  lineHeight: String
+  fontWeight: String
+  fontSize: Int
+}
+
+type SitePluginPluginOptionsPresetStylesH4 {
+  color: String
+  fontFamily: String
+  lineHeight: String
+  fontWeight: String
+  fontSize: Int
+}
+
+type SitePluginPluginOptionsPresetStylesH5 {
+  color: String
+  fontFamily: String
+  lineHeight: String
+  fontWeight: String
+  fontSize: Int
+}
+
+type SitePluginPluginOptionsPresetStylesH6 {
+  color: String
+  fontFamily: String
+  lineHeight: String
+  fontWeight: String
+  fontSize: Int
+}
+
+type SitePluginPluginOptionsPresetStylesP {
+  color: String
+  fontFamily: String
+  fontWeight: String
+  lineHeight: String
+}
+
+type SitePluginPluginOptionsPresetStylesA {
+  color: String
+}
+
+type SitePluginPluginOptionsPresetStylesPre {
+  fontFamily: String
+  overflowX: String
+  code: SitePluginPluginOptionsPresetStylesPreCode
+}
+
+type SitePluginPluginOptionsPresetStylesPreCode {
+  color: String
+}
+
+type SitePluginPluginOptionsPresetStylesCode {
+  fontFamily: String
+  fontSize: String
+}
+
+type SitePluginPluginOptionsPresetStylesTable {
+  width: String
+  borderCollapse: String
+  borderSpacing: Int
+}
+
+type SitePluginPluginOptionsPresetStylesTh {
+  textAlign: String
+  borderBottomStyle: String
+}
+
+type SitePluginPluginOptionsPresetStylesTd {
+  textAlign: String
+  borderBottomStyle: String
+}
+
+type SitePluginPluginOptionsPresetStylesImg {
+  maxWidth: String
 }
 
 type SitePluginPluginOptionsDefaults {
@@ -1295,9 +1469,9 @@ type Query {
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
-  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
+  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
-  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, context: SitePageContextFilterInput): SitePage
+  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, context: SitePageContextFilterInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput, componentPath: StringQueryOperatorInput): SitePage
   allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
   sanityAuthor(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, name: StringQueryOperatorInput, slug: SanitySlugFilterInput, image: SanityMainImageFilterInput, bio: SanityBlockFilterListInput, _rawSlug: JSONQueryOperatorInput, _rawImage: JSONQueryOperatorInput, _rawBio: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityAuthor
   allSanityAuthor(filter: SanityAuthorFilterInput, sort: SanityAuthorSortInput, skip: Int, limit: Int): SanityAuthorConnection!
@@ -1998,12 +2172,22 @@ input SiteSiteMetadataFilterInput {
   keywords: StringQueryOperatorInput
   siteUrl: StringQueryOperatorInput
   author: SiteSiteMetadataAuthorFilterInput
+  social: SiteSiteMetadataSocialFilterListInput
 }
 
 input SiteSiteMetadataAuthorFilterInput {
   name: StringQueryOperatorInput
   url: StringQueryOperatorInput
   email: StringQueryOperatorInput
+}
+
+input SiteSiteMetadataSocialFilterListInput {
+  elemMatch: SiteSiteMetadataSocialFilterInput
+}
+
+input SiteSiteMetadataSocialFilterInput {
+  name: StringQueryOperatorInput
+  url: StringQueryOperatorInput
 }
 
 type SiteConnection {
@@ -2030,8 +2214,13 @@ enum SiteFieldsEnum {
   siteMetadata___author___name
   siteMetadata___author___url
   siteMetadata___author___email
+  siteMetadata___social
+  siteMetadata___social___name
+  siteMetadata___social___url
   port
   host
+  polyfill
+  pathPrefix
   id
   parent___id
   parent___parent___id
@@ -2134,6 +2323,8 @@ input SiteFilterInput {
   siteMetadata: SiteSiteMetadataFilterInput
   port: IntQueryOperatorInput
   host: StringQueryOperatorInput
+  polyfill: BooleanQueryOperatorInput
+  pathPrefix: StringQueryOperatorInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
@@ -2143,6 +2334,10 @@ input SiteFilterInput {
 input SiteSortInput {
   fields: [SiteFieldsEnum]
   order: [SortOrderEnum] = [ASC]
+}
+
+input SitePageContextFilterInput {
+  id: StringQueryOperatorInput
 }
 
 input SitePluginFilterInput {
@@ -2177,12 +2372,13 @@ input SitePluginPluginOptionsFilterInput {
   components: StringQueryOperatorInput
   containers: StringQueryOperatorInput
   gatsby: StringQueryOperatorInput
+  hooks: StringQueryOperatorInput
   layouts: StringQueryOperatorInput
   lib: StringQueryOperatorInput
   pages: StringQueryOperatorInput
   styles: StringQueryOperatorInput
   templates: StringQueryOperatorInput
-  preset: StringQueryOperatorInput
+  preset: SitePluginPluginOptionsPresetFilterInput
   defaults: SitePluginPluginOptionsDefaultsFilterInput
   base64Width: IntQueryOperatorInput
   stripMetadata: BooleanQueryOperatorInput
@@ -2190,11 +2386,176 @@ input SitePluginPluginOptionsFilterInput {
   failOnError: BooleanQueryOperatorInput
   siteUrl: StringQueryOperatorInput
   stripQueryString: BooleanQueryOperatorInput
+  name: StringQueryOperatorInput
+  short_name: StringQueryOperatorInput
+  start_url: StringQueryOperatorInput
+  background_color: StringQueryOperatorInput
+  theme_color: StringQueryOperatorInput
+  display: StringQueryOperatorInput
+  icon: StringQueryOperatorInput
+  legacy: BooleanQueryOperatorInput
+  theme_color_in_head: BooleanQueryOperatorInput
+  cache_busting_mode: StringQueryOperatorInput
+  crossOrigin: StringQueryOperatorInput
+  include_favicon: BooleanQueryOperatorInput
   outputPath: StringQueryOperatorInput
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
   path: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetFilterInput {
+  space: IntQueryOperatorInput
+  fonts: SitePluginPluginOptionsPresetFontsFilterInput
+  fontSizes: IntQueryOperatorInput
+  fontWeights: SitePluginPluginOptionsPresetFontWeightsFilterInput
+  lineHeights: SitePluginPluginOptionsPresetLineHeightsFilterInput
+  colors: SitePluginPluginOptionsPresetColorsFilterInput
+  styles: SitePluginPluginOptionsPresetStylesFilterInput
+}
+
+input SitePluginPluginOptionsPresetFontsFilterInput {
+  body: StringQueryOperatorInput
+  heading: StringQueryOperatorInput
+  monospace: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetFontWeightsFilterInput {
+  body: IntQueryOperatorInput
+  heading: IntQueryOperatorInput
+  bold: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetLineHeightsFilterInput {
+  body: FloatQueryOperatorInput
+  heading: FloatQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetColorsFilterInput {
+  text: StringQueryOperatorInput
+  background: StringQueryOperatorInput
+  primary: StringQueryOperatorInput
+  secondary: StringQueryOperatorInput
+  muted: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesFilterInput {
+  root: SitePluginPluginOptionsPresetStylesRootFilterInput
+  h1: SitePluginPluginOptionsPresetStylesH1FilterInput
+  h2: SitePluginPluginOptionsPresetStylesH2FilterInput
+  h3: SitePluginPluginOptionsPresetStylesH3FilterInput
+  h4: SitePluginPluginOptionsPresetStylesH4FilterInput
+  h5: SitePluginPluginOptionsPresetStylesH5FilterInput
+  h6: SitePluginPluginOptionsPresetStylesH6FilterInput
+  p: SitePluginPluginOptionsPresetStylesPFilterInput
+  a: SitePluginPluginOptionsPresetStylesAFilterInput
+  pre: SitePluginPluginOptionsPresetStylesPreFilterInput
+  code: SitePluginPluginOptionsPresetStylesCodeFilterInput
+  table: SitePluginPluginOptionsPresetStylesTableFilterInput
+  th: SitePluginPluginOptionsPresetStylesThFilterInput
+  td: SitePluginPluginOptionsPresetStylesTdFilterInput
+  img: SitePluginPluginOptionsPresetStylesImgFilterInput
+}
+
+input SitePluginPluginOptionsPresetStylesRootFilterInput {
+  fontFamily: StringQueryOperatorInput
+  lineHeight: StringQueryOperatorInput
+  fontWeight: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesH1FilterInput {
+  color: StringQueryOperatorInput
+  fontFamily: StringQueryOperatorInput
+  lineHeight: StringQueryOperatorInput
+  fontWeight: StringQueryOperatorInput
+  fontSize: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesH2FilterInput {
+  color: StringQueryOperatorInput
+  fontFamily: StringQueryOperatorInput
+  lineHeight: StringQueryOperatorInput
+  fontWeight: StringQueryOperatorInput
+  fontSize: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesH3FilterInput {
+  color: StringQueryOperatorInput
+  fontFamily: StringQueryOperatorInput
+  lineHeight: StringQueryOperatorInput
+  fontWeight: StringQueryOperatorInput
+  fontSize: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesH4FilterInput {
+  color: StringQueryOperatorInput
+  fontFamily: StringQueryOperatorInput
+  lineHeight: StringQueryOperatorInput
+  fontWeight: StringQueryOperatorInput
+  fontSize: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesH5FilterInput {
+  color: StringQueryOperatorInput
+  fontFamily: StringQueryOperatorInput
+  lineHeight: StringQueryOperatorInput
+  fontWeight: StringQueryOperatorInput
+  fontSize: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesH6FilterInput {
+  color: StringQueryOperatorInput
+  fontFamily: StringQueryOperatorInput
+  lineHeight: StringQueryOperatorInput
+  fontWeight: StringQueryOperatorInput
+  fontSize: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesPFilterInput {
+  color: StringQueryOperatorInput
+  fontFamily: StringQueryOperatorInput
+  fontWeight: StringQueryOperatorInput
+  lineHeight: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesAFilterInput {
+  color: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesPreFilterInput {
+  fontFamily: StringQueryOperatorInput
+  overflowX: StringQueryOperatorInput
+  code: SitePluginPluginOptionsPresetStylesPreCodeFilterInput
+}
+
+input SitePluginPluginOptionsPresetStylesPreCodeFilterInput {
+  color: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesCodeFilterInput {
+  fontFamily: StringQueryOperatorInput
+  fontSize: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesTableFilterInput {
+  width: StringQueryOperatorInput
+  borderCollapse: StringQueryOperatorInput
+  borderSpacing: IntQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesThFilterInput {
+  textAlign: StringQueryOperatorInput
+  borderBottomStyle: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesTdFilterInput {
+  textAlign: StringQueryOperatorInput
+  borderBottomStyle: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsPresetStylesImgFilterInput {
+  maxWidth: StringQueryOperatorInput
 }
 
 input SitePluginPluginOptionsDefaultsFilterInput {
@@ -2253,10 +2614,6 @@ input SitePluginPackageJsonPeerDependenciesFilterInput {
   version: StringQueryOperatorInput
 }
 
-input SitePageContextFilterInput {
-  id: StringQueryOperatorInput
-}
-
 type SitePageConnection {
   totalCount: Int!
   edges: [SitePageEdge!]!
@@ -2278,107 +2635,6 @@ enum SitePageFieldsEnum {
   internalComponentName
   componentChunkName
   matchPath
-  isCreatedByStatefulCreatePages
-  pluginCreator___id
-  pluginCreator___parent___id
-  pluginCreator___parent___parent___id
-  pluginCreator___parent___parent___children
-  pluginCreator___parent___children
-  pluginCreator___parent___children___id
-  pluginCreator___parent___children___children
-  pluginCreator___parent___internal___content
-  pluginCreator___parent___internal___contentDigest
-  pluginCreator___parent___internal___description
-  pluginCreator___parent___internal___fieldOwners
-  pluginCreator___parent___internal___ignoreType
-  pluginCreator___parent___internal___mediaType
-  pluginCreator___parent___internal___owner
-  pluginCreator___parent___internal___type
-  pluginCreator___children
-  pluginCreator___children___id
-  pluginCreator___children___parent___id
-  pluginCreator___children___parent___children
-  pluginCreator___children___children
-  pluginCreator___children___children___id
-  pluginCreator___children___children___children
-  pluginCreator___children___internal___content
-  pluginCreator___children___internal___contentDigest
-  pluginCreator___children___internal___description
-  pluginCreator___children___internal___fieldOwners
-  pluginCreator___children___internal___ignoreType
-  pluginCreator___children___internal___mediaType
-  pluginCreator___children___internal___owner
-  pluginCreator___children___internal___type
-  pluginCreator___internal___content
-  pluginCreator___internal___contentDigest
-  pluginCreator___internal___description
-  pluginCreator___internal___fieldOwners
-  pluginCreator___internal___ignoreType
-  pluginCreator___internal___mediaType
-  pluginCreator___internal___owner
-  pluginCreator___internal___type
-  pluginCreator___resolve
-  pluginCreator___name
-  pluginCreator___version
-  pluginCreator___pluginOptions___dataset
-  pluginCreator___pluginOptions___projectId
-  pluginCreator___pluginOptions___token
-  pluginCreator___pluginOptions___watchMode
-  pluginCreator___pluginOptions___overlayDrafts
-  pluginCreator___pluginOptions___isTSX
-  pluginCreator___pluginOptions___jsxPragma
-  pluginCreator___pluginOptions___allExtensions
-  pluginCreator___pluginOptions___src
-  pluginCreator___pluginOptions___generated
-  pluginCreator___pluginOptions___types
-  pluginCreator___pluginOptions___api
-  pluginCreator___pluginOptions___components
-  pluginCreator___pluginOptions___containers
-  pluginCreator___pluginOptions___gatsby
-  pluginCreator___pluginOptions___layouts
-  pluginCreator___pluginOptions___lib
-  pluginCreator___pluginOptions___pages
-  pluginCreator___pluginOptions___styles
-  pluginCreator___pluginOptions___templates
-  pluginCreator___pluginOptions___preset
-  pluginCreator___pluginOptions___defaults___formats
-  pluginCreator___pluginOptions___defaults___placeholder
-  pluginCreator___pluginOptions___defaults___quality
-  pluginCreator___pluginOptions___defaults___breakpoints
-  pluginCreator___pluginOptions___defaults___backgroundColor
-  pluginCreator___pluginOptions___base64Width
-  pluginCreator___pluginOptions___stripMetadata
-  pluginCreator___pluginOptions___defaultQuality
-  pluginCreator___pluginOptions___failOnError
-  pluginCreator___pluginOptions___siteUrl
-  pluginCreator___pluginOptions___stripQueryString
-  pluginCreator___pluginOptions___outputPath
-  pluginCreator___pluginOptions___emitSchema____xgeneratedxxxgatsbyxschemaxgraphql
-  pluginCreator___pluginOptions___emitSchema____xgeneratedxxxgatsbyxintrospectionxjson
-  pluginCreator___pluginOptions___emitPluginDocuments____xgeneratedxxxgatsbyxpluginxdocumentsxgraphql
-  pluginCreator___pluginOptions___path
-  pluginCreator___pluginOptions___pathCheck
-  pluginCreator___nodeAPIs
-  pluginCreator___browserAPIs
-  pluginCreator___ssrAPIs
-  pluginCreator___pluginFilepath
-  pluginCreator___packageJson___name
-  pluginCreator___packageJson___description
-  pluginCreator___packageJson___version
-  pluginCreator___packageJson___main
-  pluginCreator___packageJson___license
-  pluginCreator___packageJson___dependencies
-  pluginCreator___packageJson___dependencies___name
-  pluginCreator___packageJson___dependencies___version
-  pluginCreator___packageJson___devDependencies
-  pluginCreator___packageJson___devDependencies___name
-  pluginCreator___packageJson___devDependencies___version
-  pluginCreator___packageJson___peerDependencies
-  pluginCreator___packageJson___peerDependencies___name
-  pluginCreator___packageJson___peerDependencies___version
-  pluginCreator___packageJson___keywords
-  pluginCreatorId
-  componentPath
   id
   parent___id
   parent___parent___id
@@ -2465,7 +2721,122 @@ enum SitePageFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  isCreatedByStatefulCreatePages
   context___id
+  pluginCreator___id
+  pluginCreator___parent___id
+  pluginCreator___parent___parent___id
+  pluginCreator___parent___parent___children
+  pluginCreator___parent___children
+  pluginCreator___parent___children___id
+  pluginCreator___parent___children___children
+  pluginCreator___parent___internal___content
+  pluginCreator___parent___internal___contentDigest
+  pluginCreator___parent___internal___description
+  pluginCreator___parent___internal___fieldOwners
+  pluginCreator___parent___internal___ignoreType
+  pluginCreator___parent___internal___mediaType
+  pluginCreator___parent___internal___owner
+  pluginCreator___parent___internal___type
+  pluginCreator___children
+  pluginCreator___children___id
+  pluginCreator___children___parent___id
+  pluginCreator___children___parent___children
+  pluginCreator___children___children
+  pluginCreator___children___children___id
+  pluginCreator___children___children___children
+  pluginCreator___children___internal___content
+  pluginCreator___children___internal___contentDigest
+  pluginCreator___children___internal___description
+  pluginCreator___children___internal___fieldOwners
+  pluginCreator___children___internal___ignoreType
+  pluginCreator___children___internal___mediaType
+  pluginCreator___children___internal___owner
+  pluginCreator___children___internal___type
+  pluginCreator___internal___content
+  pluginCreator___internal___contentDigest
+  pluginCreator___internal___description
+  pluginCreator___internal___fieldOwners
+  pluginCreator___internal___ignoreType
+  pluginCreator___internal___mediaType
+  pluginCreator___internal___owner
+  pluginCreator___internal___type
+  pluginCreator___resolve
+  pluginCreator___name
+  pluginCreator___version
+  pluginCreator___pluginOptions___dataset
+  pluginCreator___pluginOptions___projectId
+  pluginCreator___pluginOptions___token
+  pluginCreator___pluginOptions___watchMode
+  pluginCreator___pluginOptions___overlayDrafts
+  pluginCreator___pluginOptions___isTSX
+  pluginCreator___pluginOptions___jsxPragma
+  pluginCreator___pluginOptions___allExtensions
+  pluginCreator___pluginOptions___src
+  pluginCreator___pluginOptions___generated
+  pluginCreator___pluginOptions___types
+  pluginCreator___pluginOptions___api
+  pluginCreator___pluginOptions___components
+  pluginCreator___pluginOptions___containers
+  pluginCreator___pluginOptions___gatsby
+  pluginCreator___pluginOptions___hooks
+  pluginCreator___pluginOptions___layouts
+  pluginCreator___pluginOptions___lib
+  pluginCreator___pluginOptions___pages
+  pluginCreator___pluginOptions___styles
+  pluginCreator___pluginOptions___templates
+  pluginCreator___pluginOptions___preset___space
+  pluginCreator___pluginOptions___preset___fontSizes
+  pluginCreator___pluginOptions___defaults___formats
+  pluginCreator___pluginOptions___defaults___placeholder
+  pluginCreator___pluginOptions___defaults___quality
+  pluginCreator___pluginOptions___defaults___breakpoints
+  pluginCreator___pluginOptions___defaults___backgroundColor
+  pluginCreator___pluginOptions___base64Width
+  pluginCreator___pluginOptions___stripMetadata
+  pluginCreator___pluginOptions___defaultQuality
+  pluginCreator___pluginOptions___failOnError
+  pluginCreator___pluginOptions___siteUrl
+  pluginCreator___pluginOptions___stripQueryString
+  pluginCreator___pluginOptions___name
+  pluginCreator___pluginOptions___short_name
+  pluginCreator___pluginOptions___start_url
+  pluginCreator___pluginOptions___background_color
+  pluginCreator___pluginOptions___theme_color
+  pluginCreator___pluginOptions___display
+  pluginCreator___pluginOptions___icon
+  pluginCreator___pluginOptions___legacy
+  pluginCreator___pluginOptions___theme_color_in_head
+  pluginCreator___pluginOptions___cache_busting_mode
+  pluginCreator___pluginOptions___crossOrigin
+  pluginCreator___pluginOptions___include_favicon
+  pluginCreator___pluginOptions___outputPath
+  pluginCreator___pluginOptions___emitSchema____xgeneratedxxxgatsbyxschemaxgraphql
+  pluginCreator___pluginOptions___emitSchema____xgeneratedxxxgatsbyxintrospectionxjson
+  pluginCreator___pluginOptions___emitPluginDocuments____xgeneratedxxxgatsbyxpluginxdocumentsxgraphql
+  pluginCreator___pluginOptions___path
+  pluginCreator___pluginOptions___pathCheck
+  pluginCreator___nodeAPIs
+  pluginCreator___browserAPIs
+  pluginCreator___ssrAPIs
+  pluginCreator___pluginFilepath
+  pluginCreator___packageJson___name
+  pluginCreator___packageJson___description
+  pluginCreator___packageJson___version
+  pluginCreator___packageJson___main
+  pluginCreator___packageJson___license
+  pluginCreator___packageJson___dependencies
+  pluginCreator___packageJson___dependencies___name
+  pluginCreator___packageJson___dependencies___version
+  pluginCreator___packageJson___devDependencies
+  pluginCreator___packageJson___devDependencies___name
+  pluginCreator___packageJson___devDependencies___version
+  pluginCreator___packageJson___peerDependencies
+  pluginCreator___packageJson___peerDependencies___name
+  pluginCreator___packageJson___peerDependencies___version
+  pluginCreator___packageJson___keywords
+  pluginCreatorId
+  componentPath
 }
 
 type SitePageGroupConnection {
@@ -2483,15 +2854,15 @@ input SitePageFilterInput {
   internalComponentName: StringQueryOperatorInput
   componentChunkName: StringQueryOperatorInput
   matchPath: StringQueryOperatorInput
-  isCreatedByStatefulCreatePages: BooleanQueryOperatorInput
-  pluginCreator: SitePluginFilterInput
-  pluginCreatorId: StringQueryOperatorInput
-  componentPath: StringQueryOperatorInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
   internal: InternalFilterInput
+  isCreatedByStatefulCreatePages: BooleanQueryOperatorInput
   context: SitePageContextFilterInput
+  pluginCreator: SitePluginFilterInput
+  pluginCreatorId: StringQueryOperatorInput
+  componentPath: StringQueryOperatorInput
 }
 
 input SitePageSortInput {
@@ -4542,12 +4913,27 @@ enum SitePluginFieldsEnum {
   pluginOptions___components
   pluginOptions___containers
   pluginOptions___gatsby
+  pluginOptions___hooks
   pluginOptions___layouts
   pluginOptions___lib
   pluginOptions___pages
   pluginOptions___styles
   pluginOptions___templates
-  pluginOptions___preset
+  pluginOptions___preset___space
+  pluginOptions___preset___fonts___body
+  pluginOptions___preset___fonts___heading
+  pluginOptions___preset___fonts___monospace
+  pluginOptions___preset___fontSizes
+  pluginOptions___preset___fontWeights___body
+  pluginOptions___preset___fontWeights___heading
+  pluginOptions___preset___fontWeights___bold
+  pluginOptions___preset___lineHeights___body
+  pluginOptions___preset___lineHeights___heading
+  pluginOptions___preset___colors___text
+  pluginOptions___preset___colors___background
+  pluginOptions___preset___colors___primary
+  pluginOptions___preset___colors___secondary
+  pluginOptions___preset___colors___muted
   pluginOptions___defaults___formats
   pluginOptions___defaults___placeholder
   pluginOptions___defaults___quality
@@ -4559,6 +4945,18 @@ enum SitePluginFieldsEnum {
   pluginOptions___failOnError
   pluginOptions___siteUrl
   pluginOptions___stripQueryString
+  pluginOptions___name
+  pluginOptions___short_name
+  pluginOptions___start_url
+  pluginOptions___background_color
+  pluginOptions___theme_color
+  pluginOptions___display
+  pluginOptions___icon
+  pluginOptions___legacy
+  pluginOptions___theme_color_in_head
+  pluginOptions___cache_busting_mode
+  pluginOptions___crossOrigin
+  pluginOptions___include_favicon
   pluginOptions___outputPath
   pluginOptions___emitSchema____xgeneratedxxxgatsbyxschemaxgraphql
   pluginOptions___emitSchema____xgeneratedxxxgatsbyxintrospectionxjson

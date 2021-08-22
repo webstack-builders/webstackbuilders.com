@@ -31,5 +31,6 @@ export default function useSiteMetadata() {
       }
     }
   `)
+
   return data.site.siteMetadata
 }

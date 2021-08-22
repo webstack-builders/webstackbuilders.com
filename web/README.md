@@ -4,6 +4,10 @@
 
 The default Gatsby Babel configuration is over-ridden to allow for the decorators proposal and browser targeting.
 
+## `studio/tsconfig.json`
+
+This file is used by Sanity's babel and webpack pipeline to configure TypeScript.
+
 ## `web/tsconfig.json`
 
 This file is included for NPM to use when running ESLint from the command line. It is *not* used by Gatsby's toolchain.
@@ -24,11 +28,15 @@ import Something from '../something.tsx'
 
 Gatsby uses Webpack config in `gatsby-config` for the `gatsby-plugin-root-import` plugin to specify the relative path mappings. ESLint uses `tsconfig.json` for the mappings, so the relative paths have to be maintained in both places :(
 
-## TypeScript and Gatsby Config Files
+## Using TypeScript in Gatsby Config Files
 
-See the [readme file](gatsby/README.md) in the gatsby directory for info on using TypeScript with Gatsby config files.
+See the [readme file](gatsby/README.md) in the `gatsby` directory for info on using TypeScript with Gatsby config files.
 
-## @TODO:
+## GraphQL TypeGen
+
+`gatsby-plugin-typegen` is used to automatically generate types for GraphQL queries so they can be used for typing props and query hooks. It runs on the `build` command or is kept updated when the dev server is ran.
+
+## Plugins to install and configure:
 
 ### gatsby-plugin-google-gtag
 
@@ -41,6 +49,28 @@ The web app manifest (part of the PWA specification) enabled by this plugin allo
 ### gatsby-plugin-offline
 
 Adds drop-in support for making a Gatsby site work offline and more resistant to bad network connections. It uses Workbox Build to create a service worker for the site and loads the service worker into the client. If you're using this plugin with gatsby-plugin-manifest (recommended) this plugin should be listed after that plugin so the manifest file can be included in the service worker.
+
+### gatsby-plugin-feed
+
+Create an RSS feed (or multiple feeds) for your Gatsby site.
+
+### gatsby-plugin-twitter
+
+Loads the Twitter JavaScript for embedding tweets, timelines, share and follow buttons. Lets you add tweets to markdown and in other places.
+
+### gatsby-plugin-emotion
+
+Provide support for using the css-in-js library Emotion including server side rendering.
+
+### gatsby-plugin-offline
+
+Adds drop-in support for making a Gatsby site work offline and more resistant to bad network connections. It uses Workbox Build to create a service worker for the site and loads the service worker into the client.
+
+## @TODO:
+
+### Configure plugins
+
+Including `gatsby-plugin-manifest`
 
 ### Prevent unmount of shared navigation components
 
