@@ -1,3 +1,8 @@
+/*
+ * Theme UI template theme
+ */
+import vsDark from '@theme-ui/prism/presets/vs-dark.json'
+
 const heading = {
   color: 'text',
   fontFamily: 'heading',
@@ -77,8 +82,7 @@ const baseThemeTemplate = {
       },
     },
     code: {
-      fontFamily: 'monospace',
-      fontSize: 'inherit',
+      ...vsDark,
     },
     table: {
       width: '100%',

@@ -6,6 +6,7 @@
  */
 
 import { AllHTMLAttributes, FC, HTMLAttributes, ReactElement } from 'react'
+
 import 'styles/normalize.css'
 
 interface HtmlProps {

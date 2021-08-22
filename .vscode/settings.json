@@ -28,6 +28,7 @@
     "symlinking",
     "toolchain",
     "true",
+    "tsbuildinfo",
     "typegen",
     "unmount",
     "unmounting"

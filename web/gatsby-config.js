@@ -6,6 +6,11 @@
  *
  * Source-map-support mimics node's stack trace making debugging easier
  * ts-node register helps importing and compiling TypeScript modules into JS
+ *
+ * @TODO: If repo is converted to a theme plugin, the export can be a function that takes an
+ * options object from the child starter repo's option object passed in its `gatsby-config.js`.
+ * See example options config for `gatsby-plugin-theme-ui`:
+ * https://github.com/gatsbyjs/themes/blob/master/packages/gatsby-theme-blog/gatsby-config.js
  */
 const path = require('path')
 
@@ -63,6 +68,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-root-import',
       options: {
+        // @TODO: May need to refactor to use require.resolve when project converted to a template plugin
+        // https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/converting-a-starter/
         src: path.join(__dirname, 'src'),
         generated: path.join(__dirname, '__generated__'),
         types: path.join(__dirname, 'src/@types'),
@@ -82,6 +89,7 @@ module.exports = {
       resolve: 'gatsby-plugin-theme-ui',
       options: {
         preset: '@webstackbuilders/theme-preset-website',
+        prismPreset: options.prismPreset,
       },
     },
     {
