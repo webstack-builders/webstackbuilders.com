@@ -112,3 +112,5 @@ const wackyWord = ['zaallano', 'wooorrdd', 'zzooommmmmmmm'];
 1. Config for eslint ran through VS Code (Problems tab) and ran from npx give two different results:
 
 - In `web/src/html.tsx`, VS Code gives the error `Generic type 'HTMLAttributes<T>' requires 1 type argument(s).` but running from npx doesn't
+
+1. Project `.gitignore` has `packages` `package-lock.json` files so that users must use `lerna add` to add dependencies. Need to have a preinstall hook in npm to warn the user or alias to `lerna add`, and this isn't the right way to do so (using .gitignore)
