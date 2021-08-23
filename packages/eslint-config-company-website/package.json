@@ -1,6 +1,6 @@
 {
   "name": "@webstackbuilders/eslint-config-company-website",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Common ESLint config for the Webstack Builders company website",
   "author": "Webstack Builders <info@webstackbuilders.com>",
   "homepage": "https://webstackbuilders.com",
