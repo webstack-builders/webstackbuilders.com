@@ -1,13 +1,12 @@
 const level = process.env.NODE_ENV === 'production' ? 'error' : 'warn'
 
-const baseEslintConfig = {
+module.exports = {
   env: {
     browser: true,
     commonjs: true,
     es6: true,
     node: true,
   },
-  // TypeScript files are processed by an override lower in this file
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -19,16 +18,6 @@ const baseEslintConfig = {
     'plugin:react/recommended',
     'prettier',
   ],
-  parser: '@babel/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2020,
-    requireConfigFile: false,
-    resolvePluginsRelativeTo: __dirname,
-    sourceType: 'module',
-  },
   plugins: [
     'import',
     'jest-dom',
@@ -66,7 +55,6 @@ const baseEslintConfig = {
     'no-useless-escape': 'off',
     'prefer-object-spread': level,
     'prefer-spread': level,
-    // "prettier/prettier": "warn",
     // React rules
     'react-hooks/exhaustive-deps': level,
     'react-hooks/rules-of-hooks': level,
@@ -147,6 +135,13 @@ const baseEslintConfig = {
       version: 'detect',
     },
   },
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2020,
+    requireConfigFile: false,
+    resolvePluginsRelativeTo: __dirname,
+    sourceType: 'module',
+  },
 }
-
-export default baseEslintConfig

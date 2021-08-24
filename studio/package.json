@@ -51,6 +51,7 @@
     "@webstackbuilders/prettier-config-company-website": "^0.1.5"
   },
   "eslintConfig": {
+    "parser": "@babel/parser",
     "extends": [
       "@webstackbuilders/eslint-config-company-website"
     ],
