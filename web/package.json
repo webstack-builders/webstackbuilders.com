@@ -23,7 +23,7 @@
     "dev": "cross-env GATSBY_GRAPHQL_IDE=playground gatsby develop -p 8002",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
     "lint": "eslint .",
-    "test": "npm run type-check && npm run lint",
+    "test": "npm run type-check && npm run lint && jest",
     "type-check": "tsc"
   },
   "dependencies": {
