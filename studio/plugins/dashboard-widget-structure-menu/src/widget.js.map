@@ -1,0 +1,1 @@
+{"version":3,"file":"widget.js","sourceRoot":"","sources":["widget.ts"],"names":[],"mappings":";;AAAA,mDAAwD;AACxD,yDAAoD;AACpD,2CAAkD;AAClD,iCAAuC;AAEvC,qBAAe;IACb,IAAI,EAAE,gBAAgB;IACtB,SAAS,EAAE,sBAAa,CAAC,oCAAe,CAAC,qBAAa,EAAE,gCAAmB,CAAC,CAAC;IAC7E,MAAM,EAAE,EAAE,KAAK,EAAE,MAAM,EAAE;CAC1B,CAAA"}

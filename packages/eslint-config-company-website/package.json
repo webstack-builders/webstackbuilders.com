@@ -20,9 +20,7 @@
     "yarn": "please-use-npm"
   },
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc --watch",
-    "prepublish": "tsc && npm pack",
+    "prepublish": "npm pack",
     "test": "jest --testPathPattern='/src/*'"
   },
   "peerDependencies": {

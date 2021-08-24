@@ -30,8 +30,8 @@
   "devDependencies": {
     "@sanity/cli": "^2.7.4",
     "@types/node": "^16.0.0",
-    "@webstackbuilders/eslint-config-company-website": "^0.1.5",
-    "@webstackbuilders/prettier-config-company-website": "^0.1.5",
+    "@webstackbuilders/eslint-config-company-website": "^0.2.0",
+    "@webstackbuilders/prettier-config-company-website": "^0.2.0",
     "gatsby-cli": "^3.8.0",
     "husky": "^7.0.1",
     "lerna": "^4.0.0",
