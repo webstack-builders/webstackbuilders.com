@@ -1,11 +1,15 @@
 import S from '@sanity/desk-tool/structure-builder'
-import { MdSettings } from 'react-icons/md'
-import { MdPerson, MdDescription, MdLocalOffer } from 'react-icons/md'
+import {
+  MdSettings,
+  MdPerson,
+  MdDescription,
+  MdLocalOffer,
+} from 'react-icons/md'
 import IframePreview from '../previews/IframePreview'
 
 // Web preview configuration
 const remoteURL = 'https://webstackbuilders-com.netlify.app'
-const localURL = 'http://localhost:8000'
+const localURL = 'http://localhost:8002'
 const previewURL =
   window.location.hostname === 'localhost' ? localURL : remoteURL
 

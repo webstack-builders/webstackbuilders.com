@@ -149,4 +149,4 @@ const baseEslintConfig = {
   },
 }
 
-export = baseEslintConfig
+export default baseEslintConfig
