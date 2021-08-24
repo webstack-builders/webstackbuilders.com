@@ -5,8 +5,7 @@
   "author": "Webstack Builders <info@webstackbuilders.com>",
   "homepage": "https://webstackbuilders.com",
   "license": "BSD-2-Clause",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.js",
   "publishConfig": {
     "access": "public"
   },

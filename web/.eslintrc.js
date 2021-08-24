@@ -13,6 +13,10 @@ module.exports = {
   },
   extends: '@webstackbuilders/eslint-config-company-website',
   root: true,
+}
+
+
+const test = {
   // babel parser in web for js files to pick up local babel configuration.
   // .ts and .tsx files over-ridden in eslint-config package to use @typescript-eslint/parser
   parser: '@babel/parser',
