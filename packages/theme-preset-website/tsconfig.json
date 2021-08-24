@@ -8,5 +8,8 @@
     "rootDir": "src",
     "tsBuildInfoFile": "./.cache/tsconfig.tsbuildinfo"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "watchOptions": {
+    "excludeDirectories": ["**/node_modules", ".cache", "dist"]
+  }
 }

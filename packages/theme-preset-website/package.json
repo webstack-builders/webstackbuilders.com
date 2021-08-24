@@ -26,7 +26,7 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "prepublish": "tsc && npm pack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --testPathPattern='/src/*'"
   },
   "keywords": [
     "themeui",
@@ -36,5 +36,15 @@
   ],
   "peerDependencies": {
     "@theme-ui/prism": "^0.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/jest": "^27.0.1",
+    "babel-jest": "^27.0.6",
+    "eslint": "^7.32.0",
+    "jest": "^27.0.6",
+    "typescript": "^4.3.5"
   }
 }
