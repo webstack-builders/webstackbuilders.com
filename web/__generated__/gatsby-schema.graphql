@@ -378,13 +378,8 @@ type SitePage implements Node {
   children: [Node!]!
   internal: Internal!
   isCreatedByStatefulCreatePages: Boolean
-  context: SitePageContext
   pluginCreator: SitePlugin
   pluginCreatorId: String
-}
-
-type SitePageContext {
-  id: String
 }
 
 type SanityAuthor implements SanityDocument & Node {
@@ -1474,7 +1469,7 @@ type Query {
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
   siteFunction(functionRoute: StringQueryOperatorInput, pluginName: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput, absoluteCompiledFilePath: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteFunction
   allSiteFunction(filter: SiteFunctionFilterInput, sort: SiteFunctionSortInput, skip: Int, limit: Int): SiteFunctionConnection!
-  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, context: SitePageContextFilterInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
+  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
   allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
   sanityAuthor(_id: StringQueryOperatorInput, _type: StringQueryOperatorInput, _createdAt: DateQueryOperatorInput, _updatedAt: DateQueryOperatorInput, _rev: StringQueryOperatorInput, _key: StringQueryOperatorInput, name: StringQueryOperatorInput, slug: SanitySlugFilterInput, image: SanityMainImageFilterInput, bio: SanityBlockFilterListInput, _rawSlug: JSONQueryOperatorInput, _rawImage: JSONQueryOperatorInput, _rawBio: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SanityAuthor
   allSanityAuthor(filter: SanityAuthorFilterInput, sort: SanityAuthorSortInput, skip: Int, limit: Int): SanityAuthorConnection!
@@ -2490,10 +2485,6 @@ input SiteFunctionSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
-input SitePageContextFilterInput {
-  id: StringQueryOperatorInput
-}
-
 input SitePluginFilterInput {
   id: StringQueryOperatorInput
   parent: NodeFilterInput
@@ -2867,7 +2858,6 @@ enum SitePageFieldsEnum {
   internal___owner
   internal___type
   isCreatedByStatefulCreatePages
-  context___id
   pluginCreator___id
   pluginCreator___parent___id
   pluginCreator___parent___parent___id
@@ -2991,7 +2981,6 @@ input SitePageFilterInput {
   children: NodeFilterListInput
   internal: InternalFilterInput
   isCreatedByStatefulCreatePages: BooleanQueryOperatorInput
-  context: SitePageContextFilterInput
   pluginCreator: SitePluginFilterInput
   pluginCreatorId: StringQueryOperatorInput
 }

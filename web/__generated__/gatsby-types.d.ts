@@ -314,13 +314,8 @@ type SitePage = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
   readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
-  readonly context: Maybe<SitePageContext>;
   readonly pluginCreator: Maybe<SitePlugin>;
   readonly pluginCreatorId: Maybe<Scalars['String']>;
-};
-
-type SitePageContext = {
-  readonly id: Maybe<Scalars['String']>;
 };
 
 type SanityAuthor = SanityDocument & Node & {
@@ -1639,7 +1634,6 @@ type Query_sitePageArgs = {
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
-  context: Maybe<SitePageContextFilterInput>;
   pluginCreator: Maybe<SitePluginFilterInput>;
   pluginCreatorId: Maybe<StringQueryOperatorInput>;
 };
@@ -3019,10 +3013,6 @@ type SiteFunctionSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type SitePageContextFilterInput = {
-  readonly id: Maybe<StringQueryOperatorInput>;
-};
-
 type SitePluginFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
@@ -3423,7 +3413,6 @@ type SitePageFieldsEnum =
   | 'internal.owner'
   | 'internal.type'
   | 'isCreatedByStatefulCreatePages'
-  | 'context.id'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -3546,7 +3535,6 @@ type SitePageFilterInput = {
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
   readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
-  readonly context: Maybe<SitePageContextFilterInput>;
   readonly pluginCreator: Maybe<SitePluginFilterInput>;
   readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
 };
@@ -5962,25 +5950,6 @@ type SiteBuildMetadataSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type BlogPostTemplateQueryQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-type BlogPostTemplateQueryQuery = { readonly post: Maybe<(
-    Pick<SanityPost, 'id' | 'publishedAt' | 'title' | '_rawExcerpt' | '_rawBody'>
-    & { readonly categories: Maybe<ReadonlyArray<Maybe<Pick<SanityCategory, '_id' | 'title'>>>>, readonly mainImage: Maybe<(
-      Pick<SanityMainImage, 'alt'>
-      & SanityImageFragment
-    )>, readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly authors: Maybe<ReadonlyArray<Maybe<(
-      Pick<SanityAuthorReference, '_key'>
-      & { readonly author: Maybe<(
-        Pick<SanityAuthor, 'name'>
-        & { readonly image: Maybe<{ readonly crop: Maybe<Pick<SanityImageCrop, '_key' | '_type' | 'top' | 'bottom' | 'left' | 'right'>>, readonly hotspot: Maybe<Pick<SanityImageHotspot, '_key' | '_type' | 'x' | 'y' | 'height' | 'width'>>, readonly asset: Maybe<Pick<SanityImageAsset, '_id'>> }> }
-      )> }
-    )>>> }
-  )> };
-
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6027,6 +5996,25 @@ type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type Unnamed_1_Query = { readonly themeUiConfig: Maybe<Pick<ThemeUiConfig, 'preset' | 'prismPreset'>> };
+
+type BlogPostTemplateQueryQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+type BlogPostTemplateQueryQuery = { readonly post: Maybe<(
+    Pick<SanityPost, 'id' | 'publishedAt' | 'title' | '_rawExcerpt' | '_rawBody'>
+    & { readonly categories: Maybe<ReadonlyArray<Maybe<Pick<SanityCategory, '_id' | 'title'>>>>, readonly mainImage: Maybe<(
+      Pick<SanityMainImage, 'alt'>
+      & SanityImageFragment
+    )>, readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly authors: Maybe<ReadonlyArray<Maybe<(
+      Pick<SanityAuthorReference, '_key'>
+      & { readonly author: Maybe<(
+        Pick<SanityAuthor, 'name'>
+        & { readonly image: Maybe<{ readonly crop: Maybe<Pick<SanityImageCrop, '_key' | '_type' | 'top' | 'bottom' | 'left' | 'right'>>, readonly hotspot: Maybe<Pick<SanityImageHotspot, '_key' | '_type' | 'x' | 'y' | 'height' | 'width'>>, readonly asset: Maybe<Pick<SanityImageAsset, '_id'>> }> }
+      )> }
+    )>>> }
+  )> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
