@@ -1,17 +1,16 @@
-import { Link } from 'part:@sanity/base/router'
-import FolderIcon from 'part:@sanity/base/folder-icon'
 import FileIcon from 'part:@sanity/base/file-icon'
-
+import FolderIcon from 'part:@sanity/base/folder-icon'
+import { Link } from 'part:@sanity/base/router'
 import PropTypes from 'prop-types'
 import styles from './StructureMenuWidget.css'
 
-function getIconComponent(item) {
+const getIconComponent = (item) => {
   if (item.icon) return item.icon
   if (!item.schemaType) return FileIcon
   return item.schemaType.icon || FolderIcon
 }
 
-function StructureMenuWidget(props) {
+const StructureMenuWidget = (props) => {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
@@ -23,6 +22,7 @@ function StructureMenuWidget(props) {
           .filter((item) => item.type !== 'divider')
           .map((item) => {
             const Icon = getIconComponent(item)
+
             return (
               <div key={item.id}>
                 <Link className={styles.link} href={`/desk/${item.id}`}>
