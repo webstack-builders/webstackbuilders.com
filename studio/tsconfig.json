@@ -3,9 +3,16 @@
   "compilerOptions": {
     "jsx": "react"
   },
+  "exclude": [
+      "node_modules"
+  ],
   "include": [
-    "./node_modules/@sanity/base/types/**/*.ts",
-    "./**/*.ts",
-    "./**/*.tsx"
-  ]
+    "config/**/*",
+    "plugins/**/*",
+    "schemas/**/*",
+    "src/**/*",
+    "static/**/*",
+    "types/**/*"
+  ],
+  "skipLibCheck": true
 }

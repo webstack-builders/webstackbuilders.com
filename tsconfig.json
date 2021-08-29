@@ -11,7 +11,6 @@
     "noUnusedParameters": true,
     "removeComments": false,
     "resolveJsonModule": true,
-    "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "strictNullChecks": true,

@@ -3,6 +3,7 @@ import FolderIcon from 'part:@sanity/base/folder-icon'
 import { Link } from 'part:@sanity/base/router'
 import PropTypes from 'prop-types'
 import styles from './StructureMenuWidget.css'
+import React from 'react'
 
 const getIconComponent = (item) => {
   if (item.icon) return item.icon
