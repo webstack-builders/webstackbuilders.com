@@ -13,6 +13,5 @@
     "src/**/*",
     "static/**/*",
     "types/**/*"
-  ],
-  "skipLibCheck": true
+  ]
 }

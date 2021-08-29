@@ -97,6 +97,17 @@ const wackyWord = ['zaallano', 'wooorrdd', 'zzooommmmmmmm'];
 /* cSpell:enable */
 ```
 
+## Miscellaneous Notes
+
+- If the version of the TypeScript compiler specified in a workspace is more recent than the version in use by VS Code, the TypeScript engine that VS Code runs in watch mode will ignore the workspace `tsconfig.json` files. The following settings in `.vscode/settings.json` tell VS Code to use the workspace version of `tsc`:
+
+```json
+  ...
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+  ...
+```
+
 ## @TODO:
 
 1. Set up Sanity hook for Netlify to rebuild when content changes. An example [using Contentful](https://www.netlify.com/blog/2020/04/24/automate-contentful-deploys-with-netlify-webhooks/).
