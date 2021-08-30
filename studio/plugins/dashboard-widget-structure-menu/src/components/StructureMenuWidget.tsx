@@ -1,17 +1,22 @@
 import FileIcon from 'part:@sanity/base/file-icon'
 import FolderIcon from 'part:@sanity/base/folder-icon'
 import { Link } from 'part:@sanity/base/router'
-import PropTypes from 'prop-types'
 import styles from './StructureMenuWidget.css'
 import React from 'react'
 
-const getIconComponent = (item) => {
+const getIconComponent = (item: any) => {
   if (item.icon) return item.icon
   if (!item.schemaType) return FileIcon
   return item.schemaType.icon || FolderIcon
 }
 
-const StructureMenuWidget = (props) => {
+interface StructureMenuWidgetProps {
+  structure: {
+    items: any[]
+  }
+}
+
+export default function StructureMenuWidget (props: StructureMenuWidgetProps) {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
@@ -20,8 +25,8 @@ const StructureMenuWidget = (props) => {
 
       <div className={styles.content}>
         {props.structure.items
-          .filter((item) => item.type !== 'divider')
-          .map((item) => {
+          .filter((item: any) => item.type !== 'divider')
+          .map((item: any) => {
             const Icon = getIconComponent(item)
 
             return (
@@ -39,9 +44,3 @@ const StructureMenuWidget = (props) => {
     </div>
   )
 }
-
-StructureMenuWidget.propTypes = {
-  structure: PropTypes.object,
-}
-
-export default StructureMenuWidget

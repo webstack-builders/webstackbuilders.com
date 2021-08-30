@@ -1,27 +1,28 @@
-/* eslint-disable react/no-multi-comp, react/no-did-mount-set-state */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { format } from 'date-fns'
 import styles from './IframePreview.module.css'
 
 /**
- * Explore more examples of previews:
+ * More examples of previews:
+ *
  * https://www.sanity.io/blog/evolve-authoring-experiences-with-views-and-split-panes
  */
 
-const assemblePostUrl = ({ displayed, options }) => {
-  const { slug, publishedAt } = displayed
-  const { previewURL } = options
-  if (!slug || !previewURL) {
-    console.warn('Missing slug or previewURL', { slug, previewURL })
-    return ''
+interface IframePreviewProps {
+  document: {
+    displayed?: {
+      slug: {
+        current: string
+      }
+      publishedAt: Date
+    }
   }
-  const dateSegment = format(new Date(publishedAt), 'yyyy/MM')
-  const path = `/${dateSegment}/${slug.current}/`
-  return `${previewURL}/blog${path}`
+  options: {
+    previewURL: string | null | undefined
+  }
 }
 
-const IframePreview = (props) => {
+export default function IframePreview(props: IframePreviewProps) {
   const { options } = props
   const { displayed } = props.document
 
@@ -33,7 +34,17 @@ const IframePreview = (props) => {
     )
   }
 
-  const url = assemblePostUrl({ displayed, options })
+  const { slug, publishedAt } = displayed
+  const { previewURL } = options
+  let url = ''
+
+  if (slug && previewURL) {
+    const dateSegment = format(new Date(publishedAt), 'yyyy/MM')
+    const path = `/${dateSegment}/${slug.current}/`
+    url = `${previewURL}/blog${path}`
+  } else {
+    console.warn('Missing slug or preview URL: ', { slug, previewURL })
+  }
 
   if (!url) {
     return (
@@ -52,13 +63,6 @@ const IframePreview = (props) => {
   )
 }
 
-IframePreview.propTypes = {
-  document: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  options: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-}
-
 IframePreview.defaultProps = {
   document: null,
 }
-
-export default IframePreview

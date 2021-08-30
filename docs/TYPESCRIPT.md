@@ -844,5 +844,24 @@ onQuantityChanged = (product: string) =>
     });
   }
 }
+```
 
+### Import a definition file
+
+```javascript
+declare namespace Express {
+    type User = import('./user').User;
+
+    export interface Request {
+        user: User;
+        target: User;
+        friend: User;
+    }
+
+    export class SuperUser implements User {
+        superPower: string;
+    }
+
+    export { User as ExpressUser }
+}
 ```

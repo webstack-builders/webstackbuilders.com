@@ -14,29 +14,33 @@ const localURL = 'http://localhost:8002'
 const previewURL =
   window.location.hostname === 'localhost' ? localURL : remoteURL
 
+/**
+ * Here you can define fallback views for document types without a structure definition
+ * for the document node. If you want different fallbacks for different types, or document
+ * values (e.g. if there is a slug present) you can set up that logic in here too.
+ *
+ * https://www.sanity.io/docs/structure-builder-reference#getdefaultdocumentnode-97e44ce262c9
+ */
 export const getDefaultDocumentNode = (props: { schemaType: SchemaType }) => {
-  /**
-   * Here you can define fallback views for document types without
-   * a structure definition for the document node. If you want different
-   * fallbacks for different types, or document values (e.g. if there is a slug present)
-   * you can set up that logic in here too.
-   * https://www.sanity.io/docs/structure-builder-reference#getdefaultdocumentnode-97e44ce262c9
-   */
   const { schemaType } = props
   if (schemaType.toString() == 'post') {
     return StructureBuilder.document().views([
+      // returns the default form-based editor for the 'post' document type
       StructureBuilder.view.form(),
+      // takes a React component and renders it into the document view
       StructureBuilder.view
         .component(IframePreview)
         .title('Web preview')
         .options({ previewURL }),
     ])
   }
+  // return the default form-based editor for all other document types
   return StructureBuilder.document().views([StructureBuilder.view.form()])
 }
 
 /**
  * This defines how documents are grouped and listed out in the Studio.
+ *
  * Relevant documentation:
  * - https://www.sanity.io/guides/getting-started-with-structure-builder
  * - https://www.sanity.io/docs/structure-builder-introduction
@@ -45,9 +49,10 @@ export const getDefaultDocumentNode = (props: { schemaType: SchemaType }) => {
  */
 
 export default () =>
-  StructureBuilder.list()
+  StructureBuilder.list() // defines the first pane
     .title('Content')
     .items([
+      // Settings is a singleton document to edit by virtue of setting the document ID
       StructureBuilder.listItem()
         .title('Settings')
         .icon(MdSettings)
@@ -58,6 +63,7 @@ export default () =>
             .documentId('siteSettings')
         ),
       StructureBuilder.divider(),
+      // Fixed items broken out from spread operator to control ordering and appearance
       StructureBuilder.listItem()
         .title('Blog posts')
         .icon(MdDescription)

@@ -15,3 +15,7 @@ Sanity CLI uses Babel to compile TypeScript with config from `.babelrc`. The `ts
 const remoteURL = 'https://webstackbuilders-com.netlify.app'
 const localURL = 'http://localhost:8002'
 ```
+
+and `dashboardConfig.ts`
+
+1. Set up logging for production and error handling. `iframePreview.tsx` has error handling logic for 'Missing slug or preview URL' and failure to build the page.

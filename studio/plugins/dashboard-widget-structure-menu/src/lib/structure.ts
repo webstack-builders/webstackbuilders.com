@@ -1,6 +1,6 @@
 /* global __DEV__ */
 
-import StructureBuilder from '@sanity/desk-tool/structure-builder'
+import { StructureBuilder } from '@sanity/structure'
 import {
   defer,
   from as observableFrom,
@@ -9,7 +9,17 @@ import {
 } from 'rxjs'
 import { mergeMap } from 'rxjs/operators'
 
-let prevStructureError = null
+let prevStructureError: any = null
+
+declare var __DEV__: boolean
+declare var module: {
+  hot: {
+    data: {
+      prevError: any
+    }
+  }
+}
+
 if (__DEV__) {
   if (module.hot && module.hot.data) {
     prevStructureError = module.hot.data.prevError
@@ -70,6 +80,7 @@ export function getDefaultStructure() {
 // eslint-disable-next-line complexity
 export function loadStructure() {
   let structure
+
   try {
     const mod =
       require('part:@sanity/desk-tool/structure?') || getDefaultStructure()
