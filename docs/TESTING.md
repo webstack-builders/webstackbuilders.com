@@ -134,7 +134,7 @@ const sharedConfig = {
   errorOnDeprecated: true,
   
   moduleFileExtensions: ['ts', 'tsx', 'js'],
-   
+  
   setupFilesAfterEnv: ['<rootDir>packages/setupTests.ts'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   testPathIgnorePatterns: [

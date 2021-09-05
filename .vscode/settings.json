@@ -26,6 +26,7 @@
     "gtag",
     "keyof",
     "lastname",
+    "loadershim",
     "myorg",
     "navigations",
     "post",
@@ -36,12 +37,14 @@
     "symlink",
     "symlinking",
     "toolchain",
+    "transpiled",
     "true",
     "tsbuildinfo",
     "typegen",
     "typeof",
     "unmount",
-    "unmounting"
+    "unmounting",
+    "webm"
   ],
   "cSpell.ignoreWords": [
     "avi",

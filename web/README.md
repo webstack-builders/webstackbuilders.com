@@ -77,3 +77,16 @@ Including `gatsby-plugin-manifest`
 ### Prevent unmount of shared navigation components
 
 Gatsby's “top level” component is the page itself. As a result, when the “top level” component changes between pages, React will re-render all children. This means that shared components like navigations will unmount and remount. This will break CSS transitions or React state within those shared components. If you need to set a wrapper component around page components that won’t get unmounted on page changes, use the `wrapPageElement` browser API and the SSR equivalent. Alternatively, you can prevent your layout component from unmounting by using `gatsby-plugin-layout`, which implements the `wrapPageElement` APIs for you.
+
+### Stop `react-error-overlay` from crashing the dev server on ESLint error
+
+```javascript
+exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+  // prevent gatsby build failing on eslint errors
+  const defaultConfig = getConfig();
+  defaultConfig.module.rules = defaultConfig.module.rules.filter(
+    rule => rule.loader !== 'eslint-loader'
+  );
+  actions.replaceWebpackConfig(defaultConfig);
+}
+```

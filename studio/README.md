@@ -38,13 +38,22 @@ typescript
 
 ## @TODO:
 
-1. Getting the error `Unknown browser query maintained node versions` when `.browserslistrc` has `maintained node versions`, which should specify Node v12 and higher
-
-1. Credentials need moved to env vars from `studio/sanity.json`,  `dashboardConfig.ts`, and:
-
+- Getting the error `Unknown browser query maintained node versions` when `.browserslistrc` has `maintained node versions`, which should specify Node v12 and higher
+- Credentials need moved to env vars from `studio/sanity.json`,  `dashboardConfig.ts`, and:
 ```javascript
 // deskStructure.ts
 const remoteURL = 'https://webstackbuilders-com.netlify.app'
 const localURL = 'http://localhost:8002'
 ```
-3. Set up logging for production and error handling. `iframePreview.tsx` has error handling logic for 'Missing slug or preview URL' and failure to build the page.
+-  Set up logging for production and error handling. `iframePreview.tsx` has error handling logic for 'Missing slug or preview URL' and failure to build the page.
+- Add `react-error-overlay`. Prevent dev server from crashing on ESLint errors (from Gatsby config sample):
+```javascript
+exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+  // prevent gatsby build failing on eslint errors
+  const defaultConfig = getConfig();
+  defaultConfig.module.rules = defaultConfig.module.rules.filter(
+    rule => rule.loader !== 'eslint-loader'
+  );
+  actions.replaceWebpackConfig(defaultConfig);
+}
+```

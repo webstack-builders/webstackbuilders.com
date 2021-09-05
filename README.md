@@ -129,18 +129,11 @@ const wackyWord = ['zaallano', 'wooorrdd', 'zzooommmmmmmm'];
 
 ## @TODO:
 
-1. Set up Sanity hook for Netlify to rebuild when content changes. An example [using Contentful](https://www.netlify.com/blog/2020/04/24/automate-contentful-deploys-with-netlify-webhooks/).
-
-1. The ESLint and Prettier config is messed up for packages. I think in theme-preset-website it's walking up to the project root and pulling ESLint config from the root package.json file. Linting the package produces the following two errors:
-
+- Set up Sanity hook for Netlify to rebuild when content changes. An example [using Contentful](https://www.netlify.com/blog/2020/04/24/automate-contentful-deploys-with-netlify-webhooks/).
+- The ESLint and Prettier config is messed up for packages. I think in theme-preset-website it's walking up to the project root and pulling ESLint config from the root package.json file. Linting the package produces the following two errors:
 - File ignored because of a matching ignore pattern. Use "--no-ignore" to override
 - React version was set to "detect" in eslint-plugin-react settings, but the "react" package is not installed. Assuming latest React version for linting.
 - Unable to resolve path to module './theme' in index.ts -- error due to eslint config setup in import/resolver
-
-1. The eslint-config-company-website has a catch-22 in that it's providing its own eslint config, so no linting is set up. The prettier config package has a similar issue with using prettier.
-
-1. Config for eslint ran through VS Code (Problems tab) and ran from npx give two different results:
-
-- In `web/src/html.tsx`, VS Code gives the error `Generic type 'HTMLAttributes<T>' requires 1 type argument(s).` but running from npx doesn't
-
-1. Project `.gitignore` has `packages` `package-lock.json` files so that users must use `lerna add` to add dependencies. Need to have a preinstall hook in npm to warn the user or alias to `lerna add`, and this isn't the right way to do so (using .gitignore)
+- The eslint-config-company-website has a catch-22 in that it's providing its own eslint config, so no linting is set up. The prettier config package has a similar issue with using prettier.
+- Config for eslint ran through VS Code (Problems tab) and ran from npx give two different results. In `web/src/html.tsx`, VS Code gives the error `Generic type 'HTMLAttributes<T>' requires 1 type argument(s).` but running from npx doesn't
+- Project `.gitignore` has `packages` `package-lock.json` files so that users must use `lerna add` to add dependencies. Need to have a preinstall hook in npm to warn the user or alias to `lerna add`, and this isn't the right way to do so (using .gitignore)

@@ -13,7 +13,7 @@ module.exports = {
   // Tells Jest how to handle imports, especially for mocking static file imports which Jest can’t handle
   moduleNameMapper: {
     // Mock stylesheets using the `identity-obj-proxy` package
-    '.+\\.(css|styl|less|sass|scss)$': `identity-obj-proxy`,
+    '.+\\.(css|less|sass|scss)$': `identity-obj-proxy`,
     // For other static assets, use a manual mock called `file-mock.js` in the `__mocks__` directory
     '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': `<rootDir>/__mocks__/file-mock.js`,
     // Use tsconfig paths from the tsconfig.json file
