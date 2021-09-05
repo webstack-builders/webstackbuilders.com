@@ -1,0 +1,31 @@
+"use strict";
+
+var _Object$defineProperty = require("@babel/runtime-corejs3/core-js/object/define-property");
+
+_Object$defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.notes = exports.apiPackages = exports.webPackages = exports.config = void 0;
+// the lines that need to be added to App.{js,tsx}
+const config = {
+  imports: [`import { createClient } from 'nhost-js-sdk'`],
+  init: `const nhostClient = createClient({
+  baseURL: process.env.NHOST_BACKEND_URL,
+  autoLogin: false,
+});
+`,
+  authProvider: {
+    client: 'nhostClient',
+    type: 'nhost'
+  }
+}; // required packages to install
+
+exports.config = config;
+const webPackages = ['nhost-js-sdk'];
+exports.webPackages = webPackages;
+const apiPackages = []; // any notes to print out when the job is done
+
+exports.apiPackages = apiPackages;
+const notes = ["You will need to add your project's backend URL (NHOST_BACKEND_URL) and JWT Key Secret (NHOST_JWT_SECRET) to your .env file."];
+exports.notes = notes;
