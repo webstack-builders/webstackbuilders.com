@@ -1,3 +1,4 @@
+const restrictedGlobals = require('confusing-browser-globals')
 const level = process.env.NODE_ENV === 'production' ? 'error' : 'warn'
 
 module.exports = {
@@ -44,6 +45,7 @@ module.exports = {
     'new-cap': [level, { newIsCap: true, capIsNew: false }],
     'no-console': 'off',
     'no-new': level,
+    'no-restricted-globals': ['error'].concat(restrictedGlobals),
     'no-unused-expressions': [
       level,
       { allowShortCircuit: true, allowTernary: true },

@@ -57,5 +57,8 @@
     "extends": "./src/index.js",
     "root": true
   },
-  "gitHead": "6996a85792c33348a4267c1c2b55862579b952d8"
+  "gitHead": "6996a85792c33348a4267c1c2b55862579b952d8",
+  "dependencies": {
+    "confusing-browser-globals": "^1.0.10"
+  }
 }

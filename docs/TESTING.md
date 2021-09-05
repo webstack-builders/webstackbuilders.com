@@ -98,22 +98,43 @@ package.json
 }
 ```
 
-Global Jest Configuration (`<root>/jest.config.ts`)
+Global Jest Configuration (`jest.config.ts`)
 
 ```javascript
 const sharedConfig = {
-  // Directory where Jest should store its cached dependency information
+  // Directory where Jest should store its cached dependency information.
   cacheDirectory: '.cache',
-  // Indicates whether the coverage information should be collected while executing the test
-  collectCoverage: true,
-  collectCoverageFrom: [
-    '**/*.{js,jsx,ts,tsx}',
-    '!**/node_modules/**',
-  ],
-  // Directory where Jest should output its coverage files
-  coverageDirectory: 'coverage',
 
+  collectCoverageFrom: ['**/*.{js,jsx,ts,tsx}'],
+  // Directory where Jest should output its coverage files.
+  coverageDirectory: 'coverage',
+  coveragePathIgnorePatterns: [
+    '**/node_modules/**',
+    '**/.cache/**',
+    '**/__generated__/**',
+    '**/__mocks__/**',
+    '**/coverage/**',
+    '**/serviceWorker.js',
+    '**/index.js',
+  ],
+  // Default provider for instrumenting code for coverage is Babel. V8 is still 
+  // experimental, but uses uses V8's builtin code coverage. Prefers recent Node versions.
+  coverageProvider: 'v8',
+  // Configure minimum threshold enforcement for coverage results percentage coverage
+  // for branches, functions, and lines, and number of uncovered statements.
+  'coverageThreshold': {
+    'global': {
+      'branches': 80,
+      'functions': 80,
+      'lines': 80,
+      'statements': -10
+    }
+  },
+  // Make calling deprecated APIs throw helpful error messages.
+  errorOnDeprecated: true,
+  
   moduleFileExtensions: ['ts', 'tsx', 'js'],
+   
   setupFilesAfterEnv: ['<rootDir>packages/setupTests.ts'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   testPathIgnorePatterns: [
@@ -126,7 +147,7 @@ const sharedConfig = {
 export default sharedConfig
 ```
 
-Project configuration in `web` / `studio` / `packages` directories
+Project configuration in `web` / `studio` / `packages` directories (`jest.config.ts`)
 
 ```javascript
 import type {Config} from '@jest/types'
@@ -135,7 +156,11 @@ import sharedConfig from '../jest.config.ts'
 export default async (): Promise<Config.InitialOptions> =>  {
   return {
     ...sharedConfig,
-    'rootDir': './',
+    // Print a label alongside a test while it is running
+    displayName: {
+      name: 'WEB',
+      color: 'blue',
+    },
   }
 }
 ```
@@ -160,23 +185,23 @@ module.exports = {
 Tells Jest how to handle imports, especially for mocking static file imports which Jest can’t handle. In webpack projects, we often allow importing things like css files or jpg files, and let a webpack loader plugin take care of loading these resources. In a unit test, though, we're running in node.js which doesn't know how to import these, so this tells jest what to do for these.
 */
   moduleNameMapper: {
-    // Mock stylesheets using the `identity-obj-proxy` package
+    // Mock stylesheets using the `identity-obj-proxy` package.
     '.+\\.(css|styl|less|sass|scss)$': `identity-obj-proxy`,
     // For other static assets, use a manual mock called `file-mock.js` in the `__mocks__` directory
     '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': `<rootDir>/__mocks__/file-mock.js`,
     // Use tsconfig paths from the tsconfig.json file
     ...paths,
   },
-  // Add a necessary Gatsby global from a file in an array of files that will be included before all tests are run
+  // Add a necessary Gatsby global from a file in an array of files that will be included before all tests are run.
   setupFiles: [`<rootDir>/loadershim.js`],
   testPathIgnorePatterns: [`node_modules`, `\\.cache`, `<rootDir>.*/public`],
   // some DOM APIs such as localStorage need a valid URL
   testURL: `http://localhost`,
-  // Config Jest so that all js/ts or jsx/tsx files will be transformed using a `jest-preprocess.js` file in the project root
+  // Config Jest so that all js/ts or jsx/tsx files will be transformed using a `jest-preprocess.js` file in the project root.
   transform: {
     '^.+\\.[jt]sx?$': '<rootDir>/jest-preprocess.js',
   },
-  // necessary because Gatsby includes un-transpiled ES6 code in node_modules
+  // necessary because Gatsby includes un-transpiled ES6 code in node_modules.
   transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
 }
 ```
@@ -203,7 +228,7 @@ module.exports = {
 
 ## Istanbul Code Coverage Setup
 
-
+Istanbul is built into Jest, but not enabled by default. To avoid running computationally intense coverage scans on every test run, the Jest configuration option controlling Istanbul (`collectCoverage`)  is left to the default value (`false`) and a `--coverage` flag passed to Jest in `package.json` scripts.
 
 ## Performance
 
@@ -230,7 +255,7 @@ test('the app is for realz', () => {
 - `*.spec.js` files are automatically picked up and run by the test runner.
 - In `jest.config.js`, `<rootDir>` is a special token that Jest understands to be the directory containing your `package.json`. 
 
-- If there are local dependencies that need transformed by Jest, override the default `node_modules` ignore pattern with the Jest config option `transformIgnorePatterns`. This is an array of regex strings that describe what should be skipped by the transform. The regex containing `?!.*my-project-b`.* is a regex negative look ahead. Together, the pattern means "ignore transforming anything in `node_modules` that doesn’t include `my-project-b` in the file path".
+- If there are local dependencies that need transformed by Jest, override the default `node_modules` ignore pattern with the Jest config option `transformIgnorePatterns`. This is an array of regex strings that describe what should be skipped by the transform. The regex containing `?!.*my-project-b`.* is a regex negative look ahead. Together, the pattern means "*ignore transforming anything in `node_modules` that doesn’t include `my-project-b` in the file path".*
 
 ```javascript
   "transformIgnorePatterns": [
