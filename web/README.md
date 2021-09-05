@@ -26,7 +26,7 @@ Instead of:
 import Something from '../something.tsx'
 ```
 
-Gatsby uses Webpack config in `gatsby-config` for the `gatsby-plugin-root-import` plugin to specify the relative path mappings. ESLint uses `tsconfig.json` for the mappings, so the relative paths have to be maintained in both places :(
+Gatsby uses Webpack config in `gatsby-config` for the `gatsby-plugin-root-import` plugin to specify the relative path mappings. ESLint and Jest use `tsconfig.json` for the mappings, so the relative paths have to be maintained in both places.
 
 ## Using TypeScript in Gatsby Config Files
 
@@ -36,7 +36,7 @@ See the [readme file](gatsby/README.md) in the `gatsby` directory for info on us
 
 `gatsby-plugin-typegen` is used to automatically generate types for GraphQL queries so they can be used for typing props and query hooks. It runs on the `build` command or is kept updated when the dev server is ran.
 
-## Plugins to install and configure:
+## @TODO: Plugins to install and configure
 
 ### gatsby-plugin-google-gtag
 

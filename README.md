@@ -12,6 +12,19 @@ Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-i
 - Structured content using [Sanity.io](https://www.sanity.io)
 - Global deployment on [Netlify](https://netlify.com)
 
+## What’s Included?
+
+Your environment will have everything you need to build a headless CMS backend / React frontend project:
+
+- React, JSX, ES6, and TypeScript syntax support.
+- Language extras beyond ES6 like the object spread operator.
+- Autoprefixed CSS, so you don’t need `-webkit-` or other prefixes.
+- A fast interactive unit test runner with built-in support for coverage reporting.
+- A live development server that warns about common mistakes.
+- A build script to bundle JS, CSS, and images for production, with hashes and sourcemaps.
+- An offline-first [service worker](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers) and a [web app manifest](https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/), meeting all the [Progressive Web App](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app) criteria.
+- Hassle-free updates for the above tools with a single dependency.
+
 ## Quick start
 
 1. Clone this repository
@@ -20,6 +33,12 @@ Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-i
    - Your studio should be running on [http://localhost:3333](http://localhost:3333)
    - Your frontend should be running on [http://localhost:8000](http://localhost:8000)
 4. `npm run build` to build to production locally
+
+## Philosophy
+
+- **One Dependency:** There is only one build dependency. It uses webpack, Babel, ESLint, and other amazing projects, but provides a cohesive curated experience on top of them.
+
+- **No Configuration Required:** You don't need to configure anything. A reasonably good configuration of both development and production builds is handled for you so you can focus on writing code.
 
 ## System requirements
 
