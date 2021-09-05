@@ -1,14 +1,14 @@
-const { compilerOptions } = require('./tsconfig.json')
 const { pathsToModuleNameMapper } = require('ts-jest/utils')
+const { compilerOptions } = require('./tsconfig.json')
 
 const paths = pathsToModuleNameMapper(compilerOptions.paths, {
   prefix: '<rootDir>/',
 })
 
 module.exports = {
-  // Config Jest so that all js/ts or jsx/tsx files will be transformed using a `jest-preprocess.js` file in the project root
-  transform: {
-    '^.+\\.[jt]sx?$': '<rootDir>/jest-preprocess.js',
+  // usually set by Gatsby, and some components need
+  globals: {
+    __PATH_PREFIX__: ``,
   },
   // Tells Jest how to handle imports, especially for mocking static file imports which Jest can’t handle
   moduleNameMapper: {
@@ -19,15 +19,15 @@ module.exports = {
     // Use tsconfig paths from the tsconfig.json file
     ...paths,
   },
-  testPathIgnorePatterns: [`node_modules`, `\\.cache`, `<rootDir>.*/public`],
-  // necessary because Gatsby includes un-transpiled ES6 code in node_modules
-  transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
-  // usually set by Gatsby, and some components need
-  globals: {
-    __PATH_PREFIX__: ``,
-  },
-  // some DOM APIs such as localStorage need a valid URL
-  testURL: `http://localhost`,
   // Add a necessary Gatsby global from a file in an array of files that will be included before all tests are run
   setupFiles: [`<rootDir>/loadershim.js`],
+  testPathIgnorePatterns: [`node_modules`, `\\.cache`, `<rootDir>.*/public`],
+  // some DOM APIs such as localStorage need a valid URL
+  testURL: `http://localhost`,
+  // Config Jest so that all js/ts or jsx/tsx files will be transformed using a `jest-preprocess.js` file in the project root
+  transform: {
+    '^.+\\.[jt]sx?$': '<rootDir>/jest-preprocess.js',
+  },
+  // necessary because Gatsby includes un-transpiled ES6 code in node_modules
+  transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
 }

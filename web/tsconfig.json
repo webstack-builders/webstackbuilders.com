@@ -5,18 +5,18 @@
     "baseUrl": ".",
     "jsx": "preserve",
     "paths": {
-      "generated": ["__generated__"],
-      "types/*": ["src/@types/*"],
       "api/*": ["src/api/*"],
       "components/*": ["src/components/*"],
       "containers/*": ["src/containers/*"],
       "gatsby/*": ["src/gatsby/*"],
+      "generated": ["__generated__"],
       "hooks/*": ["src/hooks/*"],
       "layouts/*": ["src/layouts/*"],
       "lib/*": ["src/lib/*"],
       "pages/*": ["src/pages/*"],
       "styles/*": ["src/styles/*"],
-      "templates/*": ["src/templates/*"]
+      "templates/*": ["src/templates/*"],
+      "types/*": ["src/@types/*"]
     }
   }
 }

@@ -1,7 +1,7 @@
 import FileIcon from 'part:@sanity/base/file-icon'
 import FolderIcon from 'part:@sanity/base/folder-icon'
 import { Link } from 'part:@sanity/base/router'
-import styles from './StructureMenuWidget.css'
+import styles from './StructureMenu.css'
 import React from 'react'
 
 const getIconComponent = (item: any) => {
@@ -10,13 +10,13 @@ const getIconComponent = (item: any) => {
   return item.schemaType.icon || FolderIcon
 }
 
-interface StructureMenuWidgetProps {
+interface StructureMenuProps {
   structure: {
     items: any[]
   }
 }
 
-export default function StructureMenuWidget (props: StructureMenuWidgetProps) {
+export default function StructureMenu(props: StructureMenuProps): JSX.Element {
   return (
     <div className={styles.root}>
       <div className={styles.header}>

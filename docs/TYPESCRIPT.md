@@ -1,6 +1,44 @@
 # TypeScript Examples
 
-### Make sure that `main`, `typings`, and a `prepublishOnly` script is defined in all TypeScript `package.json` files and declaration is set to true in `tsconfig.json`. These fields tell the consuming codebase where the type definitions are, what the entry point is, and most importantly how to build each pacakge:
+1. Notes
+1. TypeScript Configuration Files
+1. Typing React components using GraphQL
+1. Using Promise chained from `import` and Webstack bundling
+1. Use an arrow function to define a generic in a JSX file
+1. Generic React Component Example
+1. Convenience Generic Pattern
+1. Adding a `never` return call to a function
+1. Type check an array index
+1. Generic for array index
+1. Capturing the type of a variable
+1. Capture keys of an object as a type using `keyof` and `typeof`
+1. Exception handling
+1. Parameter name is carried to object key
+1. Destructuring a method out of a new class instance to create a static property
+1. Instantiate a generic class with a concrete type
+1. Static and regular class methods
+1. Generic Functions
+1. Generic Factories
+1. Feed return type of one function into the type for another object
+1. Using index values to select types
+1. Type check function signature overloads
+1. Example of a constraint on T
+1. Example of moving constraint in above example out and using a conditional
+1. Example for a flatten method that takes either arrays or primitives, using a conditional
+1. Example for a flatten method that takes either arrays or primitives, using `infer` keyword
+1. Useful helper type aliases based on `infer`
+1. Mapped types
+1. Distributive Conditional Types
+1. Using string literals in types
+1. Type Guards
+1. Key Remapping via `as`
+1. Definition of utility types
+1. Import a definition file
+1. Example React Class with Lifecycle Methods
+
+## Notes
+
+- Make sure that `main`, `typings`, and a `prepublishOnly` script is defined in all TypeScript `package.json` files and declaration is set to true in `tsconfig.json`. These fields tell the consuming codebase where the type definitions are, what the entry point is, and most importantly how to build each package:
 
 ```json
 {
@@ -11,8 +49,28 @@
 }
 ```
 
+- The React package default export doesn't have common methods included on the object, like `Component`, so using an alias on the `import` is sometimes recommended:
 
-### Each package defines its own `tsconfig.json` which all extend a single `tsconfig.settings.json` file placed inside the root folder:
+```javascript
+import * as React from 'react'
+// use React.Component somewhere
+```
+
+This project uses destructuring:
+
+```javascript
+import React, { Component } from 'react'
+```
+
+React 17 uses a new JSX transform that doesn't require importing React for Babel to work (instead automatically inserting React helper functions to use instead of React.createComponent), but leaving off the import will give this error:
+
+```bash
+'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+```
+
+## TypeScript Configuration Files
+
+Each package defines its own `tsconfig.json` which all extend a single `tsconfig.settings.json` file placed inside the root folder:
 
 ```json
 // ./tsconfig.settings.json
@@ -37,8 +95,7 @@
 
 `outDir` in `tsconfig.json` should be set to the same location defined in the `main` field in `package.json`.
 
-
-### Typing React components using GraphQL examples:
+## Typing React components using GraphQL
 
 ```javascript
 type SourceProps = { description: string } & typeof defaultProps
@@ -111,8 +168,7 @@ export default class IndexPage extends React.Component<IndexPageProps> {
 }
 ```
 
-
-### Using Promise chained from `import` and Webstack bundling
+## Using Promise chained from `import` and Webstack bundling
 
 ```javascript
 import(/* webpackChunkName: "momentjs" */ 'moment')
@@ -128,8 +184,7 @@ import(/* webpackChunkName: "momentjs" */ 'moment')
   })
 ```
 
-
-### Use an arrow function to define a generic in a JSX file
+## Use an arrow function to define a generic in a JSX file
 
 Normally having angle-bracketed syntax following an equal sign indicates to the
 JSX directive that JSX syntax is being used, like if using a plain type tag e.g. `<T>`
@@ -139,8 +194,7 @@ Using compiler directive `extends` hints the compiler that it's a generic.
 const foo = <T extends {}>(x: T) => x; // compiles
 ```
 
-
-### Example Generic React Component
+## Generic React Component Example
 
 Since JSX doesn't have a syntax for providing a generic parameter you need to specialize
 the component using a type assertion before creating it, e.g.:
@@ -178,8 +232,7 @@ const StringSelect = Select as StringSelect
 const Form = () => <StringSelect items={['a', 'b']} />
 ```
 
-
-### Convenience Generic Pattern
+## Convenience Generic Pattern
 
 ```javascript
 import fetch from 'node-fetch'
@@ -210,7 +263,7 @@ function loadUsers() {
 }
 ```
 
-### Adding a never return call to a function
+## Adding a `never` return call to a function
 
 Without fail(), compiling errs because the code path for 'undefined' doesn't return
 
@@ -228,8 +281,7 @@ function foo(x: string | number): boolean {
 }
 ```
 
-
-### Type check an array index
+## Type check an array index
 
 ```javascript
 let foo: { [index: string]: { message: string } } = {}
@@ -247,8 +299,7 @@ foo['a'].message == foo.a.message
 The `index` key in the `let foo:` array bracket is named arbitrarily and can be
 something like `username` if that improves readability.
 
-
-### Generic for array index
+## Generic for array index
 
 ```javascript
 // Using a limited set of string literals for array index signature
@@ -270,8 +321,7 @@ type FromSomeIndex<K extends string> = { [key in K]: number }
 const goodGeneric: FromSomeIndex<Index> = { a: 7, b: 1, c: 2 }
 ```
 
-
-### Capturing the type of a variable
+## Capturing the type of a variable
 
 ```javascript
 var foo = 123
@@ -291,8 +341,7 @@ declare let _foo: Foo;
 let bar: typeof _foo = ...
 ```
 
-
-### Capture keys of an object as a type using `keyof` and `typeof`
+## Capture keys of an object as a type using `keyof` and `typeof`
 
 ```javascript
 // Use keyof to capture key names of a type captured from a variable using typeof
@@ -311,8 +360,7 @@ color = 'blue' // okay
 //color = 'anythingElse' // Error
 ```
 
-
-### Exception handling
+## Exception handling
 
 - Use `new Error()` instead of `throw()` to preserve the stack trace
 
@@ -332,8 +380,7 @@ function validate(value: number): {error?: string} {
 }
 ```
 
-
-### Parameter name is carried to object key
+## Parameter name is carried to object key
 
 ```javascript
 const testBar = (myValue: string) => ({ myValue })
@@ -345,8 +392,7 @@ Creating an object with the above, e.g. `testBar('some value')`, results in the 
 { "myValue": "sample" }
 ```
 
-
-### Destructuring a method out of a new class instance to create a static property
+## Destructuring a method out of a new class instance to create a static property
 
 ```javascript
 const { called } = new (class {
@@ -361,8 +407,7 @@ called() // Called : 1
 called() // Called : 2
 ```
 
-
-### Instantiate a generic class with a concrete type
+## Instantiate a generic class with a concrete type
 
 ```javascript
 class Foo<T> {
@@ -372,15 +417,13 @@ class Foo<T> {
 let FooNumber = Foo as { new (): Foo<number> }
 ```
 
-
-### Static and regular class methods
+## Static and regular class methods
 
 A class has two sides to its type: the static side and the instance side. Generic classes are only generic
 over their instance side rather than their static side, so when working with classes, static members
 can not use the class’s type parameter.
 
-
-### Generic Functions
+## Generic Functions
 
 ```javascript
 // generic function with a generic interface:
@@ -431,8 +474,7 @@ let testIdentity1_2 = myIdentity1(2)
 let testIdentity2_4 = myIdentity2(3)
 ```
 
-
-### Generic Factories
+## Generic Factories
 
 When creating factories in TypeScript using generics, it is necessary
 to refer to class types by their constructor function:
@@ -443,8 +485,7 @@ function create<T>(c: { new (): T }): T {
 }
 ```
 
-
-### Feed return type of one function into the type for another object
+## Feed return type of one function into the type for another object
 
 ```javascript
 function f() {
@@ -457,8 +498,7 @@ const myObj: ReturnType<typeof f> = {
 }
 ```
 
-
-### Using index values to select types
+## Using index values to select types
 
 ```javascript
 // using `keyof` and index access to get type
@@ -481,8 +521,7 @@ type PersonCaptured = typeof MyArray[number]
 // type Person = { name: string, age: number }
 ```
 
-
-### Type check function signature overloads
+## Type check function signature overloads
 
 ```javascript
 interface IdLabel {
@@ -524,8 +563,7 @@ let c = createLabel(Math.random() ? 'hello' : 42)
 //let d = createLabel(true)
 ```
 
-
-### Example of a constraint on T
+## Example of a constraint on T
 
 ```javascript
 type MessageOf<T extends { message: unknown }> = T['message']
@@ -538,8 +576,7 @@ type EmailMessageContents = MessageOf<Email>
 // type EmailMessageContents = string
 ```
 
-
-### Example of moving constraint in above example out and using a conditional:
+## Example of moving constraint in above example out and using a conditional
 
 ```javascript
 type MessageOf<T> = T extends { message: unknown } ? T['message'] : never
@@ -559,8 +596,7 @@ type DogMessageContents = MessageOf<Dog>
 // type DogMessageContents = never
 ```
 
-
-### Example for a flatten method that takes either arrays or primitives, using a conditional:
+## Example for a flatten method that takes either arrays or primitives, using a conditional
 
 ```javascript
 type Flatten<T> = T extends any[] ? T[number] : T
@@ -574,8 +610,7 @@ type Num = Flatten<number>
 // type Num = number**
 ```
 
-
-### Example for a flatten method that takes either arrays or primitives, using `infer` keyword
+## Example for a flatten method that takes either arrays or primitives, using `infer` keyword
 
 ```javascript
 //type Flatten<T> = T extends any[] ? T[number] : T
@@ -589,8 +624,7 @@ type Str = Flatten<string[]>
 type Num = Flatten<number>
 ```
 
-
-### Useful helper type aliases based on `infer`
+## Useful helper type aliases based on `infer`
 
 ```javascript
 type GetReturnType<Type> = Type extends (...args: never[]) => infer Return ? Return : never
@@ -605,8 +639,7 @@ type BoolsHelper = GetReturnType<(a: boolean, b: boolean) => boolean[]>
 // type BoolsHelper = boolean[]
 ```
 
-
-### Mapped types
+## Mapped types
 
 ```javascript
 // mapped type is a generic type which uses a union of PropertyKeys, frequently
@@ -637,7 +670,7 @@ const requiredFeatureOptions1: RequiredFeatureOptions = { darkMode: true, newUse
 //const requiredFeatureOptions3: RequiredFeatureOptions = { newUserProfile: true }
 ```
 
-### Distributive Conditional Types
+## Distributive Conditional Types
 
 ```javascript
 // When conditional types act on a generic type, they become distributive when given a union type:
@@ -653,8 +686,7 @@ type StrOrNumArr = ToArrayNonDist<string | number> // 'StrOrNumArr' is no longer
 // type StrOrNumArr = (string | number)[]
 ```
 
-
-### Using string literals in types
+## Using string literals in types
 
 ```javascript
 type PropEventSource<T> = {
@@ -679,8 +711,7 @@ person.on('firstNameChanged', (newValue) => {
 // "firstNameChanged" | "lastNameChanged" | "ageChanged"
 ```
 
-
-### Type Guards
+## Type Guards
 
 A type guard is some expression that performs a **runtime** check that guarantees the type in some scope.
 To define a type guard, we simply need to define a function whose return type is a type predicate:
@@ -698,8 +729,7 @@ function isFish(pet: Fish | Bird): pet is Fish {
 In the above, any time `isFish` is called with some variable, TypeScript will narrow
 that variable to the specific type `Fish` if the original type is compatible.
 
-
-### Key Remapping via `as`
+## Key Remapping via `as`
 
 Remap keys in mapped types with an as clause in a mapped type:
 
@@ -755,20 +785,37 @@ type KindlessCircle = {
 */
 ```
 
-
-### Definition of utility types
+## Definition of utility types
 
 All utility types are Generic Types, which you can think of as a type that accepts other types
 as parameters. A Generic type can be identified by being able to pass type parameters to it
 using the <TypeA, TypeB, ...> syntax e.g. Record<Key, Value>
 
+## Import a definition file
 
-### React Class
+You can use a triple-slash directive to load a type definition file (`.d.ts`) into the TypeScript compilers' ambient (precompilation) environment. You can also import a `.d.ts` definition file to use in a `.ts` file as follows. This assigns a type alias (`User`) to the type definition file import so that it can be used multiple times.
 
-"Notice how both the Props and State interfaces are specified as the generic parameters to the
-class type. Both are optional and will be an empty object ({}) by default. By specifying a type,
-TypeScript is able to strongly type this.props and this.state. Using the Readonly<T> built-in
-type helper ensures TypeScript will throw an error if you attempt to modify this.state directly."
+```javascript
+declare namespace Express {
+    type User = import('./user').User;
+
+    export interface Request {
+        user: User;
+        target: User;
+        friend: User;
+    }
+
+    export class SuperUser implements User {
+        superPower: string;
+    }
+
+    export { User as ExpressUser }
+}
+```
+
+## Example React Class with Lifecycle Methods
+
+"*Notice how both the Props and State interfaces are specified as the generic parameters to the class type. Both are optional and will be an empty object (`{}`) by default. By specifying a type, TypeScript is able to strongly type this.props and this.state. Using the `Readonly<T>` built-in type helper ensures TypeScript will throw an error if you attempt to modify this.state directly.*"
 
 ```javascript
 interface Props {
@@ -846,22 +893,187 @@ onQuantityChanged = (product: string) =>
 }
 ```
 
-### Import a definition file
+## Typing a Functional React Component
 
 ```javascript
-declare namespace Express {
-    type User = import('./user').User;
+// Declaring type of props. Use `interface` if exporting so that consumers can extend.
+type AppProps = {
+  message: string
+}
 
-    export interface Request {
-        user: User;
-        target: User;
-        friend: User;
-    }
+// Easiest way to declare a Function Component; return type is inferred.
+const App = ({ message }: AppProps) => <div>{message}</div>
 
-    export class SuperUser implements User {
-        superPower: string;
-    }
+// you can annotate the return type so an error is raised if you accidentally return some other type
+const App = ({ message }: AppProps): JSX.Element => <div>{message}</div>
 
-    export { User as ExpressUser }
+// you can inline the type declaration; eliminates naming the prop types, but looks repetitive
+const App = ({ message }: { message: string }) => <div>{message}</div>
+```
+
+General consensus today is that `React.FunctionComponent` (or the shorthand `React.FC`) is discouraged. Defining a component with `React.FC` causes it to implicitly take children (of type `ReactNode`). It means that all components accept children, even if they're not supposed to.
+
+```javascript
+const App: React.FunctionComponent<{ message: string }> = ({ message }) => (
+  <div>{message}</div>
+)
+```
+
+You can also use `React.VoidFunctionComponent` or `React.VFC` type if you want to type `children` explicitly. This is an interim solution until `FunctionComponent` will accept no children by default (planned for `@types/react@^18.0.0`).
+
+`React.FunctionComponent` also doesn't support generic functions. You can write a plain generic function component like:
+
+```javascript
+type GenericComponentProps<T> = {
+   prop: T
+   callback: (t: T) => void
+}
+const GenericComponent = <T>(props: GenericComponentProps<T>) => {/*...*/}
+```
+
+There's no way to preserve the unresolved generic `T` in the type returned by `React.FC`:
+
+```javascript
+const GenericComponent: React.FC</* ??? */> = <T>(props: GenericComponentProps<T>) => {/*...*/}
+```
+
+These two forms have the same effect outside of implicit typing of `children`:
+
+```javascript
+const Component1 = (props: ComponentProps): JSX.Element => { /*...*/ }
+const Component2: FC<ComponentProps> = (props) => { /*...*/ }
+```
+
+## Basic Prop Types Examples
+
+```javascript
+type MyComponentProps = {
+  message: string
+  count: number
+  disabled: boolean
+
+  /** array of a type */
+  names: string[]
+
+  /** string literals to specify exact string values, with a union type to join them together */
+  status: "waiting" | "success"
+
+  /** any object as long as you don't use its properties (not common but useful as placeholder) */
+  obj: object
+
+  /**  almost the same as `object`, exactly the same as `Object`  */
+  obj2: {}
+
+  /** an object with any number of properties */
+  obj3: {
+    id: string
+    title: string
+  }
+
+  /** array of objects */
+  objArr: {
+    id: string
+    title: string
+  }[]
+
+  /** a dict object with any number of properties of the same type */
+  dict1: {
+    [key: string]: MyTypeHere
+  }
+
+  /** equivalent to dict1 above */
+  dict2: Record<string, MyTypeHere>
+
+  /** any function as long as you don't invoke it (not recommended) */
+  onSomething: Function
+
+  /** function that doesn't take or return anything (VERY COMMON) */
+  onClick: () => void
+
+  /** function with named prop (VERY COMMON) */
+  onChange: (id: number) => void
+
+  /** alternative function type syntax that takes an event (VERY COMMON) */
+  onClick(event: React.MouseEvent<HTMLButtonElement>): void
+
+  /** an optional prop (VERY COMMON!) */
+  optional?: OptionalType;
+}
+```
+
+## Useful React Prop Type Examples
+
+```javascript
+export declare interface AppProps {
+  children1: JSX.Element; // bad, doesn't account for arrays
+  children2: JSX.Element | JSX.Element[]; // meh, doesn't accept strings
+  children3: React.ReactChildren; // despite the name, not at all an appropriate type; it is a utility
+  children4: React.ReactChild[]; // better, accepts array children
+  children: React.ReactNode; // best, accepts everything (see edge case below)
+  functionChildren: (name: string) => React.ReactNode; // recommended function as a child render prop type
+  style?: React.CSSProperties; // to pass through style props
+  onChange?: React.FormEventHandler<HTMLInputElement>; // form events! the generic parameter is the type of event.target
+  //  more info: https://react-typescript-cheatsheet.netlify.app/docs/advanced/patterns_by_usecase/#wrappingmirroring
+  props: Props & React.ComponentPropsWithoutRef<"button">; // to impersonate all the props of a button element and explicitly not forwarding its ref
+  props2: Props & React.ComponentPropsWithRef<MyButtonWithForwardRef>; // to impersonate all the props of MyButtonForwardedRef and explicitly forwarding its ref
+}
+```
+
+The edge case for using `React.ReactNode` to type `children` involves the `{}` object type allowed for `ReactFragment`.  From the DefinitelyTyped React definitions:
+
+```javascript
+type ReactText = string | number;
+type ReactChild = ReactElement | ReactText;
+interface ReactNodeArray extends Array<ReactNode> {}
+type ReactFragment = {} | ReactNodeArray;
+type ReactNode = ReactChild | ReactFragment | ReactPortal | boolean | null | undefined
+```
+
+This code causes an error:
+
+```javascript
+type Props = {
+  children: React.ReactNode;
+};
+
+function Comp({ children }: Props) {
+  return <div>{children}</div>;
+}
+function App() {
+  return <Comp>{{}}</Comp>; // Runtime Error: Objects not valid as React Child
+}
+```
+
+Generic React component:
+
+```javascript
+// button.ts
+import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
+
+type MyButtonProps<T extends ElementType> = {
+  as?: T
+  children: ReactNode
+}
+
+const Button = <T extends ElementType = 'button'>({
+  as,
+  children,
+  ...props
+}: MyButtonProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof MyButtonProps<T>>) => {
+  const Component = as || 'button'
+  return <Component {...props}>{children}</Component>
+}
+
+export default Button
+
+// app.ts
+import Button from './button'
+
+export default function App() {
+  return(
+    <div>
+      <Button as='a' href='https://google.com'>Click Me</Button>
+    </div>
+  )
 }
 ```

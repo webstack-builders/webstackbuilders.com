@@ -71,19 +71,19 @@ module.exports = {
       options: {
         // @TODO: May need to refactor to use require.resolve when project converted to a template plugin
         // https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/converting-a-starter/
-        src: path.join(__dirname, 'src'),
-        generated: path.join(__dirname, '__generated__'),
-        types: path.join(__dirname, 'src/@types'),
         api: path.join(__dirname, 'src/api'),
         components: path.join(__dirname, 'src/components'),
         containers: path.join(__dirname, 'src/containers'),
         gatsby: path.join(__dirname, 'src/gatsby'),
+        generated: path.join(__dirname, '__generated__'),
         hooks: path.join(__dirname, 'src/hooks'),
         layouts: path.join(__dirname, 'src/layouts'),
         lib: path.join(__dirname, 'src/lib'),
         pages: path.join(__dirname, 'src/pages'),
+        src: path.join(__dirname, 'src'),
         styles: path.join(__dirname, 'src/styles'),
         templates: path.join(__dirname, 'src/templates'),
+        types: path.join(__dirname, 'src/@types'),
       },
     },
     {
