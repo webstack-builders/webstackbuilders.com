@@ -101,13 +101,15 @@ package.json
 Global Jest Configuration (`jest.config.ts`)
 
 ```javascript
+const path = require('path')
+
 const sharedConfig = {
   // Directory where Jest should store its cached dependency information.
-  cacheDirectory: '.cache',
-
+  cacheDirectory: path.join(__dirname, '.cache'),
+  // Files and directories to collect code coverage stats from
   collectCoverageFrom: ['**/*.{js,jsx,ts,tsx}'],
   // Directory where Jest should output its coverage files.
-  coverageDirectory: 'coverage',
+  coverageDirectory: path.join(__dirname, 'coverage'),
   coveragePathIgnorePatterns: [
     '**/node_modules/**',
     '**/.cache/**',
@@ -133,15 +135,21 @@ const sharedConfig = {
   // Make calling deprecated APIs throw helpful error messages.
   errorOnDeprecated: true,
   
-  moduleFileExtensions: ['ts', 'tsx', 'js'],
-  
   setupFilesAfterEnv: ['<rootDir>packages/setupTests.ts'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
+    
+  testEnvironment: 'jsdom',
   testPathIgnorePatterns: [
     '/node_modules/',
-    '(/__tests__/.*|(\\.|/)(test|spec))\\.d\.ts$'
+    '(/__tests__/.*|(\\.|/)(test|spec))\\.d\.ts$',
+    '\\.cache',
+    '<rootDir>.*/public',
   ],
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
+  testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$',
+  // some DOM APIs such as localStorage need a valid URL
+  testURL: `http://localhost`,
+  // Config Jest so that all js/ts or jsx/tsx files will be transformed using a `jest-preprocess.js` file in the project root.
+  transform: {'.(ts|tsx)': 'ts-jest'},
 }
 
 export default sharedConfig
@@ -151,78 +159,40 @@ Project configuration in `web` / `studio` / `packages` directories (`jest.config
 
 ```javascript
 import type {Config} from '@jest/types'
+import { getJestMappersFromTSConfig } from 'tsconfig-paths-jest-mapper'
 import sharedConfig from '../jest.config.ts'
 
 export default async (): Promise<Config.InitialOptions> =>  {
   return {
     ...sharedConfig,
-    // Print a label alongside a test while it is running
+    // Print a label alongside a test while it is running.
     displayName: {
       name: 'WEB',
       color: 'blue',
     },
+    // Global variables that need to be available in all test environments.
+    globals: {
+      // set by Gatsby and needed by some components
+      __PATH_PREFIX__: '',
+      // set by Gatsby to prevent its method calls from creating console errors.
+      ___loader: {
+        enqueue: jest.fn(),
+      },
+    },
+    // A webpack loader plugin takes care of loading static file imports like CSS or jpg
+    // files in the dev server or production builds. This mocks static file imports that
+    // Jest can't handle, and uses mappings from the `path` key in `tsconfig` files.
+    moduleNameMapper: {
+      // Mock stylesheets using the `identity-obj-proxy` package.
+      '.+\\.(css|styl|less|sass|scss)$': `identity-obj-proxy`,
+      // For other static assets, use a manual mock called `file-mock.js` in the `__mocks__` directory
+      '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': `<rootDir>/__mocks__/file-mock.js`,
+      // Use tsconfig paths from the tsconfig.json file
+      ...getJestMappersFromTSConfig(),
+    },
+    // necessary because Gatsby includes un-transpiled ES6 code in node_modules.
+    transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
   }
-}
-```
-
-
-`web/jest.config.js`
-
-```javascript
-const { pathsToModuleNameMapper } = require('ts-jest/utils')
-const { compilerOptions } = require('./tsconfig.json')
-
-const paths = pathsToModuleNameMapper(compilerOptions.paths, {
-  prefix: '<rootDir>/',
-})
-
-module.exports = {
-  // usually set by Gatsby, and some components need
-  globals: {
-    __PATH_PREFIX__: ``,
-  },
-/*
-Tells Jest how to handle imports, especially for mocking static file imports which Jest can’t handle. In webpack projects, we often allow importing things like css files or jpg files, and let a webpack loader plugin take care of loading these resources. In a unit test, though, we're running in node.js which doesn't know how to import these, so this tells jest what to do for these.
-*/
-  moduleNameMapper: {
-    // Mock stylesheets using the `identity-obj-proxy` package.
-    '.+\\.(css|styl|less|sass|scss)$': `identity-obj-proxy`,
-    // For other static assets, use a manual mock called `file-mock.js` in the `__mocks__` directory
-    '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': `<rootDir>/__mocks__/file-mock.js`,
-    // Use tsconfig paths from the tsconfig.json file
-    ...paths,
-  },
-  // Add a necessary Gatsby global from a file in an array of files that will be included before all tests are run.
-  setupFiles: [`<rootDir>/loadershim.js`],
-  testPathIgnorePatterns: [`node_modules`, `\\.cache`, `<rootDir>.*/public`],
-  // some DOM APIs such as localStorage need a valid URL
-  testURL: `http://localhost`,
-  // Config Jest so that all js/ts or jsx/tsx files will be transformed using a `jest-preprocess.js` file in the project root.
-  transform: {
-    '^.+\\.[jt]sx?$': '<rootDir>/jest-preprocess.js',
-  },
-  // necessary because Gatsby includes un-transpiled ES6 code in node_modules.
-  transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
-}
-```
-
-`studio/jest.config.js`
-
-```javascript
-const tsconfig = require('./tsconfig.json')
-const moduleNameMapper = require('tsconfig-paths-jest')(tsconfig)
-
-module.exports = {
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'css'],
-  moduleNameMapper: {
-    ...moduleNameMapper,
-    '\\.(css|less|sass|scss)$': '<rootDir>/test/__mocks__/styleMock.js',
-  },
-  testEnvironment: 'jsdom',
-  testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$',
-  transform: {
-    '.(ts|tsx)': 'ts-jest',
-  },
 }
 ```
 

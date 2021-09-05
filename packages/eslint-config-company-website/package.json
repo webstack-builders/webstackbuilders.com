@@ -4,7 +4,7 @@
   "description": "Common ESLint config for the Webstack Builders company website",
   "author": "Webstack Builders <info@webstackbuilders.com>",
   "homepage": "https://webstackbuilders.com",
-  "license": "BSD-2-Clause",
+  "license": "BSD-3-Clause",
   "main": "src/index.js",
   "publishConfig": {
     "access": "public"
