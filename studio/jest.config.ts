@@ -1,5 +1,5 @@
 import type { Config } from '@jest/types'
-import sharedConfig from '../jest.config'
+import sharedConfig, { mappings } from '../jest.config'
 
 export default async (): Promise<Config.InitialOptions> => {
   return {
@@ -17,6 +17,8 @@ export default async (): Promise<Config.InitialOptions> => {
       '.+\\.(css|less|sass|scss)$': `identity-obj-proxy`,
       // For other static assets, use a manual mock called `file-mock.js` in the `__mocks__` directory
       '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': `<rootDir>/__mocks__/file-mock.js`,
+      // Use tsconfig paths from the tsconfig.json file.
+      ...mappings(__dirname),
     },
     // Default is 'node'.
     testEnvironment: 'jsdom',
