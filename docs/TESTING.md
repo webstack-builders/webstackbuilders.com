@@ -10,7 +10,7 @@ The [`React Testing Library`](https://testing-library.com/docs/react-testing-lib
 
 The [`@testing-library/jest-dom`](https://github.com/testing-library/jest-dom) library provides a set of custom jest matchers that you can use to extend jest. These will make your tests more declarative, clear to read and to maintain.
 
-`npm install --save-dev @testing-library/react @testing-library/jest-dom` 
+`npm i --save-dev @testing-library/react @testing-library/jest-dom` 
 
 This example test uses `chai` and `chai-dom` (@TODO: Refactor to use React Test Renderer)
 
@@ -94,104 +94,6 @@ package.json
     "test": "set CI=true && react-scripts test",
     "test:watch": "react-scripts test",
     "test:coverage": "set CI=true && react-scripts test --coverage"
-  }
-}
-```
-
-Global Jest Configuration (`jest.config.ts`)
-
-```javascript
-const path = require('path')
-
-const sharedConfig = {
-  // Directory where Jest should store its cached dependency information.
-  cacheDirectory: path.join(__dirname, '.cache'),
-  // Files and directories to collect code coverage stats from
-  collectCoverageFrom: ['**/*.{js,jsx,ts,tsx}'],
-  // Directory where Jest should output its coverage files.
-  coverageDirectory: path.join(__dirname, 'coverage'),
-  coveragePathIgnorePatterns: [
-    '**/node_modules/**',
-    '**/.cache/**',
-    '**/__generated__/**',
-    '**/__mocks__/**',
-    '**/coverage/**',
-    '**/serviceWorker.js',
-    '**/index.js',
-  ],
-  // Default provider for instrumenting code for coverage is Babel. V8 is still 
-  // experimental, but uses uses V8's builtin code coverage. Prefers recent Node versions.
-  coverageProvider: 'v8',
-  // Configure minimum threshold enforcement for coverage results percentage coverage
-  // for branches, functions, and lines, and number of uncovered statements.
-  'coverageThreshold': {
-    'global': {
-      'branches': 80,
-      'functions': 80,
-      'lines': 80,
-      'statements': -10
-    }
-  },
-  // Make calling deprecated APIs throw helpful error messages.
-  errorOnDeprecated: true,
-  
-  setupFilesAfterEnv: ['<rootDir>packages/setupTests.ts'],
-  snapshotSerializers: ['enzyme-to-json/serializer'],
-    
-  testEnvironment: 'jsdom',
-  testPathIgnorePatterns: [
-    '/node_modules/',
-    '(/__tests__/.*|(\\.|/)(test|spec))\\.d\.ts$',
-    '\\.cache',
-    '<rootDir>.*/public',
-  ],
-  testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$',
-  // some DOM APIs such as localStorage need a valid URL
-  testURL: `http://localhost`,
-  // Config Jest so that all js/ts or jsx/tsx files will be transformed using a `jest-preprocess.js` file in the project root.
-  transform: {'.(ts|tsx)': 'ts-jest'},
-}
-
-export default sharedConfig
-```
-
-Project configuration in `web` / `studio` / `packages` directories (`jest.config.ts`)
-
-```javascript
-import type {Config} from '@jest/types'
-import { getJestMappersFromTSConfig } from 'tsconfig-paths-jest-mapper'
-import sharedConfig from '../jest.config.ts'
-
-export default async (): Promise<Config.InitialOptions> =>  {
-  return {
-    ...sharedConfig,
-    // Print a label alongside a test while it is running.
-    displayName: {
-      name: 'WEB',
-      color: 'blue',
-    },
-    // Global variables that need to be available in all test environments.
-    globals: {
-      // set by Gatsby and needed by some components
-      __PATH_PREFIX__: '',
-      // set by Gatsby to prevent its method calls from creating console errors.
-      ___loader: {
-        enqueue: jest.fn(),
-      },
-    },
-    // A webpack loader plugin takes care of loading static file imports like CSS or jpg
-    // files in the dev server or production builds. This mocks static file imports that
-    // Jest can't handle, and uses mappings from the `path` key in `tsconfig` files.
-    moduleNameMapper: {
-      // Mock stylesheets using the `identity-obj-proxy` package.
-      '.+\\.(css|styl|less|sass|scss)$': `identity-obj-proxy`,
-      // For other static assets, use a manual mock called `file-mock.js` in the `__mocks__` directory
-      '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': `<rootDir>/__mocks__/file-mock.js`,
-      // Use tsconfig paths from the tsconfig.json file
-      ...getJestMappersFromTSConfig(),
-    },
-    // necessary because Gatsby includes un-transpiled ES6 code in node_modules.
-    transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
   }
 }
 ```

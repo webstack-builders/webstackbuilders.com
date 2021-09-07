@@ -1,17 +1,24 @@
-const tsconfig = require('./tsconfig.json')
-const moduleNameMapper = require('tsconfig-paths-jest')(tsconfig)
+import type { Config } from '@jest/types'
+import sharedConfig from '../jest.config'
 
-module.exports = {
-  coveragePathIgnorePatterns: ['/node_modules/', '/test/'],
-  collectCoverageFrom: ['src/*.{js,ts}'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'css'],
-  moduleNameMapper: {
-    ...moduleNameMapper,
-    '\\.(css|less|sass|scss)$': '<rootDir>/test/__mocks__/styleMock.js',
-  },
-  testEnvironment: 'jsdom',
-  testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$',
-  transform: {
-    '.(ts|tsx)': 'ts-jest',
-  },
+export default async (): Promise<Config.InitialOptions> => {
+  return {
+    ...sharedConfig,
+    // Print a label alongside a test while it is running.
+    displayName: {
+      name: 'STUDIO',
+      color: 'blue',
+    },
+    // A webpack loader plugin takes care of loading static file imports like CSS or jpg
+    // files in the dev server or production builds. This mocks static file imports that
+    // Jest can't handle, and uses mappings from the `path` key in `tsconfig` files.
+    moduleNameMapper: {
+      // Mock stylesheets using the `identity-obj-proxy` package.
+      '.+\\.(css|less|sass|scss)$': `identity-obj-proxy`,
+      // For other static assets, use a manual mock called `file-mock.js` in the `__mocks__` directory
+      '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': `<rootDir>/__mocks__/file-mock.js`,
+    },
+    // Default is 'node'.
+    testEnvironment: 'jsdom',
+  }
 }

@@ -23,8 +23,7 @@
     "dev": "cross-env GATSBY_GRAPHQL_IDE=playground gatsby develop -p 8002",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
     "lint": "eslint .",
-    "test": "npm run type-check && npm run lint && jest",
-    "type-check": "tsc"
+    "test": "npm run lint && jest"
   },
   "dependencies": {
     "@reach/skip-nav": "^0.16.0",
@@ -61,6 +60,8 @@
     "@babel/plugin-proposal-decorators": "^7.14.5",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-typescript": "^7.15.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
     "@types/classnames": "^2.3.1",
     "@types/dotenv-webpack": "^7.0.3",
     "@types/jest": "^27.0.1",
@@ -82,14 +83,13 @@
     "gatsby-plugin-eslint": "^3.0.0",
     "gatsby-plugin-root-import": "^2.0.6",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.0.6",
+    "jest": "^27.1.0",
     "postcss": "^8.2.7",
     "postcss-preset-env": "^6.6.0",
     "react-test-renderer": "^17.0.2",
     "source-map-support": "^0.5.19",
     "ts-jest": "^27.0.5",
-    "ts-node": "^9.1.1",
-    "tsconfig-paths-jest-mapper": "^1.4.0"
+    "ts-node": "^9.1.1"
   },
   "browserslist": [
     "defaults",

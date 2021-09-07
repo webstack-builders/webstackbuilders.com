@@ -137,7 +137,8 @@ const wackyWord = ['zaallano', 'wooorrdd', 'zzooommmmmmmm'];
 - The eslint-config-company-website has a catch-22 in that it's providing its own eslint config, so no linting is set up. The prettier config package has a similar issue with using prettier.
 - Config for eslint ran through VS Code (Problems tab) and ran from npx give two different results. In `web/src/html.tsx`, VS Code gives the error `Generic type 'HTMLAttributes<T>' requires 1 type argument(s).` but running from npx doesn't
 - Project `.gitignore` has `package-lock.json` files in `packages`  so that users must use `lerna add` to add dependencies. Need to have a preinstall hook in npm to warn the user or alias to `lerna add`, and this isn't the right way to do so (using .gitignore)
-- Consider adding `semantic-release` and `@commitlint` to workflow?
+- Consider adding `lockfile-lint`, `semantic-release` and `@commitlint` to workflow?
 - Current naming for packages restricts them to this website (`*-company-website`). Maybe a more generic name, and republishing them to NPM?
-- Move Jest global config to package skeleton already set up.
+- Move Jest global config to package skeleton already set up. Use `preset` key in project `jest.config.ts` files to load package config. Use `reporters` key to  to add custom reporter to Jest. Might need to set up some way to define the project root (like `redwood.toml`) for `cacheDirectory` and `coverageDirectory` keys that specify a directory, or maybe these should be per-project and not in the root directory.
 - Add typescript to eslint and prettier packages, so the config can be typechecked the way Jest config is done.
+- Move Studio dashboard-widget-structure-menu plugin into a package
