@@ -6,7 +6,14 @@
 
 import '@reach/skip-nav/styles.css'
 
-export const onRouteUpdate = ({ prevLocation }) => {
+/** @typedef {{ location: object, prevLocation: object }} LocationObject */
+
+/**
+ * @param {LocationObject} locationObject
+ * @return {undefined}
+ */
+function skipLinkHandler(locationObject) {
+  const prevLocation = locationObject?.prevLocation
   if (prevLocation !== null) {
     const skipLink = document.querySelector(`[data-reach-skip-link]`)
 
@@ -14,4 +21,12 @@ export const onRouteUpdate = ({ prevLocation }) => {
       skipLink.focus()
     }
   }
+}
+
+/**
+ * @param {LocationObject} locationObject
+ * @return {undefined}
+ */
+export function onRouteUpdate(locationObject) {
+  skipLinkHandler(locationObject)
 }

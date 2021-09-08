@@ -4,7 +4,27 @@ This project uses Jest for testing. For transforming TypeScript to input that Je
 
 `npm i --save-dev jest ts-node ts-jest @types/jest`
 
-## React Testing Library
+## Tooling
+In addition to Jest, the following tools are used in the project. React Testing Library provides tests that represent how the application is experienced by users, testing the application as if the test was the user interacting with the application’s interface. Enzyme provides tests for the props and state of components, testing the internal behavior of components  to confirm that the correct view is being presented to users. RTL uses a `render` method to render a component, while Enzyme uses a `mount` method.
+- Enzyme
+- React Testing Library (RTL)
+- React Test Renderer
+- Identity Proxy for Objects
+
+### Enzyme
+
+`setupTests.js`
+
+```javascript
+import { configure } from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+
+configure({ adapter: new Adapter() })
+```
+
+`npm i --save-dev enzyme @wojtekmaj/enzyme-adapter-react-17`
+
+### React Testing Library
 
 The [`React Testing Library`](https://testing-library.com/docs/react-testing-library/intro/) is a very lightweight solution for testing React components. It provides light utility functions on top of `react-dom` and `react-dom/test-utils`, in a way that encourages better testing practices.  RTL works with instances of rendered React components so that tests will work with actual DOM nodes. The utilities this library provides facilitate querying the DOM in the same way the user would. Finding form elements by their label text (just like a user would), finding links and buttons from their text (like a user would). It also exposes a recommended way to find elements by a `data-testid` as an "escape hatch" for elements where the text content and label do not make sense or is not practical.
 
@@ -48,7 +68,7 @@ describe("Test Suite", () => {
 })
 ```
 
-## React Test Renderer
+### React Test Renderer
 
 React Test Renderer provides an experimental React renderer that can  be used to render React components to pure JavaScript objects, without  depending on the DOM or a native mobile environment. This package makes it easy to grab a snapshot of the  "DOM tree" rendered by a React DOM or React Native component without using a browser or` jsdom`.
 
@@ -67,7 +87,7 @@ console.log(renderer.toJSON())
 //   children: [ 'Facebook' ] }
 ```
 
-## Identity Proxy for Objects
+### Identity Proxy for Objects
 
 An identity object using ES6 proxies. Useful for testing trivial  webpack imports. For example, if you `import styles from 'styles.css'`, you can then configure Jest to import `identity-obj-proxy` for `*.css`. Then stylings such as `styles.container`  will resolve to `container` instead of throwing an exception.
 
@@ -129,7 +149,7 @@ test('the app is for realz', () => {
 
 - If there are local dependencies that need transformed by Jest, override the default `node_modules` ignore pattern with the Jest config option `transformIgnorePatterns`. This is an array of regex strings that describe what should be skipped by the transform. The regex containing `?!.*my-project-b`.* is a regex negative look ahead. Together, the pattern means "*ignore transforming anything in `node_modules` that doesn’t include `my-project-b` in the file path".*
 
-```javascript
+```  javascript
   "transformIgnorePatterns": [
     "<rootDir>.*(node_modules)(?!.*my-project-b.*).*$"
   ]

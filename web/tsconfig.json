@@ -2,7 +2,9 @@
   "extends": "../tsconfig.json",
   "include": ["src/**/*"],
   "compilerOptions": {
+    "allowJs": true,
     "baseUrl": ".",
+    "checkJs": true,
     "jsx": "preserve",
     "paths": {
       "api/*": ["src/api/*"],

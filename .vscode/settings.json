@@ -51,6 +51,7 @@
     "dont",
     "nlink"
   ],
+  "css.customData": ["./.vscode/custom.css-data.json"],
   "git.ignoreLimitWarning": true,
   "search.exclude": {
     "**/node_modules": true,

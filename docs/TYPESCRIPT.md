@@ -2,6 +2,7 @@
 
 1. Notes
 1. TypeScript Configuration Files
+1. Javascript files
 1. Typing React components using GraphQL
 1. Using Promise chained from `import` and Webstack bundling
 1. Use an arrow function to define a generic in a JSX file
@@ -73,19 +74,6 @@ React 17 uses a new JSX transform that doesn't require importing React for Babel
 Each package defines its own `tsconfig.json` which all extend a single `tsconfig.settings.json` file placed inside the root folder:
 
 ```json
-// ./tsconfig.settings.json
-{
-  "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "jsx": "react"
-  }
-}
-
 // ./packages/my-package/tsconfig.json
 {
   "extends": "../tsconfig.settings.json",  "compilerOptions": {
@@ -94,6 +82,10 @@ Each package defines its own `tsconfig.json` which all extend a single `tsconfig
 ```
 
 `outDir` in `tsconfig.json` should be set to the same location defined in the `main` field in `package.json`.
+
+## Javascript Files
+
+Configuration options `allowJs` and `checkJs` both default to false. They are enabled in the Gatsby config so that JSDoc-style type annotations can be used in the `gatsby-*.js` config files. [Documentation](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
 
 ## Typing React components using GraphQL
 

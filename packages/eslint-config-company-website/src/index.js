@@ -28,7 +28,10 @@ module.exports = {
     'prettier',
   ],
   rules: {
-    camelcase: [level, { properties: 'never' }],
+    //
+    '@typescript-eslint/explicit-module-boundary-types': 'off', // avoid un-fixable lint errors reported within .js/.jsx files, https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-module-boundary-types.md
+    '@typescript-eslint/no-var-requires': 'off', // allow JS files to use `require`, overridden below for TS files
+    camelcase: [level],
     curly: [level, 'all'],
     'import/no-unresolved': level,
     'import/no-webpack-loader-syntax': level,
@@ -43,7 +46,6 @@ module.exports = {
       },
     ],
     'new-cap': [level, { newIsCap: true, capIsNew: false }],
-    'no-console': 'off',
     'no-new': level,
     'no-restricted-globals': ['error'].concat(restrictedGlobals),
     'no-unused-expressions': [
@@ -88,20 +90,13 @@ module.exports = {
       extends: ['plugin:@typescript-eslint/recommended', 'prettier'],
       rules: {
         '@typescript-eslint/ban-types': level,
-        '@typescript-eslint/camelcase': 'off',
-        '@typescript-eslint/explicit-function-return-type': 'off',
-        '@typescript-eslint/explicit-module-boundary-types': 'off',
-        '@typescript-eslint/no-empty-function': 'off',
-        '@typescript-eslint/no-empty-interface': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': level,
         '@typescript-eslint/no-unused-vars': [
           level,
           { varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
         ],
-        '@typescript-eslint/no-use-before-define': 'off',
-        '@typescript-eslint/no-var-requires': 'off',
-        camelcase: 'off',
-        'no-empty-function': 'off',
-        'no-use-before-define': 'off',
+        '@typescript-eslint/no-var-requires': level,
+        camelcase: level,
       },
     },
     {
