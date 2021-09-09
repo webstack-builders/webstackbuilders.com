@@ -8,6 +8,7 @@
     "npm": ">=7.0.0",
     "yarn": "please-use-npm"
   },
+  "packageManager": "npm",
   "scripts": {
     "build": "lerna run build --parallel",
     "build:studio": "lerna bootstrap && cd studio && npm run build",
@@ -30,8 +31,8 @@
   "devDependencies": {
     "@sanity/cli": "^2.7.4",
     "@types/node": "^16.0.0",
-    "@webstackbuilders/eslint-config-company-website": "^0.3.0",
-    "@webstackbuilders/prettier-config-company-website": "^0.3.0",
+    "@webstackbuilders/eslint-config-company-website": "^0.4.0",
+    "@webstackbuilders/prettier-config-company-website": "^0.4.0",
     "gatsby-cli": "^3.8.0",
     "husky": "^7.0.1",
     "lerna": "^4.0.0",

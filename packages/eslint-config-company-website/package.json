@@ -19,6 +19,7 @@
     "npm": ">=7.0.0",
     "yarn": "please-use-npm"
   },
+  "packageManager": "npm",
   "scripts": {
     "prepublish": "npm pack",
     "test": "jest --testPathPattern='/src/*'"

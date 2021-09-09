@@ -9,6 +9,7 @@
     "preset"
   ],
   "main": "jest-preset.js",
+  "packageManager": "npm",
   "scripts": {
     "test": "npm run test:lint && npm run test:unit",
     "test:lint": "eslint ./ --ignore-path .gitignore --ext .js",

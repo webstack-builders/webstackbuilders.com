@@ -1,7 +1,7 @@
 /**
  * These typings are copy-pasted from @sanity/base/types. Sanity docs for TypeScript show
  * config to add to tsconfig.json to include this file. This file is in the studio to allow
- * modifying the any types provided by Sanity.
+ * modifying the `any` types provided by Sanity.
  */
 
 /* eslint-disable @typescript-eslint/no-explicit-any */

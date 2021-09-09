@@ -7,6 +7,7 @@
 import '@reach/skip-nav/styles.css'
 
 /** @typedef {{ location: object, prevLocation: object }} LocationObject */
+/** @typedef {Record<string, any>} PluginOptionsObject */
 
 /**
  * @param {LocationObject} locationObject
@@ -25,8 +26,9 @@ function skipLinkHandler(locationObject) {
 
 /**
  * @param {LocationObject} locationObject
+ * @param {pluginOptions} pluginOptionsObject
  * @return {undefined}
  */
-export function onRouteUpdate(locationObject) {
+export function onRouteUpdate(locationObject /*, pluginOptionsObject*/) {
   skipLinkHandler(locationObject)
 }

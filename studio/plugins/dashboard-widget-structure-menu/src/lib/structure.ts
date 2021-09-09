@@ -8,43 +8,36 @@ import {
   throwError,
 } from 'rxjs'
 import { mergeMap } from 'rxjs/operators'
+import { ListBuilder } from '@sanity/structure/dist/dts/List'
+import { StructureError } from '@sanity/desk-tool/dist/dts/components/StructureError'
 
-let prevStructureError: any = null
-
-declare var __DEV__: boolean
-declare var module: {
-  hot: {
-    data: {
-      prevError: any
-    }
-  }
-}
-
-if (__DEV__) {
-  if (module.hot && module.hot.data) {
-    prevStructureError = module.hot.data.prevError
-  }
-}
-
-export function isSubscribable(thing) {
+function isSubscribable(thing) {
   return (
     thing &&
     (typeof thing.then === 'function' || typeof thing.subscribe === 'function')
   )
 }
 
-export function isStructure(structure) {
+function isStructure(structure) {
   return (
     structure &&
-    (typeof structure === 'function' ||
+    (
+      typeof structure === 'function' ||
       typeof structure.serialize !== 'function' ||
       typeof structure.then !== 'function' ||
       typeof structure.subscribe !== 'function' ||
-      typeof structure.type !== 'string')
+      typeof structure.type !== 'string'
+    )
   )
 }
 
-export function serializeStructure(item, context, resolverArgs = []) {
+
+/*
+function pickCard(x: { suit: string; card: number }[]): number;
+function pickCard(x: number): { suit: string; card: number };
+function pickCard(x: any): any {
+*/
+function serializeStructure(item, context, resolverArgs = []) {
   // Lazy
   if (typeof item === 'function') {
     return serializeStructure(item(...resolverArgs), context, resolverArgs)
@@ -66,7 +59,11 @@ export function serializeStructure(item, context, resolverArgs = []) {
   return observableOf(item)
 }
 
-export function getDefaultStructure() {
+/**
+ * Default implementation of @sanity/desk-tool/structure in case it's not implemented
+ * in the Studio this plugin is used in.
+ */
+function getDefaultStructure(): typeof ListBuilder {
   const items = StructureBuilder.documentTypeListItems()
   return StructureBuilder.list()
     .id('__root__')
@@ -75,19 +72,50 @@ export function getDefaultStructure() {
     .items(items)
 }
 
-// We are lazy-requiring/resolving the structure inside of a function in order to catch errors
-// on the root-level of the module. Any loading errors will be caught and emitted as errors
+
+
+// Structure is a function, an observable, a promise or a structure builder
+type Structure = typeof ListBuilder
+type StructureErrorOrNull = typeof StructureError | null
+
+declare var __DEV__: boolean
+// module.hot is a Webpack global giving access to Webpack HMR API. import.meta.webpackHot is a
+// property also exposing the HMR API. Note that only import.meta.webpackHot can be used in strict ESM.
+declare var module: {
+  hot: {
+    // module.hot.data is state passed as the `data` parameter to `module.hot.dispose`
+    // or `import.meta.webpackHot.dispose` methods, executed when the module code at the calling
+    // site is replaced by HMR.
+    data: {
+      prevError: StructureErrorOrNull
+    }
+  }
+}
+
+let prevStructureError: StructureErrorOrNull = null
+if (__DEV__) {
+  if (module.hot && module.hot.data) {
+    prevStructureError = module.hot.data.prevError
+  }
+}
+
+
+/**
+ * We are lazy-requiring/resolving the structure inside of a function in order to catch errors
+ * on the root-level of the module. Any loading errors will be caught and emitted as errors.
+ */
 // eslint-disable-next-line complexity
 export function loadStructure() {
-  let structure
+  let structure: Structure
 
   try {
-    const mod =
+    // Allow use in Studios that don't implement @sanity/desk-tool/structure or do so using CommonJS imports
+    const mod: Structure =
       require('part:@sanity/desk-tool/structure?') || getDefaultStructure()
     structure = mod && mod.__esModule ? mod.default : mod
 
-    // On invalid modules, when HMR kicks in, we sometimes get an empty object back when the
-    // source has changed without fixing the problem. In this case, keep showing the error
+    // On invalid modules, when HMR kicks in, sometimes an empty is returned when the source
+    // has changed without fixing the problem. In this case, keep showing the error.
     if (
       __DEV__ &&
       prevStructureError &&
@@ -97,7 +125,6 @@ export function loadStructure() {
     ) {
       return throwError(prevStructureError)
     }
-
     prevStructureError = null
   } catch (err) {
     prevStructureError = err

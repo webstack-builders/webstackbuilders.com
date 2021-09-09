@@ -15,6 +15,7 @@
     "npm": ">=7.0.0",
     "yarn": "please-use-npm"
   },
+  "packageManager": "npm",
   "scripts": {
     "dev": "sanity start",
     "format": "prettier-eslint --write \"**/*.js\" \"!node_modules/**\"",
@@ -54,8 +55,8 @@
     "@types/jest": "^27.0.1",
     "@types/react": "^17.0.19",
     "@types/react-test-renderer": "^17.0.1",
-    "@webstackbuilders/eslint-config-company-website": "^0.3.0",
-    "@webstackbuilders/prettier-config-company-website": "^0.3.0",
+    "@webstackbuilders/eslint-config-company-website": "^0.4.0",
+    "@webstackbuilders/prettier-config-company-website": "^0.4.0",
     "babel-jest": "^27.0.6",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.1.0",

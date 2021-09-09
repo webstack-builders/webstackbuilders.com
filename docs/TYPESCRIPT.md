@@ -3,6 +3,7 @@
 1. Notes
 1. TypeScript Configuration Files
 1. Javascript files
+1. Importing a Type Only from `node_modules`
 1. Typing React components using GraphQL
 1. Using Promise chained from `import` and Webstack bundling
 1. Use an arrow function to define a generic in a JSX file
@@ -86,6 +87,75 @@ Each package defines its own `tsconfig.json` which all extend a single `tsconfig
 ## Javascript Files
 
 Configuration options `allowJs` and `checkJs` both default to false. They are enabled in the Gatsby config so that JSDoc-style type annotations can be used in the `gatsby-*.js` config files. [Documentation](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
+
+## Importing a Type Only from `node_modules`
+
+Each of these declaration forms creates a new type name:
+
+- A type alias declaration (`type sn = number | string;`)
+- An interface declaration (`interface I { x: number[]; }`)
+- A class declaration (`class C { }`)
+- An enum declaration (`enum E { A, B, C }`)
+- An `import` declaration which refers to a type
+
+
+
+This snippet will import the type from a module so that it can be used in a typedef only and not generate an error about not being used in implementation. This example also shows importing from a non-standard file in an NPM module instead of `index.js`.
+
+```javascript
+declare const ListBuilder: typeof import('@sanity/structure/dist/dts/List').ListBuilder
+```
+
+
+
+Using `import type` and `export type` syntax:
+
+
+
+Triple-slash directives, and difference from `import type` and `export type`:
+
+
+
+
+
+The keyword `typeof` is only used to extract the type of variables. it’s only legal to use `typeof` on identifiers (i.e. variable names) or their properties.
+
+```javascript
+let s = "hello"
+let n: typeof s
+```
+
+Error in using `typeof`:
+
+```javascript
+// Meant to use = ReturnType<typeof msgbox>
+let shouldContinue: typeof msgbox("Are you sure you want to continue?")
+',' expected.
+```
+
+A declaration along the lines of:
+
+```javascript
+// vue-number.d.ts
+export type vueNumber = number | '';
+```
+
+In client code, the import statement generates a `'vue-number.d.ts' is not a module` error. If you want to use a declaration file, then remove `export` from `vue-number.d.ts`:
+
+```javascript
+type vueNumber = number | '';
+```
+
+and include the declaration file as a reference:
+
+```javascript
+///<reference path="vue-number.d.ts"/>
+let age: vueNumber = '';
+```
+
+Instead of a reference, you can include the typings in`tsconfig` either in `files` (a set of *root files*,  preprocessed in the same order they are specified) or `typeRoots` options (not sure which).
+
+
 
 ## Typing React components using GraphQL
 

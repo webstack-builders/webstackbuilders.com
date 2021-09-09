@@ -142,3 +142,5 @@ const wackyWord = ['zaallano', 'wooorrdd', 'zzooommmmmmmm'];
 - Move Jest global config to package skeleton already set up. Use `preset` key in project `jest.config.ts` files to load package config. Use `reporters` key to  to add custom reporter to Jest. Might need to set up some way to define the project root (like `redwood.toml`) for `cacheDirectory` and `coverageDirectory` keys that specify a directory, or maybe these should be per-project and not in the root directory.
 - Add typescript to eslint and prettier packages, so the config can be typechecked the way Jest config is done.
 - Move Studio dashboard-widget-structure-menu plugin into a package
+- Add Cypress e2e tests and use cypress-axe accessibility testing plugin
+- Add StoryBook
