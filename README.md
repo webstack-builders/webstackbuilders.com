@@ -144,3 +144,4 @@ const wackyWord = ['zaallano', 'wooorrdd', 'zzooommmmmmmm'];
 - Move Studio dashboard-widget-structure-menu plugin into a package
 - Add Cypress e2e tests and use cypress-axe accessibility testing plugin
 - Add StoryBook
+- Add `lint-staged`, which adds a `husky` hook to run the linter on staged files on commit.

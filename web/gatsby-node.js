@@ -31,6 +31,10 @@ export async function createPages(createPagesArgs) {
 export function onCreateWebpackConfig(createPagesArgs) {
   const { actions } = createPagesArgs
   actions.setWebpackConfig({
+    // devtool controls if and how source maps are generated. eval-source-map yields the best quality
+    // SourceMaps for development. Set for use by debugger for Chrome , set in `.vscode/launch.json`
+    devtool: 'eval-source-map',
+    // loads environment variables from an .env file into process.env
     plugins: [new Dotenv()],
   })
 }
