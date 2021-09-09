@@ -11,26 +11,26 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:jest-dom/recommended',
     'plugin:jsx-a11y/recommended',
-    'plugin:prettier/recommended',
-    'plugin:react/recommended',
-    'prettier',
+    'plugin:node/recommended',
+    'plugin:react/recommended'    'prettier', // must be last in list
   ],
   plugins: [
+    '@typescript-eslint',
     'import',
     'jest-dom',
     'jsx-a11y',
+    'node',
     'react-hooks',
     'react',
-    'prettier',
   ],
   rules: {
-    //
-    '@typescript-eslint/explicit-module-boundary-types': 'off', // avoid un-fixable lint errors reported within .js/.jsx files, https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-module-boundary-types.md
-    '@typescript-eslint/no-var-requires': 'off', // allow JS files to use `require`, overridden below for TS files
+    // Base ESLint rules
+    'arrow-body-style': 'off', // problematic rule with Prettier https://github.com/prettier/eslint-plugin-prettier/issues/65
     camelcase: [level],
     curly: [level, 'all'],
     'import/no-unresolved': level,
@@ -57,8 +57,18 @@ module.exports = {
       { varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
     ],
     'no-useless-escape': 'off',
+    'prefer-arrow-callback': 'off', // problematic rule with Prettier https://github.com/prettier/eslint-plugin-prettier/issues/65
     'prefer-object-spread': level,
     'prefer-spread': level,
+
+    // Node rules
+    'node/no-unpublished-import': [
+      level,
+      {
+        'allowModules': ['electron']
+      },
+    ],
+
     // React rules
     'react-hooks/exhaustive-deps': level,
     'react-hooks/rules-of-hooks': level,
@@ -77,6 +87,10 @@ module.exports = {
       },
     ],
     'react/react-in-jsx-scope': 'off',
+
+    // TypeScript rules
+    '@typescript-eslint/explicit-module-boundary-types': 'off', // avoid un-fixable lint errors reported within .js/.jsx files, https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-module-boundary-types.md
+    '@typescript-eslint/no-var-requires': 'off', // allow JS files to use `require`, overridden below for TS files
   },
   overrides: [
     {
