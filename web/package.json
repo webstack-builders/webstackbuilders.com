@@ -37,7 +37,7 @@
     "date-fns": "^2.19.0",
     "gatsby": "^3.0.3",
     "gatsby-image": "^3.11.0",
-    "gatsby-plugin-canonical-urls": "^3.10.0",
+    "gatsby-plugin-canonical-urls": "^3.13.0",
     "gatsby-plugin-image": "^1.13.0",
     "gatsby-plugin-layout": "^2.10.0",
     "gatsby-plugin-manifest": "^3.12.0",
