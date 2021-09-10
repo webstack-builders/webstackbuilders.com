@@ -24,7 +24,8 @@
     "dev": "cross-env GATSBY_GRAPHQL_IDE=playground gatsby develop -p 8002",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
     "lint": "eslint .",
-    "test": "npm run lint && jest"
+    "test": "npm run lint && jest",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@reach/skip-nav": "^0.16.0",

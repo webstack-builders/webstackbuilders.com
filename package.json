@@ -22,7 +22,7 @@
     "publish": "lerna publish from-git",
     "test": "lerna run test",
     "test:coverage": "lerna run test --coverage",
-    "tsc": "tsc",
+    "typecheck": "tsc --noEmit",
     "update-browserslist": "npx browserslist@latest --update-db",
     "version:major": "lerna version major",
     "version:minor": "lerna version minor",

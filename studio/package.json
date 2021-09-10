@@ -23,7 +23,7 @@
     "graphql-deploy": "sanity graphql deploy --playground",
     "lint": "eslint .",
     "test": "sanity check && jest --testPathPattern='/src/*'",
-    "tsc": "tsc"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@sanity/base": "^2.7.4",
