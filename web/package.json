@@ -47,7 +47,7 @@
     "gatsby-plugin-sharp": "^3.10.2",
     "gatsby-plugin-theme-ui": "^0.11.2",
     "gatsby-plugin-typegen": "^2.2.4",
-    "gatsby-plugin-typescript": "^3.8.0",
+    "gatsby-plugin-typescript": "^3.13.0",
     "gatsby-source-sanity": "^7.0.7",
     "gatsby-transformer-sharp": "^3.10.0",
     "modern-normalize": "^1.1.0",
