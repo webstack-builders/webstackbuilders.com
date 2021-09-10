@@ -4,40 +4,94 @@ import { StructureBuilder } from '@sanity/structure'
 import {
   defer,
   from as observableFrom,
+  Observable,
+  ObservableInput
   of as observableOf,
   throwError,
 } from 'rxjs'
 import { mergeMap } from 'rxjs/operators'
 import { ListBuilder } from '@sanity/structure/dist/dts/List'
 import { StructureError } from '@sanity/desk-tool/dist/dts/components/StructureError'
+import { StructureNode, Builder, CollectionBuilder, Child } from '@sanity/structure/dist/dts/StructureNodes'
 
-function isSubscribable(thing) {
+// Structure is a function, an observable, a promise or a structure builder
+type Structure = typeof ListBuilder // | @TODO: need the other types
+type StructureErrorOrNull = typeof StructureError | null
+
+type SerializableStructureNode =
+  | StructureNode
+  | ObservableInput<StructureNode>
+  | StructureResolver
+  | CollectionBuilder
+  | Child
+
+interface StructureResolver {
+  (...args: any[]): SerializableStructureNode
+}
+
+declare var __DEV__: boolean
+
+// module.hot is a Webpack global giving access to Webpack HMR API. import.meta.webpackHot is a
+// property also exposing the HMR API. Note that only import.meta.webpackHot can be used in strict ESM.
+declare var module: {
+  hot: {
+    // module.hot.data is state passed as the `data` parameter to `module.hot.dispose`
+    // or `import.meta.webpackHot.dispose` methods, executed when the module code at the calling
+    // site is replaced by HMR.
+    data: {
+      prevError: StructureErrorOrNull
+    }
+  }
+}
+
+let prevStructureError: StructureErrorOrNull = null
+
+if (__DEV__) {
+  if (module.hot && module.hot.data) {
+    prevStructureError = module.hot.data.prevError
+  }
+}
+
+
+function isSubscribable(subject: SerializableStructureNode): subject is ObservableInput<StructureNode> {
+  if (!subject) return false
   return (
-    thing &&
-    (typeof thing.then === 'function' || typeof thing.subscribe === 'function')
+    typeof (subject as Promise<StructureNode>).then === 'function' ||
+    typeof (subject as Observable<StructureNode>).subscribe === 'function'
   )
 }
 
-function isStructure(structure) {
-  return (
-    structure &&
-    (
-      typeof structure === 'function' ||
+
+
+function isStructure(structure: unknown): boolean {
+  if (typeof structure === 'function' || typeof structure === 'string') return true
+  if (structure && typeof structure === 'object') {
+    return (
       typeof structure.serialize !== 'function' ||
       typeof structure.then !== 'function' ||
       typeof structure.subscribe !== 'function' ||
       typeof structure.type !== 'string'
     )
-  )
+  }
+  return false
+}
+
+// example
+const isSerializable = (thing: SerializableStructureNode): thing is CollectionBuilder => {
+  return thing && typeof (thing as Builder).serialize === 'function'
 }
 
 
-/*
-function pickCard(x: { suit: string; card: number }[]): number;
-function pickCard(x: number): { suit: string; card: number };
-function pickCard(x: any): any {
-*/
-function serializeStructure(item, context, resolverArgs = []) {
+const isResolver = (thing: SerializableStructureNode): thing is StructureResolver => {
+  return typeof thing === 'function'
+}
+
+
+function serializeStructure(
+  item: SerializableStructureNode,
+  context?: any,
+  resolverArgs: any[] = []
+): Observable<StructureNode> {
   // Lazy
   if (typeof item === 'function') {
     return serializeStructure(item(...resolverArgs), context, resolverArgs)
@@ -63,42 +117,24 @@ function serializeStructure(item, context, resolverArgs = []) {
  * Default implementation of @sanity/desk-tool/structure in case it's not implemented
  * in the Studio this plugin is used in.
  */
-function getDefaultStructure(): typeof ListBuilder {
+function getDefaultStructure(): ListBuilder {
+  // An array of list items for all defined document types in the schema, and configure
+  // them with the correct titles, icons, initial value templates and similar.
   const items = StructureBuilder.documentTypeListItems()
-  return StructureBuilder.list()
-    .id('__root__')
-    .title('Content')
-    .showIcons(items.some((item) => item.getSchemaType().icon))
-    .items(items)
+
+  return (
+    // Group different list items within a pane.
+    StructureBuilder.list()
+      // Identifier for the list used to reflect the current structure state in the studio’s URL.
+      .id('__root__')
+      // Title for the collapsible pane.
+      .title('Content')
+      // Whether or not to show the icons of the list items.
+      .showIcons(items.some((item) => item.getSchemaType().icon))
+      // List items to display.
+      .items(items)
+  )
 }
-
-
-
-// Structure is a function, an observable, a promise or a structure builder
-type Structure = typeof ListBuilder
-type StructureErrorOrNull = typeof StructureError | null
-
-declare var __DEV__: boolean
-// module.hot is a Webpack global giving access to Webpack HMR API. import.meta.webpackHot is a
-// property also exposing the HMR API. Note that only import.meta.webpackHot can be used in strict ESM.
-declare var module: {
-  hot: {
-    // module.hot.data is state passed as the `data` parameter to `module.hot.dispose`
-    // or `import.meta.webpackHot.dispose` methods, executed when the module code at the calling
-    // site is replaced by HMR.
-    data: {
-      prevError: StructureErrorOrNull
-    }
-  }
-}
-
-let prevStructureError: StructureErrorOrNull = null
-if (__DEV__) {
-  if (module.hot && module.hot.data) {
-    prevStructureError = module.hot.data.prevError
-  }
-}
-
 
 /**
  * We are lazy-requiring/resolving the structure inside of a function in order to catch errors
@@ -109,7 +145,7 @@ export function loadStructure() {
   let structure: Structure
 
   try {
-    // Allow use in Studios that don't implement @sanity/desk-tool/structure or do so using CommonJS imports
+    // Allow use in Studios that don't implement @sanity/desk-tool/structure or do so using CommonJS imports.
     const mod: Structure =
       require('part:@sanity/desk-tool/structure?') || getDefaultStructure()
     structure = mod && mod.__esModule ? mod.default : mod
@@ -125,6 +161,7 @@ export function loadStructure() {
     ) {
       return throwError(prevStructureError)
     }
+
     prevStructureError = null
   } catch (err) {
     prevStructureError = err
