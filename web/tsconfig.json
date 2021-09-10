@@ -19,7 +19,8 @@
       "styles/*": ["src/styles/*"],
       "templates/*": ["src/templates/*"],
       "types/*": ["src/@types/*"]
-    }
+    },
+    "typeRoots" : ["./node_modules/@types"]
   },
   "ts-node": {
     "require": ["tsconfig-paths/register"]
