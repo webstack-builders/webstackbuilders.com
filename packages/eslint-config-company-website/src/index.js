@@ -62,6 +62,10 @@ module.exports = {
     'prefer-spread': level,
 
     // Node rules
+
+    // @TODO: When using transpilers (e.g. Babel), the file path to a source code may never be published.
+    // convertPath option tells to the rule, it needs to convert file paths.
+    // https://github.com/mysticatea/eslint-plugin-node/blob/master/docs/rules/no-unpublished-import.md
     'node/no-unpublished-import': [
       level,
       {
