@@ -144,4 +144,19 @@ const wackyWord = ['zaallano', 'wooorrdd', 'zzooommmmmmmm'];
 - Move Studio dashboard-widget-structure-menu plugin into a package
 - Add Cypress e2e tests and use cypress-axe accessibility testing plugin
 - Add StoryBook
-- Add `lint-staged`, which adds a `husky` hook to run the linter on staged files on commit.
+- Add linting to CI workflow. Alternative to using something like `lint-staged`, which adds a `husky` hook to run the linter on staged files on commit.
+- Add `semantic-release` (release notes generation) and `commitizen` (version bump and changelog generation):
+
+packages `commitizen`, `cz-conventional-changelog`, `semantic-release`, and `lint-staged`:
+
+```json
+// package.json
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "*.ts": "eslint --cache --cache-location .eslintcache --fix"
+  },
+```

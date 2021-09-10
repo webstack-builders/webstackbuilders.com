@@ -23,18 +23,22 @@ const previewURL =
  */
 export const getDefaultDocumentNode = (props: { schemaType: SchemaType }) => {
   const { schemaType } = props
+
   if (schemaType.toString() == 'post') {
+    // Views appear as tabs at the top of document views if there are two or more views defined.
     return StructureBuilder.document().views([
-      // returns the default form-based editor for the 'post' document type
-      StructureBuilder.view.form(),
-      // takes a React component and renders it into the document view
+      // Returns the default form-based editor for the 'post' document type
+      StructureBuilder.view
+        .form(),
+      // Takes a React component and renders it into the document view
       StructureBuilder.view
         .component(IframePreview)
         .title('Web preview')
         .options({ previewURL }),
     ])
   }
-  // return the default form-based editor for all other document types
+
+  // Return the default form-based editor for all other document types
   return StructureBuilder.document().views([StructureBuilder.view.form()])
 }
 
@@ -85,9 +89,11 @@ export default () =>
       // defined in schema.js. We filter out those that we have defined the structure above.
       ...StructureBuilder.documentTypeListItems().filter((listItem) => {
         const listItemId = listItem.getId()
+
         if (listItemId === undefined) {
           return false
         }
+
         return !['category', 'author', 'post', 'siteSettings'].includes(
           listItemId
         )
