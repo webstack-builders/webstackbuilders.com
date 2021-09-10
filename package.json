@@ -34,7 +34,7 @@
     "@webstackbuilders/eslint-config-company-website": "^0.4.0",
     "@webstackbuilders/prettier-config-company-website": "^0.4.0",
     "gatsby-cli": "^3.8.0",
-    "husky": "^7.0.1",
+    "husky": "^7.0.2",
     "lerna": "^4.0.0",
     "tsconfig": "^7.0.0",
     "tsconfig-paths-jest-mapper": "^1.4.0",
