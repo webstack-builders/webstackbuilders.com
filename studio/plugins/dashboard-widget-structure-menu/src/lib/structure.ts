@@ -74,7 +74,6 @@ function isStructure(structure: unknown): boolean {
     )
   }
   return false
-<<<<<<< Updated upstream
 }
 
 // example
@@ -93,17 +92,6 @@ function serializeStructure(
   context?: any,
   resolverArgs: any[] = []
 ): Observable<StructureNode> {
-=======
-}
-
-
-/*
-function serializeStructure(item, context, resolverArgs): number;
-function serializeStructure(): { suit: string; card: number };
-function serializeStructure(): any {
-*/
-function serializeStructure(item, context, resolverArgs = []) {
->>>>>>> Stashed changes
   // Lazy
   if (typeof item === 'function') {
     return serializeStructure(item(...resolverArgs), context, resolverArgs)
