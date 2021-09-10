@@ -60,7 +60,8 @@ yarn.lock
 
 # Secrets
 .env
-.env.*
+.env.development
+.env.production
 
 # Enforce using `lerna add` for monorepo packages. See note in README todos
 #packages/eslint-config-company-website/package-lock.json

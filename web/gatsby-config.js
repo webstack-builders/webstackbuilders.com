@@ -15,8 +15,9 @@
  */
 const path = require('path')
 
+// Default to production environmental variables if not development environment
 require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV || 'development'}`,
+  path: `.env.${process.env.NODE_ENV || '.env.production'}`,
 })
 
 require('source-map-support').install()
