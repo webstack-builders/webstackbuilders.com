@@ -54,7 +54,7 @@
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
-    "mini-css-extract-plugin": "2.1.0",
+    "mini-css-extract-plugin": "2.2.2",
     "postcss": "8.3.5",
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-loader": "6.1.1",
