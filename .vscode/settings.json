@@ -1,10 +1,4 @@
 {
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "editor.formatOnSave": false,
-  "editor.tabSize": 2,
-  "files.trimTrailingWhitespace": true,
   "cSpell.ignorePaths": [
     "**/__generated__/**",
     "**/.git/**",
@@ -29,7 +23,9 @@
     "loadershim",
     "myorg",
     "navigations",
+    "pinst",
     "post",
+    "postpublish",
     "posts",
     "precompilation",
     "react's",
@@ -40,6 +36,7 @@
     "transpiled",
     "true",
     "tsbuildinfo",
+    "typecheck",
     "typegen",
     "typeof",
     "unmount",
@@ -52,7 +49,42 @@
     "nlink"
   ],
   "css.customData": ["./.vscode/custom.css-data.json"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.formatOnSave": false,
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
   "git.ignoreLimitWarning": true,
+  "json.schemas": [
+    {
+      "fileMatch": [
+        ".babelrc",
+        "babel.config.json"
+      ],
+      "url": "./json-schemas/babelrc.json"
+    },
+    {
+      "fileMatch": [
+        "codecov.yml",
+        "codecov.yaml"
+      ],
+      "url": "./json-schemas/codecov.json"
+    },
+    {
+      "fileMatch": [
+        "cypress.json"
+      ],
+      "url": "./json-schemas/cypress.json"
+    },
+    {
+      "fileMatch": [
+        ".eslintrc",
+        "eslintrc.json"
+      ],
+      "url": "./json-schemas/eslintrc.json"
+    }
+  ],
   "search.exclude": {
     "**/node_modules": true,
     "**/__fixtures__": true,

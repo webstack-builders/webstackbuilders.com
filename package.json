@@ -19,7 +19,7 @@
     "link": "lerna link --force-local",
     "lint": "eslint . && lerna run lint",
     "postinstall": "lerna bootstrap",
-    "postpublish": "pinst --enable"
+    "postpublish": "pinst --enable",
     "pre-commit": "noop",
     "prepare": "is-ci || husky install",
     "prepublishOnly": "pinst --disable",
