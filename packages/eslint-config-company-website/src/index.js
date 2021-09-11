@@ -23,13 +23,16 @@ module.exports = {
     '@typescript-eslint',
     'import',
     'jest-dom',
+    'jsdoc',
     'jsx-a11y',
     'node',
+    'no-null',
     'react-hooks',
     'react',
   ],
   rules: {
-    // Base ESLint rules
+    // Base ESLint Rules
+
     'arrow-body-style': 'off', // problematic rule with Prettier https://github.com/prettier/eslint-plugin-prettier/issues/65
     camelcase: [level],
     curly: [level, 'all'],
@@ -47,6 +50,7 @@ module.exports = {
     ],
     'new-cap': [level, { newIsCap: true, capIsNew: false }],
     'no-new': level,
+    'no-null/no-null': 2,
     'no-restricted-globals': ['error'].concat(restrictedGlobals),
     'no-unused-expressions': [
       level,
@@ -61,7 +65,7 @@ module.exports = {
     'prefer-object-spread': level,
     'prefer-spread': level,
 
-    // Node rules
+    // Node Rules
 
     // @TODO: When using transpilers (e.g. Babel), the file path to a source code may never be published.
     // convertPath option tells to the rule, it needs to convert file paths.
@@ -73,7 +77,8 @@ module.exports = {
       },
     ],
 
-    // React rules
+    // React Rules
+
     'react-hooks/exhaustive-deps': level,
     'react-hooks/rules-of-hooks': level,
     'react/display-name': 'off',
@@ -92,9 +97,34 @@ module.exports = {
     ],
     'react/react-in-jsx-scope': 'off',
 
-    // TypeScript rules
+    // TypeScript Rules
+
     '@typescript-eslint/explicit-module-boundary-types': 'off', // avoid un-fixable lint errors reported within .js/.jsx files, https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-module-boundary-types.md
     '@typescript-eslint/no-var-requires': 'off', // allow JS files to use `require`, overridden below for TS files
+
+    // JSDoc Rules
+    'jsdoc/check-access': 1,
+    'jsdoc/check-alignment': 1,
+    'jsdoc/check-examples': 1,
+    'jsdoc/check-indentation': 1,
+    'jsdoc/check-line-alignment': 1,
+    'jsdoc/check-param-names': 1,
+    'jsdoc/check-property-names': 1,
+    'jsdoc/check-syntax': 1,
+    'jsdoc/check-tag-names': 1,
+    'jsdoc/check-types': 1,
+    'jsdoc/check-values': 1,
+    'jsdoc/empty-tags': 1,
+    'jsdoc/implements-on-classes': 1,
+    'jsdoc/match-description': 1,
+    'jsdoc/multiline-blocks': 1,
+    'jsdoc/newline-after-description': 1,
+    'jsdoc/no-bad-blocks': 1,
+    'jsdoc/no-defaults': 1,
+    'jsdoc/no-multi-asterisks': 1,
+    'jsdoc/no-types': 1,
+    'jsdoc/tag-lines': 1,
+    'jsdoc/valid-types': 1,
   },
   overrides: [
     {

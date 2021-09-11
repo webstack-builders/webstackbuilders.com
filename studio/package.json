@@ -1,7 +1,6 @@
 {
   "private": true,
   "name": "webstack-builders-company-website-cms-studio",
-  "version": "0.1.3",
   "description": "Sanity Studio admin UI for the Webstack Builders company website",
   "author": "Webstack Builders <info@webstackbuilders.com>",
   "main": "package.json",
