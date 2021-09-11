@@ -1,4 +1,4 @@
-version: 2
+cd version: 2
 updates:
   - package-ecosystem: npm
     versioning-strategy: "increase"
