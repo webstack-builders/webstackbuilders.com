@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+# Sync Production and Staging Sanity CMS Datasets
+temp_file=$(mktemp)
+
+sanity dataset export production webstackbuilders.com.tar.gz
+
+sanity dataset import webstackbuilders.com.tar.gz staging --replace
+
+rm ${temp_file}
+
+
+# POSIX-compatible approach
+
+tmpfile=$(
+  echo 'mkstemp(template)' |
+    m4 -D template="${TMPDIR:-/tmp}/baseXXXXXX"
+) || exit
+
+# open once for writing, twice for reading:
+exec 3> "$tempfile" 4< "$tempfile" 5< "$tempfile"
+
+rm -f -- "$tmpfile"
+
+cmd >&3   # store something in the temp file
+exec 3>&- # fd no longer needed
+
+# read the content twice:
+cat <&4
+cat <&5
+
+
+
+# create file descriptor 3 for writing to a temporary file so that
+# echo ... >&3 writes to that file
+exec 3>"$tmpfile"
+
+# create file descriptor 4 for reading from the same file so that
+# the file seek positions for reading and writing can be different
+exec 4<"$tmpfile"
+
+# delete temp file; the directory entry is deleted at once; the reference counter
+# of the inode is decremented only after the file descriptor has been closed.
+# The file content blocks are deallocated (this is the real deletion) when the
+# reference counter drops to zero.
+rm "$tmpfile"
+
+# your script continues
+: ...
+
+# example of writing to file descriptor
+echo foo >&3
+
+# your script continues
+: ...
+
+# reading from that file descriptor
+head -n 1 <&4
+
+# close the file descriptor (done automatically when script exits)
+exec 3>-

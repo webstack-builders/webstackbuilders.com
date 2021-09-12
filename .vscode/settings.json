@@ -1,19 +1,125 @@
 {
-  "editor.tabSize": 2,
-  "files.trimTrailingWhitespace": true,
-  "editor.formatOnSave": false,
+  "cSpell.ignorePaths": [
+    "**/__generated__/**",
+    "**/.git/**",
+    "**/.vscode",
+    "**/node_modules/**",
+    "**/package-lock.json"
+  ],
+  "cSpell.words": [
+    "autobuild",
+    "avif",
+    "blog",
+    "bools",
+    "browserslist",
+    "browserslistrc",
+    "camelcase",
+    "codecov",
+    "codeql",
+    "contentful",
+    "corejs",
+    "ecent",
+    "es",
+    "gtag",
+    "keyof",
+    "lastname",
+    "loadershim",
+    "myorg",
+    "navigations",
+    "pinst",
+    "posix",
+    "post",
+    "postpublish",
+    "posts",
+    "precompilation",
+    "react's",
+    "repos",
+    "symlink",
+    "symlinking",
+    "toolchain",
+    "transpiled",
+    "true",
+    "tsbuildinfo",
+    "typecheck",
+    "typegen",
+    "typeof",
+    "unmount",
+    "unmounting",
+    "webm"
+  ],
+  "cSpell.ignoreWords": [
+    "avi",
+    "dont",
+    "nlink"
+  ],
+  "css.customData": ["./.vscode/custom.css-data.json"],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "editor.formatOnSave": false,
+  "editor.tabSize": 2,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "git.ignoreLimitWarning": true,
+  "json.schemas": [
+    {
+      "fileMatch": [
+        ".babelrc",
+        "babel.config.json"
+      ],
+      "url": "./json-schemas/babelrc.json"
+    },
+    {
+      "fileMatch": [
+        "codecov.yml",
+        "codecov.yaml"
+      ],
+      "url": "./json-schemas/codecov.json"
+    },
+    {
+      "fileMatch": [
+        "cypress.json"
+      ],
+      "url": "./json-schemas/cypress.json"
+    },
+    {
+      "fileMatch": [
+        ".eslintrc",
+        "eslintrc.json"
+      ],
+      "url": "./json-schemas/eslintrc.json"
+    }
+  ],
   "search.exclude": {
     "**/node_modules": true,
     "**/__fixtures__": true,
     "/web/public": true,
     "/studio/build": true
   },
-  "cSpell.words": [
-    "es",
-    "true"
-  ],
-  "git.ignoreLimitWarning": true
+
+  // Controls which tests are automatically run.
+  //  - all: Automatically runs all discovered test when auto-run is toggled. Reruns individual tests when they are changed.
+  //  - rerun: Reruns individual tests when they are changed. Will not automatically run any tests that have not been already executed.
+  "testing.autoRun.mode": "all",
+
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  // Preferred path style for auto imports.
+  //  - shortest: Prefers a non-relative import only if one is available that has fewer path segments than a relative import.
+  //  - relative: Prefers a relative path to the imported file location.
+  //  - non-relative: Prefers a non-relative import based on the `baseUrl` or `paths` configured in your `jsconfig.json` / `tsconfig.json`.
+  //  - project-relative: Prefers a non-relative import only if the relative import path would leave the package or project directory. Requires using TypeScript 4.2+ in the workspace.
+  "typescript.preferences.importModuleSpecifier": "shortest",
+
+  // Preferred quote style to use for quick fixes: `single` quotes, `double` quotes, or `auto` infer quote type from existing imports.
+  "typescript.preferences.quoteStyle": "auto",
+
+  // Controls auto detection of tsc tasks.
+  //  - on: Create both build and watch tasks.
+  //  - off: Disable this feature.
+  //  - build: Only create single run compile tasks.
+  //  - watch: Only create compile and watch tasks.
+  "typescript.tsc.autoDetect": "on",
+
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

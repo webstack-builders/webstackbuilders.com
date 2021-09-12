@@ -1,0 +1,44 @@
+name: Lint, build and run tests
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  all:
+    strategy:
+      matrix:
+        os: ['ubuntu-latest', 'windows-latest']
+        node-version: ['14']
+      fail-fast: true
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os }} | Node ${{ matrix.node-version }} latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cache "node_modules"
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: node_modules_${{ runner.os }}_${{ hashFiles('**/npm.lock') }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm build
+
+      - name: Run ESLint
+        run: npm lint
+        env:
+          CI: true
+
+      - name: Run tests
+        run: npm test
+        env:
+          CI: true

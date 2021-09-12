@@ -59,8 +59,10 @@ yarn.lock
 .yarn-integrity
 
 # Secrets
+.env
 .env.development
+.env.production
 
-# Enforce using `lerna add` for monorepo packages
-packages/eslint-config-company-website/package-lock.json
-packages/prettier-config-company-website/package-lock.json
+# Enforce using `lerna add` for monorepo packages. See note in README todos
+#packages/eslint-config-company-website/package-lock.json
+#packages/prettier-config-company-website/package-lock.json

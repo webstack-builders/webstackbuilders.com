@@ -1,0 +1,52 @@
+{
+  "name": "@webstackbuilders/theme-preset-website",
+  "version": "0.4.0",
+  "description": "Common Theme UI template for the Webstack Builders company website",
+  "author": "Webstack Builders <info@webstackbuilders.com>",
+  "homepage": "https://webstackbuilders.com",
+  "license": "BSD-2-Clause",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webstackdev/webstackbuilders.com.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webstackdev/webstackbuilders.com/issues"
+  },
+  "engines": {
+    "node": ">=15.0.0",
+    "npm": ">=7.0.0",
+    "yarn": "please-use-npm"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "prepublish": "tsc && npm pack",
+    "test": "jest --testPathPattern='/src/*'"
+  },
+  "keywords": [
+    "themeui",
+    "emotion",
+    "css",
+    "gatsby"
+  ],
+  "peerDependencies": {
+    "@theme-ui/prism": "^0.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/jest": "^27.0.1",
+    "babel-jest": "^27.1.1",
+    "eslint": "^7.32.0",
+    "jest": "^27.1.0",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  }
+}

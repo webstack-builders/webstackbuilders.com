@@ -1,0 +1,15 @@
+{
+  "declaration": true,
+  "extends": "../../tsconfig.json",
+  "module": "es2015",
+  "target": "es2015",
+  "compilerOptions": {
+    "outDir": "dist/",
+    "rootDir": "src",
+    "tsBuildInfoFile": "./.cache/tsconfig.tsbuildinfo"
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "watchOptions": {
+    "excludeDirectories": ["**/node_modules", ".cache", "dist"]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": "3"
+      }
+    ],
+    "@babel/react",
+    [
+      "@babel/typescript",
+      {
+        "allExtensions": true,
+        "isTSX": true,
+        "allowDeclareFields": true
+      }
+    ]
+  ]
+}

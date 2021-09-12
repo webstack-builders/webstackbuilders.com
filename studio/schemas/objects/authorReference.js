@@ -1,22 +1,25 @@
-export default {
-  name: "authorReference",
-  type: "object",
-  title: "Author reference",
-  fields: [
-    {
-      name: "author",
-      type: "reference",
-      to: [
+"use strict";
+exports.__esModule = true;
+exports["default"] = {
+    name: 'authorReference',
+    title: 'Author reference',
+    type: 'object',
+    fields: [
         {
-          type: "author",
+            name: 'author',
+            type: 'reference',
+            to: [
+                {
+                    type: 'author'
+                },
+            ]
         },
-      ],
-    },
-  ],
-  preview: {
-    select: {
-      title: "author.name",
-      media: "author.image.asset",
-    },
-  },
+    ],
+    preview: {
+        select: {
+            title: 'author.name',
+            media: 'author.image.asset'
+        }
+    }
 };
+//# sourceMappingURL=authorReference.js.map
