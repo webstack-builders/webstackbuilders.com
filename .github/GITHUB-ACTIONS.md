@@ -120,7 +120,6 @@ jobs:
         run: ...
 ```
 
-
 ### Caching dependencies
 
 `@actions/cache`

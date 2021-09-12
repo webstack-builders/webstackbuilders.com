@@ -7,12 +7,15 @@
     "**/package-lock.json"
   ],
   "cSpell.words": [
+    "autobuild",
     "avif",
     "blog",
     "bools",
     "browserslist",
     "browserslistrc",
     "camelcase",
+    "codecov",
+    "codeql",
     "contentful",
     "corejs",
     "ecent",
@@ -24,6 +27,7 @@
     "myorg",
     "navigations",
     "pinst",
+    "posix",
     "post",
     "postpublish",
     "posts",

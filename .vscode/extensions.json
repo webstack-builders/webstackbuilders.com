@@ -7,9 +7,11 @@
     "ecmel.vscode-html-css",
     "EditorConfig.EditorConfig",
     "mgmcdermott.vscode-language-babel",
+    "rbuckton.tsserver-live-reload",
     "sanity-io.vscode-sanity"
   ],
   "unwantedRecommendations": [
-    "johnpapa.vscode-peacock"
+    "johnpapa.vscode-peacock",
+    "ms-vscode.vscode-typescript-tslint-plugin"
   ]
 }

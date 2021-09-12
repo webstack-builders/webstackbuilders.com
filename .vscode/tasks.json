@@ -1,0 +1,28 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  // NPM tasks should be auto-detected.
+  "tasks": [
+    // runs npm lint using the ESLint stylish format.
+    {
+      "type": "npm",
+      "script": "lint",
+      "problemMatcher": ["$eslint-stylish"]
+    },
+    // custom task
+    {
+      "label": "Run tests",
+      "type": "shell",
+      "command": "./scripts/test.sh",
+      "windows": {
+        "command": ".\\scripts\\test.cmd"
+      },
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
+}

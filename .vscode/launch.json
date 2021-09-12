@@ -37,6 +37,17 @@
       "url": "http://localhost:8002",
       "webRoot": "${workspaceFolder}/web"
     },
+		{
+      "name": "Debug Gatsby Client-Side in PWA Chrome",
+			"type": "pwa-chrome",
+			"request": "attach",
+			"timeout": 30000,
+			"port": 8002,
+			"urlFilter": "*sharedProcess.html*",
+			"presentation": {
+				"hidden": true
+			}
+		},
     {
       "name": "Debug Studio develop",
       "type": "pwa-node",

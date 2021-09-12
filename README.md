@@ -163,3 +163,7 @@ packages `commitizen`, `cz-conventional-changelog`, `semantic-release`, and `lin
 
 - Set up the Dockerfile to build and use Docker for tests
 
+- Add any external scripts that won't be auto-detected by VSCode to `.vscode/tasks.json` .
+
+
+
