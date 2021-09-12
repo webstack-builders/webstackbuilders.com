@@ -24,7 +24,7 @@
     "dev": "lerna run dev --parallel",
     "format": "lerna run format",
     "link": "lerna link --force-local",
-    "lint": "eslint . && lerna run lint",
+    "lint": "eslint --format=autolinkable-stylish . && lerna run lint",
     "postinstall": "lerna bootstrap",
     "postpublish": "pinst --enable",
     "pre-commit": "noop",

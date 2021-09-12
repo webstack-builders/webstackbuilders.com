@@ -1,0 +1,11 @@
+.\#*
+\#*\#
+.config
+.git
+.github
+.vscode
+*.swp
+~*.docx
+build/*
+coverage/
+node_modules

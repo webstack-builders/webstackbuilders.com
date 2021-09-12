@@ -160,3 +160,6 @@ packages `commitizen`, `cz-conventional-changelog`, `semantic-release`, and `lin
     "*.ts": "eslint --cache --cache-location .eslintcache --fix"
   },
 ```
+
+- Set up the Dockerfile to build and use Docker for tests
+

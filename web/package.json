@@ -22,7 +22,7 @@
     "deploy": "gatsby build --prefix-paths",
     "dev": "cross-env GATSBY_GRAPHQL_IDE=playground gatsby develop -p 8002",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
-    "lint": "eslint .",
+    "lint": "eslint --format=autolinkable-stylish .",
     "test": "npm run lint && jest",
     "typecheck": "tsc --noEmit"
   },
