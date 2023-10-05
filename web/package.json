@@ -85,7 +85,7 @@
     "gatsby-plugin-root-import": "^2.0.6",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.1.1",
-    "postcss": "^8.2.7",
+    "postcss": "^8.4.31",
     "postcss-preset-env": "^6.6.0",
     "react-test-renderer": "^17.0.2",
     "source-map-support": "^0.5.20",
