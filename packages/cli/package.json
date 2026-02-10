@@ -35,7 +35,7 @@
     "latest-version": "5.1.0",
     "listr": "0.14.3",
     "listr-verbose-renderer": "0.6.0",
-    "lodash": "4.17.21",
+    "lodash": "4.17.23",
     "param-case": "3.0.4",
     "pascalcase": "1.0.0",
     "pluralize": "8.0.0",
