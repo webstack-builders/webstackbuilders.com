@@ -30,7 +30,7 @@
   "dependencies": {
     "@babel/core": "7.15.5",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.16",
-    "@svgr/webpack": "5.5.0",
+    "@svgr/webpack": "8.1.0",
     "babel-jest": "^27.1.1",
     "babel-loader": "8.2.2",
     "babel-plugin-named-asset-import": "^0.3.7",
