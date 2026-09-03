@@ -29,7 +29,7 @@
   "types": "./lib/react-app.d.ts",
   "dependencies": {
     "@babel/core": "7.15.5",
-    "@pmmmwh/react-refresh-webpack-plugin": "0.5.16",
+    "@pmmmwh/react-refresh-webpack-plugin": "0.6.3",
     "@svgr/webpack": "8.1.0",
     "babel-jest": "^27.1.1",
     "babel-loader": "8.2.2",
@@ -71,7 +71,7 @@
     "source-map-loader": "^1.1.2",
     "style-loader": "3.2.1",
     "webpack": "5.105.0",
-    "webpack-dev-server": "5.2.6",
+    "webpack-dev-server": "6.0.0",
     "webpack-manifest-plugin": "3.1.1",
     "workbox-webpack-plugin": "7.4.1"
   },
